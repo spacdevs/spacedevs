@@ -11,11 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2024_12_01_182415) do
-  create_table "contents", force: :cascade do |t|
+  create_table "disciplines", force: :cascade do |t|
     t.string "title"
     t.string "abstract", limit: 120
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_contents_on_title", unique: true
+    t.index ["title"], name: "index_disciplines_on_title", unique: true
   end
 end

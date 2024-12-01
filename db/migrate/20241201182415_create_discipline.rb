@@ -1,6 +1,6 @@
-class CreateContents < ActiveRecord::Migration[8.0]
+class CreateDiscipline < ActiveRecord::Migration[8.0]
   def change
-    create_table :contents do |t|
+    create_table :disciplines do |t|
       t.string :title,    index: { unique: true }
       t.string :abstract, limit: 120
 
