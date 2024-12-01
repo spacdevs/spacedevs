@@ -1,8 +1,8 @@
 class CreateContents < ActiveRecord::Migration[8.0]
   def change
     create_table :contents do |t|
-      t.string :title, index: { unique: true }
-      t.string :resume
+      t.string :title,    index: { unique: true }
+      t.string :abstract, limit: 120
 
       t.timestamps
     end
