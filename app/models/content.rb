@@ -1,4 +1,4 @@
 class Content < ApplicationRecord
-  validates :title,  presence: true
-  validates :resume, presence: true
+  validates :title, :resume,  presence: true
+  validates :title,           uniqueness: true
 end

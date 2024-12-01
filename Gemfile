@@ -42,7 +42,7 @@ group :development do
   gem "web-console"
 end
 
-group :text do
+group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rubocop"
