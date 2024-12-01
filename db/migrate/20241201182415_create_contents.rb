@@ -1,0 +1,10 @@
+class CreateContents < ActiveRecord::Migration[8.0]
+  def change
+    create_table :contents do |t|
+      t.string :title, index: { unique: true }
+      t.string :resume
+
+      t.timestamps
+    end
+  end
+end
