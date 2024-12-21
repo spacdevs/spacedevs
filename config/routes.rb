@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "dashboard#index"
 
-  resource :session
+  resource :session, only: %i[new create]
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
