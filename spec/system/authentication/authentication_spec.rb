@@ -12,4 +12,14 @@ feature 'Authentication' do
     expect(status_code).to eq 200
     expect(page).to        have_content 'Olá Spacer, seja bem-vindo!'
   end
+
+  scenario 'Logoff authenticated user' do
+    user = create(:user, :student)
+
+    login_as(user)
+    click_on 'Sair'
+
+    expect(status_code).to eq 200
+    expect(page).to have_field 'Matricula'
+  end
 end

@@ -11,6 +11,12 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rails'
 
+# Import all files from support directory
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+# Add `support` directory to the load path
+include Support
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
