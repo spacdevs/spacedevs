@@ -1,0 +1,13 @@
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<%= form_with url: session_path do |form| %>
+  <%= form.text_field :registration_code, required: true, autofocus: true, autocomplete: "username", placeholder: "Matricula", value: params[:registration_code] %><br>
+  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Senha", maxlength: 72 %><br>
+  <%= form.submit "Entrar" %>
+<% end %>
+<br>
+
+<%= link_to 'Sair', session_path, method: :delete %>
+
+<%= link_to "Forgot password?", new_password_path %>
