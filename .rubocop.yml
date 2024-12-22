@@ -8,6 +8,7 @@ AllCops:
   SuggestExtensions: false
   TargetRubyVersion: 3.3
   Exclude:
+    - '*.html.erb'
     - 'bin/**/*'
     - 'vendor/**/*'
     - 'config/**/*'
@@ -26,6 +27,11 @@ Style/FrozenStringLiteralComment:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - double_quotes
 
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
