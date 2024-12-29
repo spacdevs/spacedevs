@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
-    <title><%= content_for(:title) || "Spacedevs" %></title>
+    <meta charset="utf-8">
+    <meta name="author" content="Marcus Almeida">
+
+    <title><%= "Spacedevs - #{content_for(:title)}" || "Aprenda, aprimore, planeje e desenvolva softwares" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/site.webmanifest">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -22,7 +31,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body class="uk-body">
+  <main class="uk-content">
+      <%= yield %>
+  </main>
+</body>
 </html>
