@@ -23,4 +23,13 @@ feature 'Authentication' do
     expect(status_code).to eq 200
     expect(page).to have_field 'Matricula'
   end
+
+  scenario 'already authenticated user cannot view session page' do
+    user = create(:user, :student)
+
+    login_as(user)
+    visit new_session_path
+
+    expect(current_path).to eq root_path
+  end
 end
