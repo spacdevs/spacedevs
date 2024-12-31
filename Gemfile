@@ -48,5 +48,5 @@ group :test do
   gem "rubocop"
   gem "rubocop-capybara", require: false
   gem "rubocop-rails", require: false
-  gem "shoulda-matchers", "~> 5.0"
+  gem "shoulda-matchers", "~> 6.0"
 end
