@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Disciplines' do
-  scenario 'student must view disciplines' do
+  scenario 'student must see disciplines' do
     user = create(:user, :student)
     create(:discipline, title: 'Introdução a tecnologia', abstract: 'Neste módulo você aprenderá sobre a história da tecnologia e sua importância para a sociedade.')
     create(:discipline, title: 'Arquitetura de computadores', abstract: 'Neste módulo você aprenderá sobre a arquitetura de computadores e como eles funcionam.')
@@ -19,7 +19,7 @@ feature 'Disciplines' do
     end
   end
 
-  scenario 'student must view disciplines on ordered' do
+  scenario 'student must see disciplines on ordered' do
     user = create(:user, :student)
     discipline = create(:discipline, title: 'Introdução a tecnologia',     position: 2)
     discipline2 = create(:discipline, title: 'Arquitetura de computadores', position: 1)
@@ -33,5 +33,14 @@ feature 'Disciplines' do
     within '#disciplines > div:nth-child(1)' do
       expect(page).to have_content(discipline2.title)
     end
+  end
+
+  scenario 'student should see the message nothing to display' do
+    user = create(:user, :student)
+
+    login_as(user)
+    visit root_path
+
+    expect(page).to have_content('Nenhuma disciplina disponível')
   end
 end
