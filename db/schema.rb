@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_04_151600) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_31_115334) do
   create_table "contents", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -18,7 +18,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_151600) do
     t.integer "kind", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [ "discipline_id" ], name: "index_contents_on_discipline_id"
+    t.datetime "available_on"
+    t.index ["discipline_id"], name: "index_contents_on_discipline_id"
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -26,7 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_151600) do
     t.string "abstract", limit: 120
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [ "title" ], name: "index_disciplines_on_title", unique: true
+    t.index ["title"], name: "index_disciplines_on_title", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -35,7 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_151600) do
     t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [ "user_id" ], name: "index_sessions_on_user_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,8 +46,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_151600) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [ "email_address" ], name: "index_users_on_email_address", unique: true
-    t.index [ "registration_code" ], name: "index_users_on_registration_code", unique: true
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["registration_code"], name: "index_users_on_registration_code", unique: true
   end
 
   add_foreign_key "contents", "disciplines"

@@ -8,4 +8,15 @@ RSpec.describe Content, type: :model do
     it { is_expected.to belong_to(:discipline) }
     it { is_expected.to define_enum_for(:kind).with_values(text: 0, video: 1) }
   end
+
+  context 'should set available attribute' do
+    let(:content)   do
+      travel_to Time.zone.local(2024, 12, 31, 12, 0, 0) do
+        create(:content)
+      end
+    end
+
+    it { expect(content.available_on).to be_present }
+    it { expect(I18n.l(content.available_on, format: :short)).to eq "31 de dezembro, 12:00" }
+  end
 end
