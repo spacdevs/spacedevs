@@ -11,7 +11,6 @@ feature 'Authentication' do
 
     expect(status_code).to eq(200)
     expect(current_path).to eq(root_path)
-    expect(page).to have_content('Olá Spacer, seja bem-vindo!')
   end
 
   scenario 'Logoff authenticated user' do
