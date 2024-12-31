@@ -4,5 +4,6 @@ FactoryBot.define do
     body { Faker::Movie.quote }
     discipline
     kind { :text }
+    available { Time.zone.now }
   end
 end
