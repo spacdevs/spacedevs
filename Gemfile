@@ -30,7 +30,7 @@ gem "image_processing", "~> 1.2"
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
-  gem "rspec-rails", "~> 7.0.0"
+  gem "rspec-rails", "~> 7.1.0"
   gem "faker"
   gem "dotenv-rails"
   gem "factory_bot_rails"
