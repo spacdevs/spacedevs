@@ -316,7 +316,7 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
-    solid_cable (3.0.2)
+    solid_cable (3.0.5)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)
