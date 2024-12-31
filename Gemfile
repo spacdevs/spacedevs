@@ -27,6 +27,8 @@ gem "thruster", require: false
 
 gem "image_processing", "~> 1.2"
 
+gem "ffi", "1.16.3"
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
