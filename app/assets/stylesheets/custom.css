@@ -1,0 +1,80 @@
+:root {
+  --primary-color     : #724aca;
+  --default-color     : #222;
+  --text-default-color: #d3d3d3;
+}
+
+html,
+body {
+  background-color: #14171B !important;
+}
+
+footer {
+  background-color: #18181a !important;
+  padding         : 30px;
+}
+
+.uk-body {
+  display       : flex;
+  flex-direction: column;
+  min-height    : 100vh;
+}
+
+.uk-content {
+  flex: 1;
+}
+
+.uk-card-black {
+  background-color: #000 !important;
+}
+
+.uk-navbar-container {
+  border: #262626 0.1px solid;
+}
+
+.uk-card-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.text-default-color {
+  color: var(--text-default-color) !important;
+}
+
+.uk-text-primary {
+  color: var(--primary-color) !important;
+}
+
+.uk-button-primary {
+  background-color: var(--primary-color) !important;
+  border-color    : var(--primary-color) !important;
+  color           : #fff !important;
+}
+
+a[disabled] {
+  pointer-events: none;
+  cursor        : default;
+  color         : #ccc !important;
+}
+
+.uk-text-default {
+  color: var(--default-color) !important;
+}
+
+.avatar {
+  vertical-align: middle;
+  width         : 50px;
+  height        : 50px;
+  border-radius : 50%;
+}
+
+/* text */
+
+.uk-text-white {
+  color: #fff !important;
+}
+
+/* forms */
+
+textarea {
+  resize: vertical;
+}

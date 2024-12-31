@@ -1,8 +1,22 @@
-<h1>Forgot your password?</h1>
-
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+<div class="uk-section-default">
+  <div class="uk-section uk-light uk-background-cover uk-height-viewport"
+    style="background-image: url(<%= image_path('bg5.jpg') %>)">
+    <div class="uk-container">
+      <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+      <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-column" style="height: 100%;">
+        <div class="uk-width-1-1@s uk-margin-large-bottom uk-text-center" uk-grid></div>
+        <%= form_with url: passwords_path, class: 'uk-form-stacked uk-width-1-2@m uk-background-secondary uk-padding' do |form| %>
+          <div class="uk-margin">
+            <label class="uk-form-label" for="registration-id">E-mail</label>
+            <div class="uk-form-controls">
+              <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "Insira seu e-mail", value: params[:email_address], class: 'uk-input' %><br>
+            </div>
+          </div>
+          <div class="uk-margin">
+            <%= form.submit "Recuperar", class: 'uk-button uk-button-primary uk-width-1-1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
