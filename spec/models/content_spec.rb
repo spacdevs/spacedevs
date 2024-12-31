@@ -10,8 +10,13 @@ RSpec.describe Content, type: :model do
   end
 
   context 'should set available attribute' do
-    let(:content) { create(:content) }
+    let(:content)   do
+      travel_to Time.zone.local(2024, 12, 31, 12, 0, 0) do
+        create(:content)
+      end
+    end
 
-    it { expect(content.available).to be_present }
+    it { expect(content.available_on).to be_present }
+    it { expect(I18n.l(content.available_on, format: :short)).to eq "31 de dezembro, 12:00" }
   end
 end

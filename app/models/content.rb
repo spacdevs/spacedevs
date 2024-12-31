@@ -5,11 +5,11 @@ class Content < ApplicationRecord
 
   enum :kind, { text: 0, video: 1 }
 
-  before_save :default_available_value
+  before_save :setting_available_on
 
   private
 
-  def default_available_value
-    available = Time.zone.now
+  def setting_available_on
+    available_on = Time.zone.now
   end
 end

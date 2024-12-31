@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_31_115334) do
     t.integer "kind", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "available"
+    t.datetime "available_on"
     t.index ["discipline_id"], name: "index_contents_on_discipline_id"
   end
 
