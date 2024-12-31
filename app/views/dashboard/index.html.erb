@@ -1,16 +1,21 @@
-<h1>Olá Spacer, seja bem-vindo!</h1>
-
-<div id="disciplines">
-
-<% if @disciplines.blank? %>
-  <p>Nenhuma disciplina disponível.</p>
-<% end %>
-
-<% @disciplines.each do |discipline|  %>
-  <div>
-    <h2><%= discipline.title %></h2>
-    <p><%= discipline.abstract %></p>
+<section class="uk-section">
+  <div class="uk-container">
+    <% if @disciplines.blank? %>
+      <p>Nenhuma disciplina disponível.</p>
+    <% end %>
+    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
+      <% @disciplines.each do |discipline|  %>
+        <div>
+          <a href="/content.html" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
+            <h3 class=" uk-card-title"><%= discipline.title %></h3>
+            <p>
+              <%= discipline.abstract %>
+            </p>
+          </a>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</section>
 
 <%= link_to 'Sair', session_path, { method: :delete } %>
