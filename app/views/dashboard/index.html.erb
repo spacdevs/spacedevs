@@ -1,0 +1,12 @@
+<h1>Olá Spacer, seja bem-vindo!</h1>
+
+<div id="disciplines">
+<% @disciplines.each do | discipline | %>
+  <div>
+    <h2><%= discipline.title %></h2>
+    <p><%= discipline.abstract %></p>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'Sair', session_path, { method: :delete } %>
