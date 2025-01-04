@@ -24,7 +24,9 @@
                 <li class="uk-active"><a href="/settings/edit/settings.html">Configurações</a></li>
                 <li class="uk-active"><a href="#">Minhas disciplinas</a></li>
                 <li class="uk-active"><a href="/account/grade.html">Minhas notas</a></li>
-                <li><a href="/authentication/sign-in.html">Sair</a></li>
+                <li>
+                  <%= link_to 'Sair', session_path, data: { turbo_method: :delete } %>
+                </li>
               </ul>
             </div>
           </li>
