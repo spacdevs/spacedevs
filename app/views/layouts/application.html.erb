@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Marcus Almeida">
 
-    <title><%= "Spacedevs - #{content_for(:title)}" || "Aprenda, aprimore, planeje e desenvolva softwares" %></title>
+    <title><%= "Spacedevs - #{content_for(:title) || 'Aprenda, aprimore, planeje e desenvolva softwares' }" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -32,9 +32,26 @@
     <%= javascript_importmap_tags %>
   </head>
 
-<body class="uk-body">
-  <main class="uk-content">
-      <%= yield %>
-  </main>
-</body>
+  <body class="uk-body">
+    <% unless current_page?(:new_session) %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+
+    <main class="uk-content">
+        <%= yield %>
+    </main>
+
+    <footer class="uk-margin-large-top">
+      <div>
+        <p class="uk-text-center">&COPY; <strong>Spacedevs</strong> todos os direitos reservados <span
+            id="currentDate"></span></p>
+      </div>
+    </footer>
+  </body>
+
+
+  <script>
+    const currentDate = new Date().getFullYear();
+    document.getElementById('currentDate').textContent = currentDate;
+  </script>
 </html>
