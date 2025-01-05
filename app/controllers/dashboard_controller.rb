@@ -11,8 +11,10 @@ class DashboardController < ApplicationController
 
   def notification_user_message
     @notifications = []
+    support_url = ENV.fetch("COMMUNITY_URL", "https://www.spacedevs.com.br")
 
     @notifications << "Termine de configurar seu perfil para ter acesso ao conteúdo" if current_user.profile.blank?
-    @notifications << "Estamos trabalhando no conteúdo para te ofertar, enquanto isso descanse 😁" if @disciplines.blank?
+    @notifications << "Estamos trabalhando no conteúdo para te ofertar, " \
+                      "enquanto isso acesse a nossa <a href='#{support_url}'>comunidade</a>." if @disciplines.blank?
   end
 end

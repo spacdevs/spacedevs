@@ -3,7 +3,7 @@
     <% if @notifications.present? %>
       <% @notifications.each do |notification| %>
         <div class="uk-alert-danger" uk-alert>
-          <p class="uk-text-center"><%= notification %></p>
+          <p class="uk-text-center"><%= notification.html_safe %></p>
         </div>
       <% end %>
     <% else %>
