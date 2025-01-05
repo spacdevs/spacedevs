@@ -1,10 +1,12 @@
 <section class="uk-section">
   <div class="uk-container">
-    <% if @disciplines.blank? %>
-      <p class="uk-text-center uk-text-large uk-text-white">Nenhuma disciplina disponível</p>
-    <% end %>
-
-    <% if current_user.profile.present? && @disciplines.present? %>
+    <% if @messages.present? %>
+      <% @messages.each do |message| %>
+        <div class="uk-alert-primary" uk-alert>
+          <p class="uk-text-center"><%= message %></p>
+        </div>
+      <% end %>
+    <% else %>
       <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
         <% @disciplines.each do |discipline|  %>
           <div>

@@ -14,13 +14,13 @@ feature 'Disciplines' do
     let(:user) { create(:user, :student) }
 
     before do
-      create(:discipline, title: 'Introdução a tecnologia', abstract: 'Tudo sobre tecnologia')
-
       login_as(user)
       visit root_path
     end
 
     scenario 'cannot see profile information' do
+      create(:discipline, title: 'Introdução a tecnologia', abstract: 'Tudo sobre tecnologia')
+
       expect(page).to have_content('Sem nome')
       expect(page).to have_content('Configurações')
       expect(page).to have_content('Sair')
@@ -29,25 +29,19 @@ feature 'Disciplines' do
     scenario 'cannot see disciplines information' do
       expect(page).not_to have_content('Introdução a tecnologia')
       expect(page).not_to have_content('Tudo sobre tecnologia')
+      expect(page).to have_content('Termine de configurar seu perfil para ter acesso ao conteúdo')
     end
   end
 
   scenario 'student must see disciplines' do
     user = create(:user, :with_profile, :student)
     create(:discipline, title: 'Introdução a tecnologia', abstract: 'Neste módulo você aprenderá sobre a história da tecnologia e sua importância para a sociedade.')
-    create(:discipline, title: 'Arquitetura de computadores', abstract: 'Neste módulo você aprenderá sobre a arquitetura de computadores e como eles funcionam.')
 
     login_as(user)
     visit root_path
 
-    within '#disciplines > div:nth-child(1)' do
-      expect(page).to have_content('Introdução a tecnologia')
-      expect(page).to have_content('Neste módulo você aprenderá sobre a história da tecnologia e sua importância para a sociedade.')
-    end
-    within '#disciplines > div:nth-child(2)' do
-      expect(page).to have_content('Arquitetura de computadores')
-      expect(page).to have_content('Neste módulo você aprenderá sobre a arquitetura de computadores e como eles funcionam.')
-    end
+    expect(page).to have_content('Introdução a tecnologia')
+    expect(page).to have_content('Neste módulo você aprenderá sobre a história da tecnologia e sua importância para a sociedade.')
   end
 
   scenario 'student must see disciplines in order' do
@@ -72,6 +66,6 @@ feature 'Disciplines' do
     login_as(user)
     visit root_path
 
-    expect(page).to have_content('Nenhuma disciplina disponível')
+    expect(page).to have_content('Estamos preparando conteúdo para você e em breve você será notificado.')
   end
 end
