@@ -7,7 +7,7 @@ FactoryBot.define do
 
   trait :with_profile do
     before :create do |user|
-      user.profile = create(:profile, sourceable: user)
+      user.profile = create(:profile, user: user)
     end
   end
 end
