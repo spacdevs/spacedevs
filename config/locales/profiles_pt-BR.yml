@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      profile: Perfil
+    attributes:
+      profile:
+        first_name: 'Nome'
+      degrees:
+        first_year: "1º ano do ensino médio"
+        second_year: "2º ano do ensino médio"
+        third_year:  "3º ano do ensino médio"
