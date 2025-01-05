@@ -1,9 +1,9 @@
 <section class="uk-section">
   <div class="uk-container">
-    <% if @messages.present? %>
-      <% @messages.each do |message| %>
-        <div class="uk-alert-primary" uk-alert>
-          <p class="uk-text-center"><%= message %></p>
+    <% if @notifications.present? %>
+      <% @notifications.each do |notification| %>
+        <div class="uk-alert-danger" uk-alert>
+          <p class="uk-text-center"><%= notification %></p>
         </div>
       <% end %>
     <% else %>

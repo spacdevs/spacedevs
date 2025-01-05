@@ -10,9 +10,9 @@ class DashboardController < ApplicationController
   private
 
   def notification_user_message
-    @messages = []
+    @notifications = []
 
-    @messages << "Termine de configurar seu perfil para ter acesso ao conteúdo" if current_user.profile.blank?
-    @messages << "Estamos preparando conteúdo para você e em breve você será notificado." if @disciplines.blank?
+    @notifications << "Termine de configurar seu perfil para ter acesso ao conteúdo" if current_user.profile.blank?
+    @notifications << "Estamos trabalhando no conteúdo para te ofertar, enquanto isso descanse 😁" if @disciplines.blank?
   end
 end

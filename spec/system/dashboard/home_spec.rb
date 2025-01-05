@@ -66,6 +66,6 @@ feature 'Disciplines' do
     login_as(user)
     visit root_path
 
-    expect(page).to have_content('Estamos preparando conteúdo para você e em breve você será notificado.')
+    expect(page).to have_content('Estamos trabalhando no conteúdo para te ofertar, enquanto isso descanse 😁')
   end
 end
