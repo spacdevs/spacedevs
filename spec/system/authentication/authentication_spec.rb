@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Authentication' do
-  scenario 'Login with valid credentials' do
+  scenario 'log in with valid credentials' do
     user = create(:user, :student)
 
     visit new_session_path
@@ -13,7 +13,7 @@ feature 'Authentication' do
     expect(current_path).to eq(root_path)
   end
 
-  scenario 'Logoff authenticated user' do
+  scenario 'log off authenticated user' do
     user = create(:user, :student)
 
     login_as(user)

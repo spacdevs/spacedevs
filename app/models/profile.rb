@@ -7,6 +7,10 @@ class Profile < ApplicationRecord
 
   before_create :generate_avatar
 
+  def fullname
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def generate_avatar

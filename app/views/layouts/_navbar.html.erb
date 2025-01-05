@@ -3,7 +3,7 @@
     <div uk-navbar>
       <div class="uk-navbar-left">
         <a class="uk-navbar-item uk-logo" href="/" aria-label="Volte para Página inicial">
-          <img src="/assets/images/logo.png" alt="">
+          <%= image_tag 'logo.png', alt: 'Spacedevs logo marca que aparente um buraco negro dentro de um universo' %>
         </a>
 
         <ul class="uk-navbar-nav">
@@ -12,18 +12,16 @@
 
       </div>
 
-      <div class="uk-navbar-right">
+      <div class="uk-navbar-right" id="profile">
         <a class="uk-navbar-item uk-logo" href="#" aria-label="Back to Home">
-          <img src="/assets/images/avatar/50.jpg" class="avatar" alt="Judith Rice">
+          <img src="<%= current_user&.profile&.avatar %>" class="avatar" alt="<%= current_user&.profile&.fullname %>">
         </a>
         <ul class="uk-navbar-nav">
           <li>
-            <a href="#">Judith Rice</a>
+            <a href="#"><%= current_user&.profile&.fullname.presence || 'Sem nome' %></a>
             <div class="uk-navbar-dropdown">
               <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
                 <li class="uk-active"><a href="/settings/edit/settings.html">Configurações</a></li>
-                <li class="uk-active"><a href="#">Minhas disciplinas</a></li>
-                <li class="uk-active"><a href="/account/grade.html">Minhas notas</a></li>
                 <li>
                   <%= link_to 'Sair', session_path, data: { turbo_method: :delete } %>
                 </li>

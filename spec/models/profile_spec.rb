@@ -22,4 +22,10 @@ RSpec.describe Profile, type: :model do
     it { expect(profile.avatar).to be_present }
     it { expect(profile.avatar).to include('gravatar') }
   end
+
+  context '#fullname' do
+    let(:profile) { create(:profile, first_name: 'John', last_name: 'Doe') }
+
+    it { expect(profile.fullname).to eq 'John Doe' }
+  end
 end

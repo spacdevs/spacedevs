@@ -1,19 +1,22 @@
 <section class="uk-section">
   <div class="uk-container">
     <% if @disciplines.blank? %>
-      <p>Nenhuma disciplina disponível.</p>
+      <p class="uk-text-center uk-text-large uk-text-white">Nenhuma disciplina disponível</p>
     <% end %>
-    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
-      <% @disciplines.each do |discipline|  %>
-        <div>
-          <a href="/content.html" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
-            <h3 class=" uk-card-title"><%= discipline.title %></h3>
-            <p>
-              <%= discipline.abstract %>
-            </p>
-          </a>
-        </div>
-      <% end %>
-    </div>
+
+    <% if current_user.profile.present? && @disciplines.present? %>
+      <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
+        <% @disciplines.each do |discipline|  %>
+          <div>
+            <a href="/content.html" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
+              <h3 class=" uk-card-title"><%= discipline.title %></h3>
+              <p>
+                <%= discipline.abstract %>
+              </p>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </section>
