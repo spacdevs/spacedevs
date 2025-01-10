@@ -8,6 +8,9 @@ RSpec.describe Content, type: :model do
     it { is_expected.to belong_to(:discipline) }
     it { is_expected.to define_enum_for(:kind).with_values(text: 0, video: 1) }
   end
+  context 'association' do
+    it { is_expected.to belong_to(:discipline) }
+  end
 
   context 'should set available attribute' do
     let(:content)   do

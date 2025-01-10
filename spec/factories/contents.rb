@@ -3,7 +3,7 @@ FactoryBot.define do
     title { Faker::Movie.title }
     body { Faker::Movie.quote }
     discipline
-    kind { :text }
+    kind { %i[text video].sample }
     available_on { Time.zone.now }
   end
 end

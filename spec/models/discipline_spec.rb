@@ -8,6 +8,10 @@ RSpec.describe Discipline, type: :model do
     it { is_expected.to validate_uniqueness_of(:title) }
   end
 
+  context 'association' do
+    it { is_expected.to have_many(:contents) }
+  end
+
   context '#discipline' do
     let(:discipline) { create(:discipline) }
 
