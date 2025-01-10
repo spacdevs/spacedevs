@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_05_173240) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_09_184158) do
   create_table "contents", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -19,7 +19,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_05_173240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "available_on"
+    t.string "slug"
     t.index ["discipline_id"], name: "index_contents_on_discipline_id"
+    t.index ["slug"], name: "index_contents_on_slug", unique: true
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_05_173240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position", default: 1
+    t.string "slug"
+    t.index ["slug"], name: "index_disciplines_on_slug", unique: true
     t.index ["title"], name: "index_disciplines_on_title", unique: true
   end
 

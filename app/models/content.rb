@@ -1,15 +1,16 @@
 class Content < ApplicationRecord
   belongs_to :discipline
 
-  validates :title, :body, :kind, presence: true
+  before_validation :update_slug
 
   enum :kind, { text: 0, video: 1 }
 
-  before_save :setting_available_on
+  validates :title, :body, :kind, presence: true
 
   private
 
   def setting_available_on
-    available_on = Time.zone.now
+  def update_slug
+    self.slug = title&.parameterize
   end
 end
