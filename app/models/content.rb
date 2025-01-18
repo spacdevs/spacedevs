@@ -9,7 +9,6 @@ class Content < ApplicationRecord
 
   private
 
-  def setting_available_on
   def update_slug
     self.slug = title&.parameterize
   end

@@ -10,7 +10,7 @@
       <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
         <% @disciplines.each do |discipline|  %>
           <div>
-            <a href="/content.html" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
+            <a href="<%= discipline_path(slug: discipline.slug) %>" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
               <h3 class=" uk-card-title"><%= discipline.title %></h3>
               <p>
                 <%= discipline.abstract %>

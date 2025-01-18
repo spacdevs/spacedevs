@@ -1,0 +1,32 @@
+<section class="uk-section">
+  <div class="uk-container">
+    <div class="uk-child-width-1-1@s" uk-grid>
+      <div>
+        <nav aria-label="Breadcrumb">
+          <ul class="uk-breadcrumb">
+            <li><a><%= @discipline.title %></a></li>
+            <li><a href="/content2.html">Conhecendo as ferramentas de trabalho</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="uk-grid-match" uk-grid>
+      <div class="uk-width-3-4@m uk-width-1-1@s">
+        <video class="uk-width-1-1" controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="uk-width-1-4@m uk-width-1-1@s">
+        <div class="uk-card uk-card-secondary uk-card-body">
+          <ol class="uk-nav uk-nav-secondary uk-list uk-list-decimal">
+            <% @discipline.contents.each do |content| %>
+              <li><a href="/content.html"><%= content.title %></a></li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
