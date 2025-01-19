@@ -14,4 +14,13 @@ feature :contents do
     end
     expect(page).to have_content(discipline.title)
   end
+
+  scenario 'must redirect to a 404 page' do
+    user = create(:user, :with_profile, :student)
+
+    login_as(user)
+    visit discipline_path(slug: 1)
+
+    expect(status_code).to eq(404)
+  end
 end
