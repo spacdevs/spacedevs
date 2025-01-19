@@ -20,13 +20,16 @@ Style/Documentation:
   Enabled: false
 
 Style/ReturnNilInPredicateMethodDefinition:
-  Enabled: false
+  Enabled: true
+
+Style/IdenticalConditionalBranches:
+  Enabled: true
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
 
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Enabled: true
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -40,7 +43,7 @@ Metrics/BlockLength:
   Max: 150
 
 Layout/HashAlignment:
-  Enabled: false
+  Enabled: true
 
 Layout/LineLength:
   Max: 190
@@ -48,8 +51,8 @@ Layout/LineLength:
     - 'app/controllers/dashboard/members_controller.rb'
 
 Rails/HasManyOrHasOneDependent:
-  Enabled: false
+  Enabled: true
 
 Rails/InverseOf:
-  Enabled: false
+  Enabled: true
 
