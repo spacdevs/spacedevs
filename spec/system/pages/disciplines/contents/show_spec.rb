@@ -5,9 +5,7 @@ feature :contents do
   let!(:discipline) { create(:discipline, :with_contents) }
   let(:current_content) { discipline.contents.last }
 
-  before do
-    login_as(user)
-  end
+  before { login_as user }
 
   scenario 'click and show introduction text' do
     visit root_path
@@ -30,5 +28,11 @@ feature :contents do
 
     expect(page).to have_content(current_content.title)
     expect(page).to have_content(current_content.body)
+  end
+
+  scenario 'not found page' do
+    visit discipline_path(slug: 'not_found')
+
+    expect(page).to have_http_status(:not_found)
   end
 end

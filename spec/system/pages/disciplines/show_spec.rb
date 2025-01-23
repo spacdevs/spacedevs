@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 feature :disciplines do
-  scenario 'student open discipline and see contents' do
-    user = create(:user, :with_profile, :student)
-    discipline = create(:discipline, :with_contents)
+  let(:user) { create(:user, :with_profile, :student) }
+  let!(:discipline) { create(:discipline, :with_contents) }
 
-    login_as(user)
+  before { login_as user }
+
+  scenario 'student open discipline and see contents' do
     visit root_path
     click_on discipline.title
 
@@ -16,11 +17,8 @@ feature :disciplines do
   end
 
   scenario 'must redirect to a 404 page' do
-    user = create(:user, :with_profile, :student)
+    visit discipline_path(slug: 'not_found')
 
-    login_as(user)
-    visit discipline_path(slug: 1)
-
-    expect(status_code).to eq(404)
+    expect(page).to have_http_status(:not_found)
   end
 end
