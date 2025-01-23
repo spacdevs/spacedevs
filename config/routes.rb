@@ -1,8 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: "dashboard#index"
 
   resource  :session,   only: %i[new create destroy]
   resources :passwords, param: :token
+
+  resources :disciplines, only: %i[show], param: :slug, path: :disciplina do
+    resources :contents, only: %i[show], param: :content_slug, path: :aula
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
