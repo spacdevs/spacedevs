@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Discipline < ApplicationRecord
   has_many :contents, dependent: :destroy
 

@@ -15,6 +15,7 @@ AllCops:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
     - 'db/schemas.rb'
+    - scripts.rb
 
 Style/Documentation:
   Enabled: false
@@ -27,6 +28,18 @@ Style/IdenticalConditionalBranches:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+  Exclude:
+    - spec/**/*
+    - test/**/*
+    - db/**/*
+    - Rakefile
+    - Gemfile
+    - app/channels/application_cable/connection.rb
+    - app/helpers/application_helper.rb
+    - app/jobs/application_job.rb
+    - app/mailers/application_mailer.rb
+    - app/models/application_record.rb
+    - app/controllers/application_controller.rb
 
 Style/ClassAndModuleChildren:
   Enabled: true

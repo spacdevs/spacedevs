@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DisciplinesController < ApplicationController
   def show
     @discipline = Discipline.find_by!(slug: discipline_params[:slug])
