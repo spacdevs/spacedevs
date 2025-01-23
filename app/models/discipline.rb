@@ -1,7 +1,7 @@
 class Discipline < ApplicationRecord
   has_many :contents, dependent: :destroy
 
-  validates :title, :abstract, :position, :slug, presence: true
+  validates :title, :body, :abstract, :position, :slug, presence: true
 
   before_validation :update_slug
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_09_184158) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_23_065042) do
   create_table "contents", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_09_184158) do
     t.datetime "updated_at", null: false
     t.integer "position", default: 1
     t.string "slug"
+    t.text "body"
     t.index ["slug"], name: "index_disciplines_on_slug", unique: true
     t.index ["title"], name: "index_disciplines_on_title", unique: true
   end

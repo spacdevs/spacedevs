@@ -2,6 +2,6 @@
 
 class ContentsController < ApplicationController
   def show
-    @content = Content.find_by!(slug: content_params[:content_slug])
+    @content = Content.includes(:discipline).find_by!(slug: params[:content_slug])
   end
 end

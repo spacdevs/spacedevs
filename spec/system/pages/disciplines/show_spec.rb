@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature :contents do
+feature :disciplines do
   scenario 'student open discipline and see contents' do
     user = create(:user, :with_profile, :student)
     discipline = create(:discipline, :with_contents)

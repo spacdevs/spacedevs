@@ -4,7 +4,7 @@
       <div>
         <nav aria-label="Breadcrumb">
           <ul class="uk-breadcrumb">
-            <li><a><%= @discipline.title %></a></li>
+            <li><a><%= @content.discipline.title %></a></li>
             <li><a href="/content2.html">Conhecendo as ferramentas de trabalho</a></li>
           </ul>
         </nav>
@@ -13,17 +13,14 @@
 
     <div class="uk-grid-match" uk-grid>
       <div class="uk-width-3-4@m uk-width-1-1@s">
-        <h1 class="uk-text-white"> Introdução </h1>
-        <p class="uk-text-white">
-          <%= @discipline.body %>
-        </p>
+        <%= @content.body %>
       </div>
       <div class="uk-width-1-4@m uk-width-1-1@s">
         <div class="uk-card uk-card-secondary uk-card-body">
           <ol class="uk-nav uk-nav-secondary uk-list uk-list-decimal">
-            <% @discipline.contents.each do |content| %>
+            <% @content.discipline.contents.each do |content| %>
               <li>
-                <%= link_to content.title, discipline_content_path(discipline_slug: @discipline.slug, content_slug: content.slug) %>
+                <%= link_to content.title, discipline_content_path(discipline_slug: @content.discipline.slug, content_slug: content.slug) %>
             <% end %>
           </ol>
         </div>
