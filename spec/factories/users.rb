@@ -3,6 +3,7 @@ FactoryBot.define do
     registration_code { "SD#{Faker::Code.nric}" }
     email_address     { Faker::Internet.email }
     password          { Faker::Internet.password }
+    school
   end
 
   trait :with_profile do
