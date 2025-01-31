@@ -2,6 +2,7 @@
 
 class ProfilesController < ApplicationController
   before_action :current_profile
+  before_action :can_access?
 
   def show;end
 

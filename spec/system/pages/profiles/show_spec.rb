@@ -4,22 +4,39 @@ feature 'Visit profile' do
   let(:user) { create(:user, :with_profile) }
 
   before do
-    user.profile.update!(birthday: Date.new(2000, 1, 1), degree: :first_year)
     login_as(user)
-    click_on 'Meu perfil'
   end
 
-  scenario { expect(current_path).to eq(profile_path) }
+  context 'when have profile' do
+    before do
+      user.profile.update!(birthday: Date.new(2000, 1, 1), degree: :first_year)
+      click_on 'Meu perfil'
+    end
 
-  scenario { have_content(user.profile.fullname) }
+    scenario { expect(current_path).to eq(profile_path) }
 
-  scenario { have_content("E-mail: #{user.email}") }
+    scenario 'can view profile' do
+      expect(page).to have_content("E-mail: #{user.email}")
+      expect(page).to have_content("Matricula: #{user.registration_code}")
+      expect(page).to have_content("Escola matriculada: #{user.school.name}")
+      expect(page).to have_content("Turma: 1º ano do ensino médio")
+    end
+  end
 
-  scenario { have_content("Matricula: #{user.registration_code}") }
+  context 'when no profile' do
+    let(:user) { create(:user, :student) }
 
-  scenario { expect(current_path).to eq(profile_path) }
+    before do
+      visit profile_path
+    end
 
-  scenario { have_content("Escola matriculada: #{user.school.name}") }
+    scenario { expect(current_path).not_to eq(profile_path) }
+    scenario { expect(current_path).to eq(root_path) }
 
-  scenario { have_content("Turma: 1º ano do ensino médio") }
+    scenario 'cannot view profile' do
+      expect(page).to have_content('Sem nome')
+      expect(page).to have_content('Configurações')
+      expect(page).to have_content('Sair')
+    end
+  end
 end
