@@ -34,4 +34,14 @@ RSpec.describe Profile, type: :model do
 
     it { expect(profile.slug).to eq 'john-doe' }
   end
+
+  context '#age' do
+    let(:profile) do
+      travel_to Time.zone.local(2025, 1, 1) do
+        create(:profile, birthday: Date.new(2000, 2, 1))
+      end
+    end
+
+    it { expect(profile.age).to eq 25 }
+  end
 end

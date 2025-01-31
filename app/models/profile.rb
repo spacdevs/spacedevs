@@ -13,6 +13,17 @@ class Profile < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def age
+    years = Date.current.year -  birthday.year
+
+    if Date.current < birthday
+      years -= 1
+      return years
+    end
+
+    years
+  end
+
   private
 
   def generate_slug

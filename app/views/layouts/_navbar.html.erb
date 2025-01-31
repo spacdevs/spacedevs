@@ -21,6 +21,9 @@
             <a href="#"><%= current_user&.profile&.fullname.presence || 'Sem nome' %></a>
             <div class="uk-navbar-dropdown">
               <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
+                <li>
+                  <%= link_to 'Meu perfil', profile_path(current_user&.profile&.slug) %>
+                </li>
                 <li class="uk-active"><a href="/settings/edit/settings.html">Configurações</a></li>
                 <li>
                   <%= link_to 'Sair', session_path, data: { turbo_method: :delete } %>
