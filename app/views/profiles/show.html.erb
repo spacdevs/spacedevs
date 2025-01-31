@@ -7,29 +7,24 @@
       <h2 class="uk-heading-line">
         <span><%= @profile.fullname %></span>
       </h2>
-      <p class="uk-text-lead">E-mail:
+      <p class="uk-text-lead">Escola matriculada:
         <span class="uk-text-white">
-          <%= current_user.email_address %>
+          <%= @profile.user.school.name %>
         </span>
       </p>
       <p class="uk-text-lead">Matricula:
         <span class="uk-text-white">
-          <%= current_user.registration_code %>
-        </span>
-      </p>
-      <p class="uk-text-lead">Idade:
-        <span class="uk-text-white">
-          <%= @profile.age %> anos
-        </span>
-      </p>
-      <p class="uk-text-lead">Escola matriculada:
-        <span class="uk-text-white">
-          <%= current_user.school.name %>
+          <%= @profile.user.registration_code %>
         </span>
       </p>
       <p class="uk-text-lead">Turma:
         <span class="uk-text-white">
           <%= Profile.human_enum_name(:degree, @profile.degree) %>
+        </span>
+      </p>
+      <p class="uk-text-lead">E-mail:
+        <span class="uk-text-white">
+          <%= @profile.user.email %>
         </span>
       </p>
     </div>
