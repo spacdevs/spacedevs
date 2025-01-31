@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resource  :session,   only: %i[new create destroy]
   resources :passwords, param: :token
+  resource  :profile, only: %i[show], path: :perfil
 
   resources :disciplines, only: %i[show], param: :slug, path: :disciplina do
     resources :contents, only: %i[show], param: :content_slug, path: :aula

@@ -54,8 +54,40 @@ Rails/UniqueValidationWithoutIndex:
 
 Metrics/BlockLength:
   Max: 150
+  Exclude:
+    - '**/config/**/*'
+    - '**/spec/**/*'
+    - '**/*.gemspec'
+
+Metrics/MethodLength:
+  Max: 50
+Metrics/ClassLength:
+  Max: 175
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
 
 Layout/HashAlignment:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/HashAsLastArrayItem:
+  Enabled: true
+Style/HashLikeCase:
+  Enabled: true
+Style/HashConversion:
+  Enabled: true
+Style/HashExcept:
   Enabled: true
 
 Layout/LineLength:
@@ -69,3 +101,9 @@ Rails/HasManyOrHasOneDependent:
 Rails/InverseOf:
   Enabled: true
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Layout/SpaceBeforeBrackets:
+  Enabled: true

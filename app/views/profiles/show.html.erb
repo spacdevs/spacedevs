@@ -1,0 +1,32 @@
+<section class="uk-section uk-padding-remove-top">
+  <div class="uk-container">
+    <div class="uk-card uk-card-primary uk-card-body uk-text-center uk-margin-top">
+      <div class="uk-flex uk-flex-center uk-margin-bottom">
+        <img src="<%= @profile.avatar %>" class="uk-border-circle" alt="Judith Rice" width="150" height="150">
+      </div>
+      <h2 class="uk-heading-line">
+        <span><%= @profile.fullname %></span>
+      </h2>
+      <p class="uk-text-lead">Escola matriculada:
+        <span class="uk-text-white">
+          <%= @profile.user.school.name %>
+        </span>
+      </p>
+      <p class="uk-text-lead">Matricula:
+        <span class="uk-text-white">
+          <%= @profile.user.registration_code %>
+        </span>
+      </p>
+      <p class="uk-text-lead">Turma:
+        <span class="uk-text-white">
+          <%= Profile.human_enum_name(:degree, @profile.degree) %>
+        </span>
+      </p>
+      <p class="uk-text-lead">E-mail:
+        <span class="uk-text-white">
+          <%= @profile.user.email %>
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
