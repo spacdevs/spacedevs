@@ -28,4 +28,10 @@ RSpec.describe Profile, type: :model do
 
     it { expect(profile.fullname).to eq 'John Doe' }
   end
+
+  context '#slug' do
+    let(:profile) { create(:profile, first_name: 'John', last_name: 'Doe') }
+
+    it { expect(profile.slug).to eq 'john-doe' }
+  end
 end
