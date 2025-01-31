@@ -42,6 +42,6 @@ RSpec.describe Profile, type: :model do
       end
     end
 
-    it { expect(profile.age).to eq 25 }
+    it { expect(profile.age).to eq 24 }
   end
 end
