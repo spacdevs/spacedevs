@@ -14,5 +14,6 @@ class User < ApplicationRecord
 
   enum :role, manager: 0, student: 1
 
-  validates :email_address, :registration_code, presence: true
+  validates :registration_code, presence: true
+  validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 end

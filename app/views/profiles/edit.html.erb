@@ -1,0 +1,23 @@
+<section class="uk-section">
+  <div class="uk-container">
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <%= form_with model: @profile, class: "uk-form-stacked" do |profile_form| %>
+        <%= profile_form.fields_for :user do |user_form| %>
+          <div class="uk-margin">
+            <%= user_form.label :email, 'E-mail', class:"uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= user_form.text_field :email, class:"uk-input", value: current_user.email %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="uk-margin">
+          <div class="uk-form-controls uk-text-right">
+            <%= link_to 'Voltar', profile_path,  class: "uk-button uk-button-default"  %>
+            <%= profile_form.submit 'Salvar', class: "uk-button uk-button-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
