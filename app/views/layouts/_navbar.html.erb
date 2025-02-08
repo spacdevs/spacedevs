@@ -18,13 +18,14 @@
         </a>
         <ul class="uk-navbar-nav">
           <li>
-            <a href="#"><%= current_user&.profile&.fullname.presence || 'Sem nome' %></a>
+            <a href="#" class='uk-text-white'><%= current_user&.profile&.fullname.presence || 'Sem nome' %></a>
             <div class="uk-navbar-dropdown">
-              <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
-                <%= link_to 'Meu perfil', profile_path %>
-                <li class="uk-active"><a href="/settings/edit/settings.html">Configurações</a></li>
+              <ul class="uk-nav uk-navbar-dropdown-nav">
                 <li>
-                  <%= link_to 'Sair', session_path, data: { turbo_method: :delete } %>
+                  <%= link_to 'Meu perfil', profile_path, class: 'uk-text-secondary' %>
+                </li>
+                <li>
+                  <%= link_to 'Sair', session_path, data: { turbo_method: :delete }, class: 'uk-text-secondary' %>
                 </li>
               </ul>
             </div>

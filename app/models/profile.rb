@@ -3,20 +3,21 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
-  validates :first_name, :last_name, :birthday, :degree, presence: true
+  before_create :generate_avatar, :generate_slug
 
   enum :degree, first_year: 1, second_year: 2, third_year: 3
+  accepts_nested_attributes_for :user, update_only: true
 
-  before_create :generate_avatar, :generate_slug
+  validates :first_name, :last_name, :birthday, :degree, presence: true
 
   def fullname
     "#{first_name} #{last_name}"
   end
 
   def age
-    years = Date.current.year - birthday.year
-    years -= 1 if Date.current < birthday.change(year: Date.current.year)
-    years
+    current_year = Date.current.year
+    years = current_year - birthday.year
+    years -= 1 if Date.current < birthday.change(year: current_year)
   end
 
   private

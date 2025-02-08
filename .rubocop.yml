@@ -45,9 +45,7 @@ Style/ClassAndModuleChildren:
   Enabled: true
 
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
-  SupportedStyles:
-    - double_quotes
+  EnforcedStyle: single_quotes
 
 Rails/UniqueValidationWithoutIndex:
   Enabled: false

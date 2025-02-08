@@ -36,11 +36,9 @@ RSpec.describe Profile, type: :model do
   end
 
   context '#age' do
-    let(:profile) do
-      travel_to Time.zone.local(2025, 1, 1) do
-        create(:profile, birthday: Date.new(2000, 2, 1))
-      end
-    end
+    let(:profile) { create(:profile, birthday: Time.zone.local(2000, 2, 1)) }
+
+    before { travel_to Time.zone.local(2025, 1, 1) }
 
     it { expect(profile.age).to eq 24 }
   end

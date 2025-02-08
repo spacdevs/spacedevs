@@ -35,7 +35,7 @@ feature 'Visit profile' do
 
     scenario 'cannot view profile' do
       expect(page).to have_content('Sem nome')
-      expect(page).to have_content('Configurações')
+      expect(page).to have_content('Meu perfil')
       expect(page).to have_content('Sair')
     end
   end

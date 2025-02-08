@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Authentication' do
   let(:user) { create(:user, :student, :with_profile) }
 
-  scenario 'when try logins to a successful' do
+  scenario 'when try logins to in successfully' do
     visit new_session_path
     fill_in 'Matricula', with: user.registration_code
     fill_in 'Senha', with: user.password
