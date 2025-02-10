@@ -16,15 +16,15 @@ feature 'Edit profile' do
     expect(user.reload.email_address).to eq('angelica@example.com')
   end
 
-  scenario 'update email' do
+  scenario 'update with invalid email' do
     user = create(:user, :with_profile)
 
     login_as(user)
-    visit profile_path
+    visit edit_profile_path
     fill_in 'E-mail', with: 'angelica@example'
     click_on 'Salvar'
 
-    expect(current_path).to eq(edit_profile_path)
-    expect(page).to have_content('E-mail incorreto')
+    expect(current_path).not_to eq(edit_profile_path)
+    expect(page).to have_content('E-mail não é válido')
   end
 end

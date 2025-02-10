@@ -1,7 +1,15 @@
 <section class="uk-section">
   <div class="uk-container">
+    <% if @profile.errors.present? %>
+      <div class="uk-alert uk-text-center uk-alert-danger">
+        <% @profile.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="uk-card uk-card-secondary uk-card-body">
-      <%= form_with model: @profile, class: "uk-form-stacked" do |profile_form| %>
+      <%= form_with model: @profile, class: "uk-form-stacked",  data: { turbo: false }  do |profile_form| %>
         <%= profile_form.fields_for :user do |user_form| %>
           <div class="uk-margin">
             <%= user_form.label :email, 'E-mail', class:"uk-form-label" %>

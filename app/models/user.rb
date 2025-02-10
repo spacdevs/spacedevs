@@ -15,5 +15,8 @@ class User < ApplicationRecord
   enum :role, manager: 0, student: 1
 
   validates :registration_code, presence: true
-  validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email_address, presence: true, uniqueness: true, format: {
+    with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
+    message: I18n.t('activerecord.notifications.errors.invalid_email_address')
+  }
 end
