@@ -1,7 +1,12 @@
 <section class="uk-section uk-padding-remove-top">
   <div class="uk-container">
-    <div class="uk-text-right">
-    </div>
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-success uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
     <div class="uk-card uk-card-primary uk-card-body uk-text-center uk-margin-top">
       <div class="uk-flex uk-flex-center uk-margin-bottom uk-flex-column">
         <div class="uk-margin-bottom">
