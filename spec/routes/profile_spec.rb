@@ -19,4 +19,20 @@ RSpec.describe "Content", type: :routing do
       )
     end
   end
+  context "PUT /profile" do
+    it do
+      expect(put: "/perfil").to route_to(
+        controller: "profiles",
+        action: "update"
+      )
+    end
+  end
+  context "PATCH /profile" do
+    it do
+      expect(patch: "/perfil").to route_to(
+        controller: "profiles",
+        action: "update"
+      )
+    end
+  end
 end
