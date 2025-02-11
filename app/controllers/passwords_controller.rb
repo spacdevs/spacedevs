@@ -12,7 +12,7 @@ class PasswordsController < ApplicationController
       PasswordsMailer.reset(user).deliver_later
     end
 
-    redirect_to new_session_path, notice: "Caso você esteja matriculado, um e-mail com instruções para redefinir sua senha foi enviado."
+    redirect_to new_session_path, notice: 'Caso você esteja matriculado, um e-mail com instruções para redefinir sua senha foi enviado.'
   end
 
   def edit
@@ -20,9 +20,9 @@ class PasswordsController < ApplicationController
 
   def update
     if @user.update(params.permit(:password, :password_confirmation))
-      redirect_to new_session_path, notice: "Password has been reset."
+      redirect_to new_session_path, notice: 'Password has been reset.'
     else
-      redirect_to edit_password_path(params[:token]), alert: "Senha inválida"
+      redirect_to edit_password_path(params[:token]), alert: 'Senha inválida'
     end
   end
 
@@ -30,6 +30,6 @@ class PasswordsController < ApplicationController
     def set_user_by_token
       @user = User.find_by_password_reset_token!(params[:token])
     rescue ActiveSupport::MessageVerifier::InvalidSignature
-      redirect_to new_password_path, alert: "Link para reseta senha inválido ou expirado."
+      redirect_to new_password_path, alert: 'Link para reseta senha inválido ou expirado.'
     end
 end

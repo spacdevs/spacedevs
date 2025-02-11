@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: 'E-mail'
+        email_address: 'E-mail'
+    notifications:
+      errors:
+        invalid_email_address: 'não é válido'

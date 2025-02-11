@@ -13,6 +13,16 @@ RSpec.describe User, type: :model do
     it { is_expected.to belong_to(:school) }
   end
 
+
+  context '#normalizes' do
+    let(:user) { create(:user, email_address: 'contato@spacedevs.com.br ', registration_code: ' ab1c4d5e ') }
+
+    it 'normalize email_address and registration_code' do
+      expect(user.reload.email_address).to eq('contato@spacedevs.com.br')
+      expect(user.reload.registration_code).to eq('AB1C4D5E')
+    end
+  end
+
   context 'auto generate registration code' do
     let(:user) { create(:user) }
 
