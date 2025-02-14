@@ -2,29 +2,35 @@
   <div class="uk-section uk-light uk-background-cover uk-height-viewport"
     style="background-image: url(<%= image_path('bg5.jpg') %>)">
     <div class="uk-container">
+      <% flash.each do |_, notification| %>
+        <div class="uk-margin-top">
+          <div class="uk-alert uk-alert-success uk-text-center">
+            <%= notification %>
+        </div>
+      <% end %>
       <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-column" style="height: 100%;">
         <div class="uk-width-1-1@s uk-margin-large-bottom uk-text-center" uk-grid></div>
-        <%= form_with url: session_path, class: 'uk-form-stacked uk-width-1-2@m uk-background-secondary uk-padding' do |f| %>
+        <%= form_with url: session_path, class: 'uk-form-stacked uk-width-1-2@m uk-background-secondary uk-padding' do |form| %>
           <div class="uk-margin">
-            <%= f.label :registration_code, 'Matricula', { class:"uk-form-label" } %>
+            <%= form.label :registration_code, 'Matricula', { class:"uk-form-label" } %>
             <div class="uk-form-controls">
-               <%= f.text_field :registration_code, required: true, autofocus: true, autocomplete: 'registration_code', class: "uk-input" %><br>
+              <%= form.text_field :registration_code, required: true, autofocus: true, autocomplete: 'registration_code', class: "uk-input" %><br>
             </div>
           </div>
           <div class="uk-margin">
             <label class="uk-form-label" for="password">Senha</label>
             <div class="uk-form-controls">
-              <%= f.password_field :password, required: true, autocomplete: "current-password", class: 'uk-input', maxlength: 72 %><br>
+              <%= form.password_field :password, required: true, autocomplete: "current-password", class: 'uk-input', maxlength: 72 %><br>
             </div>
           </div>
           <div class="uk-margin">
-            <%= f.submit "Entrar", { class: 'uk-button uk-button-primary uk-width-1-1' } %>
+            <%= form.submit "Entrar", { class: 'uk-button uk-button-primary uk-width-1-1' } %>
           </div>
         <% end %>
+      </div>
         <div class="uk-margin">
           <%= link_to "Esqueci minha senha", new_password_path, class: 'uk-button uk-button-muted uk-width-1-1' %>
         </div>
-      </div>
     </div>
   </div>
 </div>
