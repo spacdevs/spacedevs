@@ -13,7 +13,7 @@ class PasswordsController < ApplicationController
     end
 
     terminate_session
-    redirect_to new_session_path, notice: 'Enviamos um link para seu e-mail para redefinir sua senha.'
+    redirect_to new_session_path, notice: 'Encaminhamos um e-mail para redefinição de sua senha.'
   end
 
   def edit

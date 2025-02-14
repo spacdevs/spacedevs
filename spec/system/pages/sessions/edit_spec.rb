@@ -15,7 +15,7 @@ feature SessionsController do
 
     expect(PasswordsMailer).to have_received(:reset).with(user).exactly(1).times
     expect(current_path).to eq(new_session_path)
-    expect(page).to have_content('Enviamos um link para seu e-mail para redefinir sua senha')
+    expect(page).to have_content('Encaminhamos um e-mail para redefinição de sua senha.')
   end
 
   scenario 'cannot send email to a non-existent user' do
@@ -26,6 +26,6 @@ feature SessionsController do
 
     expect(PasswordsMailer).to have_received(:reset).with(user).exactly(0).times
     expect(current_path).to eq(new_session_path)
-    expect(page).to have_content('Enviamos um link para seu e-mail para redefinir sua senha')
+    expect(page).to have_content('Encaminhamos um e-mail para redefinição de sua senha.')
   end
 end
