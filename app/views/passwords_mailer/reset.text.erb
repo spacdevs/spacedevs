@@ -1,4 +1,4 @@
-Olá <%= @user&.profile&.fullname || @user.email_address  %>, Recentemente você solicitou resetar sua senha em nossa plataforma, clique no link abaixo para resetar a sua senha. Lembrando que o link expira em  1 hora.
+Olá <%= @user&.profile&.fullname || @user.email_address  %>, Recentemente você solicitou resetar sua senha em nossa plataforma, copie e coloque o link abaixo na barra de navegação em seu navegador. Lembrando que o link expira em  1 hora.
 
 <%= edit_password_url(@user.password_reset_token) %>
 
