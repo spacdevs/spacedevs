@@ -6,11 +6,13 @@
 
 html,
 body {
-  background-color: #14171B !important;
+  /* background-color: #14171B !important; */
+  background-color: #000 !important;
 }
 
 footer {
-  background-color: #18181a !important;
+  /* background-color: #18181a !important; */
+  background-color: #030303 !important;
   padding         : 30px;
 }
 
