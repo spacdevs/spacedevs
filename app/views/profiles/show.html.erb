@@ -13,7 +13,8 @@
           <img src="<%= @profile.avatar %>" class="uk-border-circle" alt="Judith Rice" width="150" height="150" />
         </div>
         <div>
-          <%= link_to 'Editar', edit_profile_path, class:"uk-button uk-button-default" %>
+          <%= link_to 'Editar meu e-mail', edit_profile_path, class:"uk-button uk-button-default" %>
+          <%= link_to 'Resetar minha senha', passwords_path(email_address: current_user.email_address), data: { turbo_method: :post }, class:"uk-button uk-button-default" %>
         </div>
       </div>
       <h2 class="uk-heading-line">

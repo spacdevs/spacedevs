@@ -9,10 +9,11 @@ class PasswordsController < ApplicationController
 
   def create
     if user = User.find_by(email_address: params[:email_address])
-      PasswordsMailer.reset(user).deliver_later
+      PasswordsMailer.reset(user).deliver_now
     end
 
-    redirect_to new_session_path, notice: 'Caso você esteja matriculado, um e-mail com instruções para redefinir sua senha foi enviado.'
+    terminate_session
+    redirect_to new_session_path, notice: 'Encaminhamos um e-mail para redefinição de sua senha.'
   end
 
   def edit
