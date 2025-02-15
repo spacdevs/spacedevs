@@ -12,7 +12,7 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   normalizes :registration_code, with: ->(code) { code.strip.upcase }
 
-  enum :role, manager: 0, student: 1
+  enum :role, admin: 0, student: 1
 
   validates :registration_code, presence: true
   validates :email_address, presence: true, uniqueness: true, format: {
