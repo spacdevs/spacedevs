@@ -35,7 +35,7 @@ feature 'Disciplines' do
     let!(:discipline2) { create(:discipline, position: 1) }
 
     before do
-      user.update!(role: %i[student manager].sample)
+      user.update!(role: %i[student admin].sample)
       visit root_path
     end
 
