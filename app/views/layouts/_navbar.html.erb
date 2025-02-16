@@ -8,6 +8,16 @@
 
         <ul class="uk-navbar-nav">
           <li><a href="<%= ENV.fetch('COMMUNITY_URL', 'https://spacedevs.com.br') %>">Comunidade</a></li>
+          <li>
+            <a href="#" class='uk-text-white'>ADMIN</a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li>
+                  <%= link_to 'Alunos', admin_users_path, class: 'uk-text-secondary' %>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
 
       </div>

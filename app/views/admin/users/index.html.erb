@@ -1,0 +1,33 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <table class="uk-table uk-table-middle uk-table-divider">
+        <thead>
+          <tr>
+              <th class="uk-width-small">Nome completo</th>
+              <th>E-mail</th>
+              <th>Data de criação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <th class="uk-width-small">
+                <%= user.profile.fullname %>
+              </th>
+              <th>
+                <%= user.email %>
+              </th>
+              <th>
+                <%= I18n.l(user.created_at, format: :short) %>
+              </th>
+              <th>
+
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
