@@ -2,16 +2,16 @@ require 'rails_helper'
 
 feature Admin::UsersController do
   let(:admin) { create(:user, :with_profile, :admin) }
-  let!(:student) { create(:user, :with_profile, :student) }
 
   scenario 'check if Administração word exists' do
-    create_list(:user, 2, :with_profile, :student)
     login_as(admin)
 
     expect(page).to have_content('Administração')
   end
 
   scenario 'admin view registered users' do
+    student = create(:user, :with_profile, :student)
+
     login_as(admin)
     click_on 'Alunos'
 
@@ -31,6 +31,8 @@ feature Admin::UsersController do
   end
 
   scenario 'student cannot view others registered students' do
+    student = create(:user, :with_profile, :student)
+
     login_as(student)
 
     expect(page).not_to have_content('ADMIN')
@@ -38,6 +40,8 @@ feature Admin::UsersController do
   end
 
   scenario 'user tries to access a direct route and gets redirected to the home page' do
+    student = create(:user, :with_profile, :student)
+
     login_as(student)
     visit admin_users_path
 
