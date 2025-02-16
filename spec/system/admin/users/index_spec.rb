@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 feature Admin::UsersController do
-  let(:admin) { create(:user, :admin) }
+  let(:admin) { create(:user, :with_profile, :admin) }
   let!(:student) { create(:user, :with_profile, :student) }
 
   scenario 'check if Administração word exists' do
+    create_list(:user, 2, :with_profile, :student)
     login_as(admin)
 
     expect(page).to have_content('Administração')
@@ -18,6 +19,15 @@ feature Admin::UsersController do
     expect(page).to have_content(student.profile.fullname)
     expect(page).to have_content(student.email)
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
+  end
+
+  scenario 'cannot view admin user' do
+    login_as(admin)
+    click_on 'Alunos'
+
+    within '#users' do
+      expect(page).not_to have_content(admin.profile.fullname)
+    end
   end
 
   scenario 'student cannot view others registered students' do
