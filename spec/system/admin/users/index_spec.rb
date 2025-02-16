@@ -21,6 +21,23 @@ feature Admin::UsersController do
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
   end
 
+  scenario 'admin view ordered users' do
+    user1 = create(:user, :with_profile, :student)
+    user2 = create(:user, :with_profile, :student)
+    user1.profile.update!(first_name: 'Marcelo', last_name: 'Aguiar')
+    user2.profile.update!(first_name: 'Ana Claudia', last_name: 'Melo')
+
+    login_as(admin)
+    click_on 'Alunos'
+
+    within '#users > tbody > tr:nth-child(1) > th.uk-width-small' do
+      expect(page).to have_content('Ana Claudia')
+    end
+    within '#users > tbody > tr:nth-child(2) > th.uk-width-small' do
+      expect(page).to have_content('Marcelo Aguiar')
+    end
+  end
+
   scenario 'cannot view admin user' do
     login_as(admin)
     click_on 'Alunos'
