@@ -20,6 +20,14 @@ RSpec.describe "User", type: :routing do
       )
     end
   end
+  context "GET /admin/users/search" do
+    it do
+      expect(get: "/admin/users/search").to route_to(
+        controller: "admin/users",
+        action: "search"
+      )
+    end
+  end
   context "PUT /admin/users/1" do
     it do
       expect(put: "admin/users/1").to route_to(

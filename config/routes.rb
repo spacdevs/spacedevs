@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   # For admins, this route will manage contents, disciplines, users and etc.
   namespace :admin do
-    resources :users, only: %i[index edit update]
+    resources :users, only: %i[index edit update] do
+      post 'search', to: 'users#search', on: :collection
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

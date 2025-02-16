@@ -1,5 +1,10 @@
 <div class="uk-section">
   <div class="uk-container">
+    <%= form_with url: :search_admin_users, data: { turbo: false } do |form| %>
+      <%= form.label :q, 'Buscar' %>
+      <%= form.text_field :q %>
+      <%= form.submit 'manda vê' %>
+    <% end %>
     <div class="uk-card uk-card-secondary uk-card-body">
       <table class="uk-table uk-table-middle uk-table-divider" id="users">
         <thead>
