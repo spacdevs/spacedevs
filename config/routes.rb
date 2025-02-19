@@ -4,13 +4,19 @@ Rails.application.routes.draw do
   root to: 'dashboard#index'
 
   resource  :session,   only: %i[new create destroy]
-  resources :passwords, param: :token
+  resources :passwords, only: %i[new create edit update], param: :token
   resource  :profile, only: %i[show edit update], path: :perfil
-  resolve('Profile') { [ :profile ] }
 
-
+  # Routes for disciplines context
   resources :disciplines, only: %i[show], param: :slug, path: :disciplina do
     resources :contents, only: %i[show], param: :content_slug, path: :aula
+  end
+
+  # For admins, this route will manage contents, disciplines, users and etc.
+  namespace :admin do
+    resources :users, only: %i[index edit update] do
+      get 'search', to: 'users#search', on: :collection
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

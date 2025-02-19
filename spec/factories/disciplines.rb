@@ -6,7 +6,7 @@ FactoryBot.define do
 
     trait :with_contents do
       transient do
-        limit { 3 }
+        limit { 1 }
       end
 
       after(:create) do |discipline, transient|

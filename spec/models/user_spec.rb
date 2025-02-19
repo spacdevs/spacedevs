@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   context 'validates' do
     it { is_expected.to validate_presence_of(:email_address) }
     it { is_expected.to validate_presence_of(:registration_code) }
-    it { is_expected.to define_enum_for(:role).with_values(manager: 0, student: 1) }
+    it { is_expected.to define_enum_for(:role).with_values(admin: 0, student: 1) }
   end
 
   context 'association' do
