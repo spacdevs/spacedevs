@@ -2,5 +2,5 @@
 FactoryBot.create(:discipline, :with_contents)
 
 # Create users with different roles
-FactoryBot.create(:user, :with_profile, email_address: 'student@spacedevs.com.br', password: '123', role: :student, registration_code: 'SDS6658093H')
-FactoryBot.create(:user, :with_profile, email_address: 'manager@spacedevs.com.br', password: '123', role: :manager)
+FactoryBot.create(:user, :with_profile, email_address: 'student@spacedevs.com.br', password: '123', role: :admin, registration_code: 'SDS6658093H')
+FactoryBot.create_list(:user, 5, :with_profile, :student)

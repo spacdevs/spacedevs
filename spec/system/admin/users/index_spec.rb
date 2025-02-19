@@ -21,19 +21,6 @@ feature Admin::UsersController do
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
   end
 
-  scenario 'admin search user' do
-    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
-    create(:user, :with_profile, :student, first_name: 'Simão', last_name: 'Silva')
-
-    login_as(admin)
-    click_on 'Alunos'
-    fill_in 'Buscar', with: 'Ana Claudia Melo'
-    click_on 'manda vê'
-
-    expect(page).to have_content('Ana Claudia')
-    expect(page).not_to have_content('Simão Silva')
-  end
-
   scenario 'admin view ordered users' do
     user1 = create(:user, :with_profile, :student)
     user2 = create(:user, :with_profile, :student)
@@ -49,6 +36,31 @@ feature Admin::UsersController do
     within '#users > tbody > tr:nth-child(2) > th.uk-width-small' do
       expect(page).to have_content('Marcelo Aguiar')
     end
+  end
+
+  scenario 'admin search user' do
+    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
+    create(:user, :with_profile, :student, first_name: 'Simão', last_name: 'Silva')
+
+    login_as(admin)
+    click_on 'Alunos'
+    find('input[placeholder="Buscar"]').set('Ana Claudia Melo')
+    click_on 'manda vê'
+
+    expect(page).to have_content('Ana Claudia')
+    expect(page).not_to have_content('Simão Silva')
+  end
+
+  scenario 'user cannot found' do
+    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
+
+    login_as(admin)
+    click_on 'Alunos'
+    find('input[placeholder="Buscar"]').set('Simão Silva')
+    click_on 'manda vê'
+
+    expect(page).not_to have_content('Ana Claudia')
+    expect(page).not_to have_content('Simão Silva')
   end
 
   scenario 'cannot view admin user' do
