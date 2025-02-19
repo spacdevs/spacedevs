@@ -91,4 +91,36 @@ feature Admin::UsersController do
     expect(page).not_to have_content('ADMIN')
     expect(page).not_to have_content('Alunos cadastrados')
   end
+
+  scenario 'block user in platform' do
+    user = create(:user, :with_profile, :student)
+
+    login_as(admin)
+    visit admin_users_path
+    click_on 'Bloquear'
+
+    expect(current_path).to eq(block_admin_user_path(user))
+    expect(page).to have_content('Usuário bloqueado')
+    expect(page).not_to have_content('Bloquear')
+    expect(user.disabled_at).to be_present
+  end
+
+  scenario 'user already blocked' do
+    user = create(:user, :with_profile, :student, disabled_at: Time.zone.now)
+
+    login_as(admin)
+    visit admin_users_path
+
+    expect(page).not_to have_content('Bloquear')
+    expect(page).to have_content('Usuário bloqueado')
+  end
+
+  scenario 'block user in platform' do
+    user = build(:user, :with_profile, :student)
+
+    login_as(admin)
+    visit block_admin_user_path(id: 5571)
+
+    expect(page).to have_content('Usuário não encontrado')
+  end
 end

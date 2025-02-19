@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: %i[index edit update] do
       get 'search',  to: 'users#search',  on: :collection
-      get 'blocked', to: 'users#blocked', on: :member
+      get 'block',   to: 'users#block', on: :member
     end
   end
 

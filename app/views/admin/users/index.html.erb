@@ -34,7 +34,11 @@
                 <%= I18n.l(user.created_at, format: :short) %>
               </th>
               <th>
-
+                <% if user.disabled_at.present? %>
+                  <span class="uk-label uk-label-danger">Usuário bloqueado</span>
+                <% else %>
+                  <%= link_to 'Bloquear', block_admin_user_path(user), class: 'uk-button uk-button-default' %>
+                <% end %>
               </th>
             </tr>
           <% end %>
