@@ -17,6 +17,6 @@ class User < ApplicationRecord
   validates :registration_code, presence: true
   validates :email_address, presence: true, uniqueness: true, format: {
     with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
-    message: I18n.t('activerecord.notifications.errors.invalid_email_address')
+    message: I18n.t('activerecord.errors.invalid_email_address')
   }
 end

@@ -91,4 +91,28 @@ feature Admin::UsersController do
     expect(page).not_to have_content('ADMIN')
     expect(page).not_to have_content('Alunos cadastrados')
   end
+
+  scenario 'block user' do
+    user = create(:user, :with_profile, :student, first_name: 'Camila', last_name: 'Rosa')
+
+    login_as(admin)
+    visit admin_users_path
+    click_on 'Bloquear'
+
+    expect(current_path).to eq(admin_users_path)
+    expect(page).to have_content('Usuário bloqueado')
+    expect(page).to have_content('Camila Rosa foi bloqueado com sucesso')
+    expect(page).not_to have_content('Bloquear')
+    expect(user.reload.disabled_at).to be_present
+  end
+
+  scenario 'user already blocked' do
+    create(:user, :with_profile, :student, disabled_at: Time.zone.now)
+
+    login_as(admin)
+    visit admin_users_path
+
+    expect(page).not_to have_content('Bloquear')
+    expect(page).to have_content('Usuário bloqueado')
+  end
 end

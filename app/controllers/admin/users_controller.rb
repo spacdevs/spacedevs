@@ -2,10 +2,9 @@
 
 module Admin
   class UsersController < AdminController
-    before_action :set_user, only: %i[index search]
+    before_action :set_users, only: %i[index search block]
 
-    def index
-    end
+    def index; end
 
     def search
       @users = @users.where(
@@ -15,14 +14,25 @@ module Admin
       render :index
     end
 
+    def block
+      @user = User.find(params[:id])
+
+      return render :edit if @user.blank?
+
+      @user.update(disabled_at: Time.zone.now)
+      redirect_to admin_users_path, notice: I18n.t(
+        'activerecord.success.user.block', name: @user.profile.fullname
+      )
+    end
+
     private
+
+    def set_users
+      @users = User.includes(:profile).student.order('profiles.first_name, profiles.last_name ASC')
+    end
 
     def q
       @q ||= params.permit(:q).fetch(:q)
-    end
-
-    def set_user
-      @users = User.includes(:profile).student.order('profiles.first_name, profiles.last_name ASC')
     end
   end
 end
