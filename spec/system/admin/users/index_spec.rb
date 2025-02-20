@@ -9,7 +9,7 @@ feature Admin::UsersController do
     expect(page).to have_content('Administração')
   end
 
-  scenario 'admin view registered users' do
+  scenario 'admin sees students' do
     student = create(:user, :with_profile, :student)
 
     login_as(admin)
@@ -21,7 +21,16 @@ feature Admin::UsersController do
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
   end
 
-  scenario 'admin view ordered users' do
+  scenario 'admin sees only 10 students' do
+    create_list(:user, 15, :with_profile, :student)
+
+    login_as(admin)
+    click_on 'Alunos'
+
+    expect(page).to have_css('.user', count: 10)
+  end
+
+  scenario 'admin sees ordered users' do
     user1 = create(:user, :with_profile, :student)
     user2 = create(:user, :with_profile, :student)
     user1.profile.update!(first_name: 'Marcelo', last_name: 'Aguiar')
@@ -63,7 +72,7 @@ feature Admin::UsersController do
     expect(page).not_to have_content('Simão Silva')
   end
 
-  scenario 'cannot view admin user' do
+  scenario 'cannot sees admin user' do
     login_as(admin)
     click_on 'Alunos'
 
@@ -72,7 +81,7 @@ feature Admin::UsersController do
     end
   end
 
-  scenario 'student cannot view others registered students' do
+  scenario 'student cannot sees others registered students' do
     student = create(:user, :with_profile, :student)
 
     login_as(student)
