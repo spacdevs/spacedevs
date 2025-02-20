@@ -7,6 +7,9 @@ pt-BR:
       user:
         email: 'E-mail'
         email_address: 'E-mail'
-    notifications:
-      errors:
-        invalid_email_address: 'não é válido'
+    success:
+      user:
+        block: '%{name} foi bloqueado com sucesso'
+    errors:
+      invalid_email_address: 'não é válido'
+      not_found: Não encontrado
