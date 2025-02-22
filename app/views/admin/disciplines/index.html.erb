@@ -1,0 +1,29 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-warning uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <table class="uk-table uk-table-middle uk-table-divider" id="disciplines">
+        <thead>
+          <tr>
+            <th class="uk-width-small">Título</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @disciplines.each do |discipline| %>
+            <tr class="discipline">
+              <th class="uk-width-small">
+                <%= discipline.title %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
