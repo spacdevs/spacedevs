@@ -2,6 +2,8 @@
 
 class Discipline < ApplicationRecord
   has_many :contents, dependent: :destroy
+  has_many :user_disciplines, dependent: nil
+  has_many :users, through: :user_disciplines
 
   validates :title, :body, :abstract, :position, :slug, :available_on, presence: true
 

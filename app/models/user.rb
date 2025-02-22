@@ -4,8 +4,10 @@ class User < ApplicationRecord
   has_secure_password
 
   belongs_to :school
-  has_one    :profile, dependent: :destroy
-  has_many   :sessions, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_many :sessions, dependent: :destroy
+  has_many :user_disciplines, dependent: nil
+  has_many :disciplines, through: :user_disciplines
 
   alias_attribute :email, :email_address
 
