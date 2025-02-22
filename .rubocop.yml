@@ -6,7 +6,7 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
   Exclude:
     - '*.html.erb'
     - 'bin/**/*'
@@ -19,13 +19,10 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
-
 Style/ReturnNilInPredicateMethodDefinition:
   Enabled: true
-
 Style/IdenticalConditionalBranches:
   Enabled: true
-
 Style/FrozenStringLiteralComment:
   Enabled: true
   Exclude:
@@ -43,10 +40,8 @@ Style/FrozenStringLiteralComment:
 
 Style/ClassAndModuleChildren:
   Enabled: true
-
 Style/StringLiterals:
   EnforcedStyle: single_quotes
-
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
 
@@ -64,28 +59,21 @@ Metrics/ClassLength:
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
-
 Layout/MultilineAssignmentLayout:
   EnforcedStyle: same_line
-
-Layout/EndAlignment:
-  EnforcedStyleAlignWith: variable
-
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
 Layout/HashAlignment:
   Enabled: true
-Style/HashEachMethods:
+  EnforcedHashRocketStyle: table
+Layout/ParameterAlignment:
   Enabled: true
-Style/HashTransformKeys:
+Layout/ArgumentAlignment:
   Enabled: true
-Style/HashTransformValues:
+Layout/ExtraSpacing:
   Enabled: true
-Style/HashAsLastArrayItem:
-  Enabled: true
-Style/HashLikeCase:
-  Enabled: true
-Style/HashConversion:
-  Enabled: true
-Style/HashExcept:
+  AllowForAlignment: true
+Layout/AccessModifierIndentation:
   Enabled: true
 
 Layout/LineLength:
@@ -97,11 +85,4 @@ Rails/HasManyOrHasOneDependent:
   Enabled: true
 
 Rails/InverseOf:
-  Enabled: true
-
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Layout/SpaceBeforeBrackets:
   Enabled: true
