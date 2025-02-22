@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'search',  to: 'users#search',  on: :collection
       get 'block',   to: 'users#block', on: :member
     end
+    resources :disciplines, only: %i[index]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
