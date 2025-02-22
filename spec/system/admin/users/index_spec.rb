@@ -10,7 +10,9 @@ feature Admin::UsersController do
   end
 
   scenario 'admin sees students' do
-    student = create(:user, :with_profile, :student)
+    school = create(:school, name: 'Colégio Estadual Governador Roberto Santos')
+    student = create(:user, :with_profile, :student, school:)
+    student.profile.update!(degree: :first_year)
 
     login_as(admin)
     click_on 'Alunos'
@@ -19,6 +21,8 @@ feature Admin::UsersController do
     expect(page).to have_content(student.profile.fullname)
     expect(page).to have_content(student.email)
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
+    expect(page).to have_content('Colégio Estadual Governador Roberto Santos')
+    expect(page).to have_content('1º ano do ensino médio')
   end
 
   scenario 'admin sees only 10 students' do
