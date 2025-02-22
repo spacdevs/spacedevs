@@ -25,7 +25,9 @@
           <tr>
               <th class="uk-width-small">Nome completo</th>
               <th>E-mail</th>
-              <th>Data de criação</th>
+              <th>Colégio</th>
+              <th>Turma</th>
+              <th>Data de cadastro</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +41,12 @@
               </th>
               <th>
                 <%= I18n.l(user.created_at, format: :short) %>
+              </th>
+              <th>
+                <%= user.school.name %>
+              </th>
+              <th>
+              <%= Profile.human_enum_name(:degree, user.profile.degree) %>
               </th>
               <th>
                 <% if user.disabled_at.present? %>
