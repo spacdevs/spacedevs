@@ -16,10 +16,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_113450) do
     t.text "body"
     t.integer "discipline_id", null: false
     t.integer "kind", default: 1
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "available_on"
-    t.string "slug"
     t.index ["discipline_id"], name: "index_contents_on_discipline_id"
     t.index ["slug"], name: "index_contents_on_slug", unique: true
   end
@@ -27,11 +26,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_113450) do
   create_table "disciplines", force: :cascade do |t|
     t.string "title"
     t.string "abstract", limit: 120
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "position", default: 1
     t.string "slug"
     t.text "body"
+    t.datetime "available_on"
+    t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_disciplines_on_slug", unique: true
     t.index ["title"], name: "index_disciplines_on_title", unique: true
   end

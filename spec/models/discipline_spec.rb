@@ -7,11 +7,20 @@ RSpec.describe Discipline, type: :model do
     it { is_expected.to validate_presence_of(:abstract) }
     it { is_expected.to validate_presence_of(:position) }
     it { is_expected.to validate_presence_of(:slug) }
+    it { is_expected.to validate_presence_of(:available_on) }
   end
 
   context 'association' do
     it { is_expected.to have_many(:contents) }
   end
+
+  context 'should set available attribute' do
+    let(:discipline) { create(:discipline, available_on: Time.zone.local(2024, 12, 31, 12, 0, 0)) }
+
+    it { expect(discipline.available_on).to be_present }
+    it { expect(I18n.l(discipline.available_on, format: :short)).to eq "31 de dezembro, 12:00" }
+  end
+
 
   context '#discipline' do
     let(:discipline) { create(:discipline) }

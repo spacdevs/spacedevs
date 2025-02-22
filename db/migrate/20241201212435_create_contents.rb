@@ -5,6 +5,7 @@ class CreateContents < ActiveRecord::Migration[8.0]
       t.text       :body
       t.references :discipline, null: false, foreign_key: true
       t.integer    :kind, default: 1
+      t.string :slug, index: { unique: true }
 
       t.timestamps
     end
