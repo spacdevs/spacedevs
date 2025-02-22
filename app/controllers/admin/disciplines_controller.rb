@@ -2,6 +2,8 @@
 
 module Admin
   class DisciplinesController < AdminController
-    def index; end
+    def index
+    @disciplines = Discipline.limit(15)
+    end
   end
 end
