@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :discipline do
-    title     { Faker::Movie.title    }
-    body  { Faker::Lorem.sentence }
-    abstract  { Faker::Lorem.sentence }
+    title { Faker::Movie.title }
+    body { Faker::Lorem.sentence }
+    abstract { Faker::Lorem.sentence }
+    available_on { 5.days.after }
 
     trait :with_contents do
       transient do

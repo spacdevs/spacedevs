@@ -7,6 +7,7 @@ RSpec.describe Discipline, type: :model do
     it { is_expected.to validate_presence_of(:abstract) }
     it { is_expected.to validate_presence_of(:position) }
     it { is_expected.to validate_presence_of(:slug) }
+    it { is_expected.to validate_presence_of(:available_on) }
   end
 
   context 'association' do
