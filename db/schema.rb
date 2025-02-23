@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_19_113450) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_23_233858) do
   create_table "contents", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -68,15 +68,40 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_113450) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "team_disciplines", force: :cascade do |t|
+    t.integer "discipline_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_id"], name: "index_team_disciplines_on_discipline_id"
+    t.index ["team_id"], name: "index_team_disciplines_on_team_id"
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "registration_code", null: false
     t.integer "role", default: 0, null: false
     t.string "password_digest", null: false
+    t.datetime "disabled_at"
+    t.integer "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "school_id", null: false
-    t.datetime "disabled_at"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
     t.index ["registration_code"], name: "index_users_on_registration_code", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"
@@ -85,5 +110,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_113450) do
   add_foreign_key "contents", "disciplines"
   add_foreign_key "profiles", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "team_disciplines", "disciplines"
+  add_foreign_key "team_disciplines", "teams"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
   add_foreign_key "users", "schools"
 end
