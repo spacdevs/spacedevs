@@ -5,6 +5,8 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.string  :registration_code, null: false
       t.integer :role,              null: false, default: 0
       t.string  :password_digest,   null: false
+      t.datetime :disabled_at,      null: true
+      t.references :school, null: false, foreign_key: true
 
       t.timestamps
     end
