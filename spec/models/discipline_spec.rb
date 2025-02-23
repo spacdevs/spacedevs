@@ -12,6 +12,18 @@ RSpec.describe Discipline, type: :model do
 
   context 'association' do
     it { is_expected.to have_many(:contents) }
+    it { is_expected.to have_many(:teams) }
+  end
+
+  context 'discipline is on multiple teams' do
+    let(:discipline) { create(:discipline) }
+
+    before do
+      create_list(:team, 3, disciplines: [ discipline ])
+      discipline.reload
+    end
+
+    it { expect(discipline.teams.size).to eq(3) }
   end
 
   context 'should set available attribute' do
