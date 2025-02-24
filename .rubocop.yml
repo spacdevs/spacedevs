@@ -4,15 +4,17 @@ plugins: rubocop-rails
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.4
+  TargetRubyVersion: 3.4.1
   Exclude:
     - '*.html.erb'
     - 'bin/**/*'
     - 'vendor/**/*'
     - 'config/**/*'
+    - 'db/**/*'
+    - 'db/migrate/*'
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
-    - 'db/schemas.rb'
+    - 'app/channels/application_cable/connection.rb'
     - scripts.rb
 
 Style/Documentation:

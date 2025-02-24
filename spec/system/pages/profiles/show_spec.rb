@@ -19,7 +19,7 @@ feature 'Visit profile' do
       expect(page).to have_content("E-mail: #{user.email}")
       expect(page).to have_content("Matricula: #{user.registration_code}")
       expect(page).to have_content("Escola matriculada: #{user.school.name}")
-      expect(page).to have_content("Turma: 1º ano do ensino médio")
+      expect(page).to have_content('Turma: 1º ano do ensino médio')
     end
   end
 
