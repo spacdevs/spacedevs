@@ -16,6 +16,10 @@ class ProfilesController < ApplicationController
 
   private
 
+  def current_profile
+    @profile = current_user&.profile
+  end
+
   def can_access?
     redirect_to root_path if @profile.blank?
   end
