@@ -17,7 +17,7 @@ class Profile < ApplicationRecord
   def age
     current_year = Date.current.year
     years = current_year - birthday.year
-    years -= 1 if Date.current < birthday.change(year: current_year)
+    years - 1 if Date.current < birthday.change(year: current_year)
   end
 
   private

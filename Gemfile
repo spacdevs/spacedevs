@@ -2,22 +2,22 @@ source 'https://rubygems.org'
 
 gem 'awesome_print'
 
-gem 'rails', '~> 8.0.1'
-gem 'propshaft'
-gem 'sqlite3', '>= 2.1'
-gem 'puma', '>= 5.0'
 gem 'importmap-rails'
-gem 'turbo-rails'
-gem 'stimulus-rails'
 gem 'jbuilder'
+gem 'propshaft'
+gem 'puma', '>= 5.0'
+gem 'rails', '~> 8.0.1'
+gem 'sqlite3', '>= 2.1'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'tzinfo-data', platforms: %i[ windows jruby ]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
+gem 'solid_cable'
 gem 'solid_cache'
 gem 'solid_queue'
-gem 'solid_cable'
 
 gem 'bootsnap', require: false
 
@@ -30,13 +30,12 @@ gem 'image_processing', '~> 1.2'
 gem 'ffi', '1.16.3'
 
 group :development, :test do
-  gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
   gem 'brakeman', require: false
-  gem 'rspec-rails', '~> 7.1.0'
-  gem 'faker'
+  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'rubocop-rails-omakase', require: false
+  gem 'faker'
+  gem 'rspec-rails', '~> 7.1.0'
 end
 
 group :development do
@@ -46,9 +45,9 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'rubocop'
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 6.0'
 end

@@ -8,8 +8,8 @@ FactoryBot.define do
 
   trait :with_profile do
     transient do
-      first_name { Faker::Name.first_name  }
-      last_name  { Faker::Name.last_name  }
+      first_name { Faker::Name.first_name }
+      last_name  { Faker::Name.last_name }
     end
 
     before :create do |user, transient|

@@ -13,8 +13,4 @@ class ApplicationController < ActionController::Base
   def current_session
     @current_session ||= Session.find_by(id: cookies.signed[:session_id])
   end
-
-  def current_profile
-    @profile ||= current_user&.profile
-  end
 end

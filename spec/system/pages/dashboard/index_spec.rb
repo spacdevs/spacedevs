@@ -60,6 +60,6 @@ feature 'Disciplines' do
 
     visit root_path
 
-    expect(page).to have_content("Estamos trabalhando no conteúdo para te ofertar, enquanto isso acesse a nossa comunidade.")
+    expect(page).to have_content('Estamos trabalhando no conteúdo para te ofertar, enquanto isso acesse a nossa comunidade.')
   end
 end
