@@ -70,6 +70,7 @@ Layout/ParameterAlignment:
   Enabled: true
 Layout/ArgumentAlignment:
   Enabled: true
+  EnforcedStyle: with_fixed_indentation
 Layout/ExtraSpacing:
   Enabled: true
   AllowForAlignment: true
@@ -86,3 +87,9 @@ Rails/HasManyOrHasOneDependent:
 
 Rails/InverseOf:
   Enabled: true
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false

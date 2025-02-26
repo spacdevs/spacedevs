@@ -9,7 +9,11 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    return redirect_to profile_path, notice: 'E-mail atualizado com sucesso' if @profile.update(profile_params)
+    if @profile.update(profile_params)
+      return redirect_to profile_path, notice: I18n.t(
+        'messages.update.success', alias_name: 'E-mail'
+      )
+    end
 
     render :edit
   end
@@ -25,6 +29,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(user_attributes: %i[email]).transform_values(&:compact_blank!)
+    params.expect(profile: [user_attributes: %i[email]]).transform_values(&:compact_blank!)
   end
 end
