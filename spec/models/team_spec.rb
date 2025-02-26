@@ -9,7 +9,7 @@ RSpec.describe Team, type: :model do
     let(:team) { create(:team) }
 
     before do
-      create_list(:user, 3, teams: [ team ])
+      create_list(:user, 3, teams: [team])
     end
 
     it { expect(team.users.size).to eq(3) }
@@ -19,7 +19,7 @@ RSpec.describe Team, type: :model do
     let(:team) { create(:team) }
 
     before do
-      create_list(:discipline, 3, teams: [ team ])
+      create_list(:discipline, 3, teams: [team])
     end
 
     it { expect(team.disciplines.size).to eq(3) }
