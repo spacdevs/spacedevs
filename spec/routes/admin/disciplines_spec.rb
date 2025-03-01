@@ -11,4 +11,12 @@ RSpec.describe 'User', type: :routing do
       )
     end
   end
+  context 'POST /admin/disciplines' do
+    it do
+      expect(post: '/admin/disciplines').to route_to(
+        controller: 'admin/disciplines',
+        action: 'create'
+      )
+    end
+  end
 end
