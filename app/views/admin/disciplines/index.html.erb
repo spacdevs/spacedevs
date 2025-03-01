@@ -23,7 +23,11 @@
                 <%= discipline.title %>
               </th>
               <th class="uk-width-small">
-                <%= discipline.teams.pluck(:name).join(' - ') %>
+                <% discipline.teams.each do |team| %>
+                  <span class="uk-label">
+                    <%= team.name %>
+                  </span>
+                <% end %>
               </th>
               <th class="uk-width-small">
                 <%= discipline.users.count %>
