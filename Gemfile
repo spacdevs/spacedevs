@@ -29,6 +29,8 @@ gem 'image_processing', '~> 1.2'
 
 gem 'ffi', '1.16.3'
 
+gem 'rails-controller-testing', '~> 1.0'
+
 group :development, :test do
   gem 'brakeman', require: false
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
