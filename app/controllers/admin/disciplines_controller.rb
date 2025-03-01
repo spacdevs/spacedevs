@@ -2,8 +2,23 @@
 
 module Admin
   class DisciplinesController < AdminController
-    def index
+    before_action :set_disciplines, only: %i[index]
+    def index; end
+
+    def create
+      discipline = Discipline.new(discipline_params)
+
+      redirect_to admin_disciplines_path, notice: I18n.t('messages.create.success', title: 'Disciplína') if discipline.save
+    end
+
+    private
+
+    def set_disciplines
       @disciplines = Discipline.includes(teams: %i[users]).limit(15)
+    end
+
+    def discipline_params
+      params.expect(discipline: %i[title abstract position body available_on])
     end
   end
 end

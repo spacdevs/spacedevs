@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Admin::DisciplinesController, type: :controller do
   describe 'GET #index' do
     let(:user) { create(:user, :admin) }
-    let!(:disciplines) { create_list(:discipline, 2) }
 
     context 'authorized user' do
+      let!(:disciplines) { create_list(:discipline, 2) }
+
       before do
         sign_in(user)
         get :index
@@ -25,6 +26,8 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
     end
 
     context 'without authorization' do
+      let(:disciplines) { create_list(:discipline, 2) }
+
       before do
         get :index
       end
@@ -39,6 +42,35 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
 
       it '0 disciplines assigned' do
         expect(assigns(:disciplines)).to be_nil
+      end
+    end
+
+    context 'create a discipline' do
+      let(:params) do
+        {
+          discipline: {
+            title: 'Introdução a tecnologia',
+            abstract: 'Tudo sobre tecnologia',
+            body: 'Introdução a disciplina de tecnologia da informação',
+            available_on: DateTime.current.to_s,
+            position: 1
+          }
+        }
+      end
+
+      it 'successfully' do
+        sign_in(user)
+        post :create, params: params
+
+        expect(flash[:notice]).to eq('Disciplína criado(a) com sucesso.')
+        expect(Discipline.count).to eq 1
+      end
+
+      it 'no authorization' do
+        post :create, params: params
+
+        expect(flash[:notice]).to be_nil
+        expect(Discipline.count).to be_zero
       end
     end
   end
