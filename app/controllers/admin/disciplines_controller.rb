@@ -5,6 +5,10 @@ module Admin
     before_action :set_disciplines, only: %i[index]
     def index; end
 
+    def new
+      @discipline = Discipline.new
+    end
+
     def create
       discipline = Discipline.new(discipline_params)
 

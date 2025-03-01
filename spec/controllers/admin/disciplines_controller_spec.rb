@@ -44,6 +44,35 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
         expect(assigns(:disciplines)).to be_nil
       end
     end
+  end
+
+  describe 'GET #new' do
+    let(:user) { create(:user, :admin) }
+
+    context 'successfully' do
+      before do
+        sign_in(user)
+        get :new
+      end
+
+      it 'renders the index template' do
+        expect(response).to render_template(:new)
+      end
+    end
+
+    context 'without authorization' do
+      before do
+        get :new
+      end
+
+      it 'cannot render the index template' do
+        expect(response).not_to render_template(:index)
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    let(:user) { create(:user, :admin) }
 
     context 'create a discipline' do
       let(:params) do
