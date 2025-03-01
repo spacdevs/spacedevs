@@ -12,6 +12,8 @@
         <thead>
           <tr>
             <th class="uk-width-small">Título</th>
+            <th>Turmas vinculadas</th>
+            <th>Total de alunos cadastrados</th>
           </tr>
         </thead>
         <tbody>
@@ -19,6 +21,12 @@
             <tr class="discipline">
               <th class="uk-width-small">
                 <%= discipline.title %>
+              </th>
+              <th class="uk-width-small">
+                <%= discipline.teams.pluck(:name).join(' - ') %>
+              </th>
+              <th class="uk-width-small">
+                <%= discipline.users.count %>
               </th>
             </tr>
           <% end %>
