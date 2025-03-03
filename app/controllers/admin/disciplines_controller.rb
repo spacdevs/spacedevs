@@ -10,6 +10,8 @@ module Admin
       @team_names = Team.pluck(:name)
     end
 
+    def edit; end
+
     def create
       @discipline = Discipline.new(discipline_params.except(:team_name)
                                                     .merge(teams: [team]))
