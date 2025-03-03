@@ -1,0 +1,13 @@
+<%= form_with model: @discipline, url: admin_disciplines_path do | form | %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.label :abstract %>
+  <%= form.text_field :abstract %>
+  <%= form.label :body %>
+  <%= form.text_field :body %>
+  <%= form.label :available_on %>
+  <%= form.datetime_local_field :available_on %>
+  <%= form.label :position %>
+  <%= form.number_field :position %>
+  <%= form.submit  %>
+<% end %>

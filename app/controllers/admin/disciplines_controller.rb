@@ -10,9 +10,11 @@ module Admin
     end
 
     def create
-      discipline = Discipline.new(discipline_params)
+      @discipline = Discipline.new(discipline_params)
 
-      redirect_to admin_disciplines_path, notice: I18n.t('messages.create.success', title: 'Disciplína') if discipline.save
+      return redirect_to admin_disciplines_path, notice: I18n.t('messages.create.success', title: 'Disciplína') if @discipline.save
+
+      render :new
     end
 
     private

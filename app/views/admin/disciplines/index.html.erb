@@ -1,5 +1,7 @@
 <div class="uk-section">
   <div class="uk-container">
+    <%= link_to 'Adicionar', new_admin_discipline_path %>
+
     <% flash.each do |_, notification| %>
       <div class="uk-margin-top">
         <div class="uk-alert uk-alert-warning uk-text-center">
@@ -14,6 +16,7 @@
             <th class="uk-width-small">Título</th>
             <th>Turmas vinculadas</th>
             <th>Total de alunos cadastrados</th>
+            <th>Disponível em</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +34,9 @@
               </th>
               <th class="uk-width-small">
                 <%= discipline.users.count %>
+              </th>
+              <th class="uk-width-small">
+                <%= I18n.l(discipline.available_on, format: :short) %>
               </th>
             </tr>
           <% end %>
