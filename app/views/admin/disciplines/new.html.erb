@@ -22,6 +22,12 @@
           <%= form.label :available_on, class:"uk-form-label" %>
           <%= form.datetime_local_field :available_on, class:"uk-input" %>
         </div>
+        <div class="uk-margin">
+          <%= form.label :team_name, 'Turma', class:"uk-form-label" %>
+          <div class="uk-form-controls">
+            <%= form.select :team_name, @team_names, { }, { class:"uk-select" } %>
+          </div>
+        </div>
         <div class="uk-margin uk-text-right">
           <%= form.submit class: 'uk-button uk-button-default'  %>
         </div>
