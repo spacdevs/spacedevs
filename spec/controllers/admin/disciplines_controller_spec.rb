@@ -73,6 +73,7 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
 
   describe 'POST #create' do
     let(:user) { create(:user, :admin) }
+    let(:team) { create(:team) }
 
     context 'create a discipline' do
       let(:params) do
@@ -82,7 +83,8 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
             abstract: 'Tudo sobre tecnologia',
             body: 'Introdução a disciplina de tecnologia da informação',
             available_on: DateTime.current.to_s,
-            position: 1
+            position: 1,
+            team_name: team.name
           }
         }
       end

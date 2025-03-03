@@ -4,6 +4,10 @@ feature Admin::DisciplinesController do
   let(:admin_user) { create(:user, :with_profile, :admin) }
   let(:discipline) { Discipline.last }
 
+  before do
+    create(:team, name: 'Colégio Estadual Roberto Santos - Turma 01')
+  end
+
   scenario 'admin create discipline' do
     login_as(admin_user)
     click_on 'Disciplinas'
@@ -13,6 +17,7 @@ feature Admin::DisciplinesController do
     fill_in  'Conteúdo', with: 'Introdução a disciplina de tecnologia da informação'
     fill_in  'Disponível em', with: Time.zone.local(2025, 10, 12, 12, 0, 0)
     fill_in  'Posição', with: '1'
+    select   'Colégio Estadual Roberto Santos - Turma 01', from: 'Turma'
     click_on 'Criar Disciplina'
 
     expect(current_path).to eq(admin_disciplines_path)
@@ -21,5 +26,6 @@ feature Admin::DisciplinesController do
     expect(I18n.l(discipline.available_on, format: :short)).to eq('12 de outubro, 12:00')
     expect(page).to have_content('Disciplína criado(a) com sucesso.')
     expect(discipline.position).to eq(1)
+    expect(discipline.teams.last.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
   end
 end

@@ -7,10 +7,12 @@ module Admin
 
     def new
       @discipline = Discipline.new
+      @team_names = Team.pluck(:name)
     end
 
     def create
-      @discipline = Discipline.new(discipline_params)
+      @discipline = Discipline.new(discipline_params.except(:team_name)
+                                                    .merge(teams: [team]))
 
       return redirect_to admin_disciplines_path, notice: I18n.t('messages.create.success', title: 'Disciplína') if @discipline.save
 
@@ -24,7 +26,11 @@ module Admin
     end
 
     def discipline_params
-      params.expect(discipline: %i[title abstract position body available_on])
+      params.expect(discipline: %i[title abstract position body available_on team_name])
+    end
+
+    def team
+      Team.find_by(name: discipline_params[:team_name])
     end
   end
 end
