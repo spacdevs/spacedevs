@@ -1,14 +1,17 @@
 <div class="uk-section">
   <div class="uk-container">
-    <%= link_to 'Adicionar', new_admin_discipline_path %>
+    <div class="uk-margin uk-text-right">
+      <%= link_to 'Adicionar', new_admin_discipline_path, class: 'uk-button uk-button-primary' %>
+    </div>
 
     <% flash.each do |_, notification| %>
       <div class="uk-margin-top">
-        <div class="uk-alert uk-alert-warning uk-text-center">
+        <div class="uk-alert uk-alert-success uk-text-center">
           <%= notification %>
         </div>
       </div>
     <% end %>
+
     <div class="uk-card uk-card-secondary uk-card-body">
       <table class="uk-table uk-table-middle uk-table-divider" id="disciplines">
         <thead>
