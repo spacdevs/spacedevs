@@ -2,4 +2,6 @@
 pt-BR:
   messages:
     update:
-      success: "%{alias_name} atualizado com sucesso"
+      success: "%{alias_name} atualizado com sucesso."
+    create:
+      success: "%{title} criado(a) com sucesso."

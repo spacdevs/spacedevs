@@ -1,0 +1,31 @@
+<section class="uk-section">
+  <div class="uk-container uk-container-small">
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <%= form_with model: @discipline, url: admin_disciplines_path do | form | %>
+        <div class="uk-margin">
+          <%= form.label :title, class:"uk-form-label" %>
+          <%= form.text_field :title, class:"uk-input" %>
+        </div>
+        <div class="uk-margin">
+          <%= form.label :abstract, class:"uk-form-label" %>
+          <%= form.text_field :abstract, class:"uk-input" %>
+        </div>
+        <div class="uk-margin">
+          <%= form.label :body, class:"uk-form-label" %>
+          <%= form.textarea :body, class:"uk-textarea" %>
+        </div>
+        <div class="uk-margin">
+          <%= form.label :position, class:"uk-form-label" %>
+          <%= form.number_field :position, class:"uk-input" %>
+        </div>
+        <div class="uk-margin">
+          <%= form.label :available_on, class:"uk-form-label" %>
+          <%= form.datetime_local_field :available_on, class:"uk-input" %>
+        </div>
+        <div class="uk-margin uk-text-right">
+          <%= form.submit class: 'uk-button uk-button-default'  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

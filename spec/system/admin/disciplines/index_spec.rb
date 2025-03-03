@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature Admin::UsersController do
+feature Admin::DisciplinesController do
   let(:admin) { create(:user, :with_profile, :admin) }
   let(:student) { create(:user, :with_profile, :student) }
 

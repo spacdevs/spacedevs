@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      discipline: Disciplina
+    attributes:
+      discipline:
+        title: 'Título'
+        abstract: 'Resumo'
+        body: 'Conteúdo'
+        available_on: 'Disponível em'
+        position: 'Posição'
