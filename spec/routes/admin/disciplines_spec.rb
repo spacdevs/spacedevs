@@ -27,4 +27,13 @@ RSpec.describe 'User', type: :routing do
       )
     end
   end
+  context 'GET /admin/disciplines/1/edit' do
+    it do
+      expect(get: '/admin/disciplines/1/edit').to route_to(
+        controller: 'admin/disciplines',
+        action: 'edit',
+        id: '1'
+      )
+    end
+  end
 end

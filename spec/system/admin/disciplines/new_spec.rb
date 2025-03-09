@@ -17,7 +17,7 @@ feature Admin::DisciplinesController do
     fill_in  'Conteúdo', with: 'Introdução a disciplina de tecnologia da informação'
     fill_in  'Disponível em', with: Time.zone.local(2025, 10, 12, 12, 0, 0)
     fill_in  'Posição', with: '1'
-    select   'Colégio Estadual Roberto Santos - Turma 01', from: 'Turma'
+    find(:css, "#discipline_team_ids_1[value='1']").set(true)
     click_on 'Criar Disciplina'
 
     expect(current_path).to eq(admin_disciplines_path)
@@ -27,5 +27,17 @@ feature Admin::DisciplinesController do
     expect(page).to have_content('Disciplína criado(a) com sucesso.')
     expect(discipline.position).to eq(1)
     expect(discipline.teams.last.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
+  end
+
+  scenario 'creates without fields' do
+    login_as(admin_user)
+    click_on 'Disciplinas'
+    click_on 'Adicionar'
+    click_on 'Criar Disciplina'
+
+    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_content('Resumo não pode ficar em branco')
+    expect(page).to have_content('Conteúdo não pode ficar em branco')
+    expect(page).to have_content('Disponível em não pode ficar em branco')
   end
 end

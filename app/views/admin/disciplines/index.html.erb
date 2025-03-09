@@ -16,30 +16,35 @@
       <table class="uk-table uk-table-middle uk-table-divider" id="disciplines">
         <thead>
           <tr>
-            <th class="uk-width-small">Título</th>
+            <th>Título</th>
             <th>Turmas vinculadas</th>
             <th>Total de alunos cadastrados</th>
             <th>Disponibilizado em</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @disciplines.each do |discipline| %>
             <tr class="discipline">
-              <th class="uk-width-small">
+              <th>
                 <%= discipline.title %>
               </th>
-              <th class="uk-width-small">
+              <th>
                 <% discipline.teams.each do |team| %>
                   <span class="uk-label">
                     <%= team.name %>
                   </span>
                 <% end %>
               </th>
-              <th class="uk-width-small">
+              <th >
                 <%= discipline.users.count %>
               </th>
-              <th class="uk-width-small">
+              <th >
                 <%= I18n.l(discipline.available_on, format: :short) %>
+              </th>
+              <th>
+                <%= link_to '', edit_admin_discipline_path(discipline), class: 'uk-icon-button',
+                            data: { uk_icon: "pencil" }, title: 'Editar' %>
               </th>
             </tr>
           <% end %>

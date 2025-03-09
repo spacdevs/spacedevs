@@ -20,7 +20,7 @@ feature ProfilesController do
 
       expect(current_path).to eq(profile_path)
       expect(page).to have_content('angelica@example.com')
-      expect(page).to have_content('E-mail atualizado com sucesso')
+      expect(page).to have_content('Registro atualizado com sucesso')
       expect(user.reload.email_address).to eq('angelica@example.com')
     end
 

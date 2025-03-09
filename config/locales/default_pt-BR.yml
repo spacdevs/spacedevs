@@ -1,7 +1,7 @@
 ---
 pt-BR:
   messages:
-    update:
-      success: "%{alias_name} atualizado com sucesso."
     create:
       success: "%{title} criado(a) com sucesso."
+    update:
+      success: Registro atualizado com sucesso.
