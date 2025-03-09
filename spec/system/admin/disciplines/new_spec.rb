@@ -17,7 +17,7 @@ feature Admin::DisciplinesController do
     fill_in  'Conteúdo', with: 'Introdução a disciplina de tecnologia da informação'
     fill_in  'Disponível em', with: Time.zone.local(2025, 10, 12, 12, 0, 0)
     fill_in  'Posição', with: '1'
-    select   'Colégio Estadual Roberto Santos - Turma 01', from: 'Turma'
+    find(:css, "#discipline_team_ids_1[value='1']").set(true)
     click_on 'Criar Disciplina'
 
     expect(current_path).to eq(admin_disciplines_path)
