@@ -28,4 +28,16 @@ feature Admin::DisciplinesController do
     expect(discipline.position).to eq(1)
     expect(discipline.teams.last.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
   end
+
+  scenario 'creates without fields' do
+    login_as(admin_user)
+    click_on 'Disciplinas'
+    click_on 'Adicionar'
+    click_on 'Criar Disciplina'
+
+    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_content('Resumo não pode ficar em branco')
+    expect(page).to have_content('Conteúdo não pode ficar em branco')
+    expect(page).to have_content('Disponível em não pode ficar em branco')
+  end
 end
