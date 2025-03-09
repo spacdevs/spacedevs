@@ -2,26 +2,41 @@
   <div class="uk-margin">
     <%= form.label :title, class:"uk-form-label" %>
     <%= form.text_field :title, class:"uk-input" %>
+    <small class="uk-text-danger">
+      <%= @discipline&.errors.full_messages_for(:title).join.capitalize %>
+    </small>
   </div>
 
   <div class="uk-margin">
     <%= form.label :abstract, class:"uk-form-label" %>
     <%= form.text_field :abstract, class:"uk-input" %>
+    <small class="uk-text-danger">
+      <%= @discipline&.errors.full_messages_for(:abstract).join.capitalize %>
+    </small>
   </div>
 
   <div class="uk-margin">
     <%= form.label :body, class:"uk-form-label" %>
     <%= form.textarea :body, class:"uk-textarea" %>
+    <small class="uk-text-danger">
+      <%= @discipline&.errors.full_messages_for(:body).join.capitalize %>
+    </small>
   </div>
 
   <div class="uk-margin">
     <%= form.label :position, class:"uk-form-label" %>
     <%= form.number_field :position, class:"uk-input" %>
+    <small class="uk-text-danger">
+      <%= @discipline&.errors.full_messages_for(:position).join.capitalize %>
+    </small>
   </div>
 
   <div class="uk-margin">
     <%= form.label :available_on, class:"uk-form-label" %>
     <%= form.datetime_local_field :available_on, class:"uk-input" %>
+    <small class="uk-text-danger">
+      <%= @discipline&.errors.full_messages_for(:available_on).join.capitalize %>
+    </small>
   </div>
 
   <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
