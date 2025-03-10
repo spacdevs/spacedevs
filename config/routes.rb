@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       get 'block',   to: 'users#block', on: :member
     end
     resources :disciplines, except: %i[show]
-    resources :teams, only: %i[index]
+    resources :teams, only: %i[index new]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

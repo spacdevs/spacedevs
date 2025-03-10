@@ -29,4 +29,24 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it_behaves_like 'unauthorized access', :get, :index
     end
   end
+  describe 'GET #new' do
+    context '#new' do
+      before do
+        sign_in(user)
+        get :new
+      end
+
+      it 'assigns a new team' do
+        expect(assigns(:team)).to be_a_new(Team)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template(:new)
+      end
+    end
+
+    context 'without authorization' do
+      it_behaves_like 'unauthorized access', :get, :new
+    end
+  end
 end
