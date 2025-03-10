@@ -2,6 +2,8 @@
 
 module Admin
   class TeamsController < AdminController
-    def index; end
+    def index
+      @teams = Team.all
+    end
   end
 end
