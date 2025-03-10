@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      team: Turma
+    attributes:
+      team:
+        name: 'Nome'
+        active: 'Ativo?'
