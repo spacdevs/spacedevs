@@ -49,4 +49,27 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it_behaves_like 'unauthorized access', :get, :new
     end
   end
+
+  describe 'POST #create' do
+    context '#create' do
+      let(:team_params) { attributes_for(:team) }
+
+      before do
+        sign_in(user)
+        post :create, params: { team: team_params }
+      end
+
+      it 'creates a new team' do
+        expect(Team.count).to eq(1)
+      end
+
+      it 'redirects to the team show page' do
+        expect(response).to redirect_to(admin_teams_path)
+      end
+    end
+
+    context 'without authorization' do
+      it_behaves_like 'unauthorized access', :get, :new
+    end
+  end
 end
