@@ -18,8 +18,8 @@
           <thead>
             <tr>
               <th>Nome</th>
-              <th>Criado em</th>
-              <th></th>
+              <th>Atualizado em</th>
+              <th>Disponibilidade</th>
             </tr>
           </thead>
           <tbody>
@@ -28,8 +28,11 @@
                 <th>
                   <%= it.name %>
                 </th>
-                <th >
-                  <%= I18n.l(it.created_at, format: :short) %>
+                <th>
+                  <%= I18n.l(it.updated_at, format: :short) %>
+                </th>
+                <th>
+                  <%= it.active ? 'Lançado' : 'Indisponível' %>
                 </th>
               </tr>
             <% end %>
