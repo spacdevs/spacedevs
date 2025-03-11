@@ -2,12 +2,14 @@
 
 module Admin
   class TeamsController < AdminController
-    before_action :set_team, only: %i[new]
+    before_action :set_team, only: %i[new edit]
     def index
       @teams = Team.all
     end
 
     def new; end
+
+    def edit; end
 
     def create
       @team = Team.new(team_params)
