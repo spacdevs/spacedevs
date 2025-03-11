@@ -18,4 +18,11 @@ feature Admin::TeamsController do
     expect(page).to have_content('Turma criado(a) com sucesso.')
     expect(Team.count).to eq(1)
   end
+
+  scenario 'without name attributes' do
+    find(:css, "#team_active[value='1']").set(true)
+    click_on 'Criar Turma'
+
+    expect(page).to have_content('Nome não pode ficar em branco')
+  end
 end
