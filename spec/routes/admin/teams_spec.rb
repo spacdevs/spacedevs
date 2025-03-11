@@ -25,4 +25,13 @@ RSpec.describe 'Teams', type: :routing do
       )
     end
   end
+  context 'GET /admin/teams/1/edit' do
+    it do
+      expect(get: '/admin/teams/1/edit').to route_to(
+        controller: 'admin/teams',
+        action: 'edit',
+        id: '1'
+      )
+    end
+  end
 end
