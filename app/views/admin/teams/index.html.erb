@@ -23,16 +23,16 @@
             </tr>
           </thead>
           <tbody>
-            <% @teams.each do %>
+            <% @teams.each do |team| %>
               <tr class="discipline">
                 <th>
-                  <%= it.name %>
+                  <%= team.name %>
                 </th>
                 <th>
-                  <%= I18n.l(it.updated_at, format: :short) %>
+                  <%= I18n.l(team.updated_at, format: :short) %>
                 </th>
                 <th>
-                  <%= it.active ? 'Lançado' : 'Indisponível' %>
+                  <%= team.active ? 'Lançado' : 'Indisponível' %>
                 </th>
               </tr>
             <% end %>
