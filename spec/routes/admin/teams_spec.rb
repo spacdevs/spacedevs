@@ -9,4 +9,20 @@ RSpec.describe 'Teams', type: :routing do
       )
     end
   end
+  context 'GET /admin/teams/new' do
+    it do
+      expect(get: '/admin/teams/new').to route_to(
+        controller: 'admin/teams',
+        action: 'new'
+      )
+    end
+  end
+  context 'POST /admin/teams' do
+    it do
+      expect(post: '/admin/teams').to route_to(
+        controller: 'admin/teams',
+        action: 'create'
+      )
+    end
+  end
 end
