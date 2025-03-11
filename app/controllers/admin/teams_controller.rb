@@ -11,7 +11,10 @@ module Admin
 
     def create
       @team = Team.new(team_params)
-      @team.save ? redirect_to(admin_teams_path, notice: I18n.t('messages.success')) : render(:new)
+
+      return render(:new) unless @team.save
+
+      redirect_to admin_teams_path, notice: I18n.t('messages.create.success', title: 'Turma')
     end
 
     private

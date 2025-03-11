@@ -15,6 +15,7 @@ feature Admin::TeamsController do
     click_on 'Criar Turma'
 
     expect(current_path).to eq admin_teams_path
+    expect(page).to have_content('Turma criado(a) com sucesso.')
     expect(Team.count).to eq(1)
   end
 end
