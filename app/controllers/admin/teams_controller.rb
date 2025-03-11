@@ -2,12 +2,14 @@
 
 module Admin
   class TeamsController < AdminController
-    before_action :set_team, only: %i[new edit]
+    before_action :set_team, only: %i[edit update]
     def index
       @teams = Team.all
     end
 
-    def new; end
+    def new
+      @team = Team.new
+    end
 
     def edit; end
 
@@ -19,6 +21,12 @@ module Admin
       redirect_to admin_teams_path, notice: I18n.t('messages.create.success', title: 'Turma')
     end
 
+    def update
+      return redirect_to admin_teams_path, notice: 'messages.update.success' if @team.update(team_params)
+
+      render :edit
+    end
+
     private
 
     def team_params
@@ -26,7 +34,7 @@ module Admin
     end
 
     def set_team
-      @team = Team.new
+      @team = Team.find(params[:id])
     end
   end
 end
