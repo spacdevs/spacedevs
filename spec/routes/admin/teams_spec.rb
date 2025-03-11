@@ -34,4 +34,22 @@ RSpec.describe 'Teams', type: :routing do
       )
     end
   end
+  context 'PUT /admin/teams/1' do
+    it do
+      expect(put: '/admin/teams/1').to route_to(
+        controller: 'admin/teams',
+        action: 'update',
+        id: '1'
+      )
+    end
+  end
+  context 'PATCH /admin/teams/1' do
+    it do
+      expect(patch: '/admin/teams/1').to route_to(
+        controller: 'admin/teams',
+        action: 'update',
+        id: '1'
+      )
+    end
+  end
 end
