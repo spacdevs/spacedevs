@@ -1,0 +1,22 @@
+<%= form_with model: @team, url: route_path, class: 'uk-form-horizontal' do | form | %>
+  <div class="uk-margin">
+    <%= form.label :name, class:"uk-form-label" %>
+    <div class="uk-form-controls"">
+      <%= form.text_field :name, class:"uk-input" %>
+      <small class="uk-text-danger">
+        <%= @team&.errors.full_messages_for(:name).join.capitalize %>
+      </small>
+    </div>
+
+    <div class="uk-margin">
+      <%= form.label :active, class:"uk-form-label" %>
+      <div class="uk-form-controls uk-form-controls-text">
+        <%= form.check_box :active, class: "uk-checkbox" %>
+      </div>
+    </div>
+
+    <div class="uk-margin uk-text-right">
+      <%= form.submit class: 'uk-button uk-button-default'  %>
+    </div>
+  </div>
+<% end %>

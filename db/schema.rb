@@ -98,10 +98,10 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
     t.string 'registration_code', null: false
     t.integer 'role', default: 0, null: false
     t.string 'password_digest', null: false
+    t.datetime 'disabled_at'
+    t.integer 'school_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.integer 'school_id', null: false
-    t.datetime 'disabled_at'
     t.index ['email_address'], name: 'index_users_on_email_address', unique: true
     t.index ['registration_code'], name: 'index_users_on_registration_code', unique: true
     t.index ['school_id'], name: 'index_users_on_school_id'

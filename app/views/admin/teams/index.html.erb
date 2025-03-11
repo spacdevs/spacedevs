@@ -1,0 +1,46 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-margin uk-text-right">
+      <%= link_to 'Adicionar', new_admin_team_path, class: 'uk-button uk-button-primary' %>
+    </div>
+
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-success uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <% if @teams.present? %>
+        <table class="uk-table uk-table-middle uk-table-divider" id="disciplines">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Atualizado em</th>
+              <th>Disponibilidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @teams.each do |team| %>
+              <tr class="discipline">
+                <th>
+                  <%= team.name %>
+                </th>
+                <th>
+                  <%= I18n.l(team.updated_at, format: :short) %>
+                </th>
+                <th>
+                  <%= team.active ? 'Lançado' : 'Indisponível' %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="uk-text-center uk-text-uppercase">Não há registros de turmas</p>
+      <% end %>
+    </div>
+  </div>
+</div>
