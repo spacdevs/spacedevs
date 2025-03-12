@@ -1,47 +1,57 @@
-<%= form_with model: @discipline, url: route_path, data: { turbo: false } do | form | %>
+<%= form_with model: @discipline, url: route_path, class: 'uk-form-horizontal', data: { turbo: false } do | form | %>
   <div class="uk-margin">
     <%= form.label :title, class:"uk-form-label" %>
-    <%= form.text_field :title, class:"uk-input" %>
-    <small class="uk-text-danger">
-      <%= @discipline&.errors.full_messages_for(:title).join.capitalize %>
-    </small>
+    <div class="uk-form-controls" >
+      <%= form.text_field :title, class:"uk-input" %>
+      <small class="uk-text-danger">
+        <%= @discipline&.errors.full_messages_for(:title).join.capitalize %>
+      </small>
+    </div>
   </div>
 
   <div class="uk-margin">
     <%= form.label :abstract, class:"uk-form-label" %>
-    <%= form.text_field :abstract, class:"uk-input" %>
-    <small class="uk-text-danger">
-      <%= @discipline&.errors.full_messages_for(:abstract).join.capitalize %>
-    </small>
+    <div class="uk-form-controls" >
+      <%= form.text_field :abstract, class:"uk-input" %>
+      <small class="uk-text-danger">
+        <%= @discipline&.errors.full_messages_for(:abstract).join.capitalize %>
+      </small>
+    </div>
   </div>
 
   <div class="uk-margin">
     <%= form.label :body, class:"uk-form-label" %>
-    <%= form.textarea :body, class:"uk-textarea" %>
-    <small class="uk-text-danger">
-      <%= @discipline&.errors.full_messages_for(:body).join.capitalize %>
-    </small>
+    <div class="uk-form-controls" >
+      <%= form.textarea :body, class:"uk-textarea" %>
+      <small class="uk-text-danger">
+        <%= @discipline&.errors.full_messages_for(:body).join.capitalize %>
+      </small>
+    </div>
   </div>
 
   <div class="uk-margin">
     <%= form.label :position, class:"uk-form-label" %>
-    <%= form.number_field :position, class:"uk-input" %>
-    <small class="uk-text-danger">
-      <%= @discipline&.errors.full_messages_for(:position).join.capitalize %>
-    </small>
+    <div class="uk-form-controls" >
+      <%= form.number_field :position, class:"uk-input" %>
+      <small class="uk-text-danger">
+        <%= @discipline&.errors.full_messages_for(:position).join.capitalize %>
+      </small>
+    </div>
   </div>
 
   <div class="uk-margin">
     <%= form.label :available_on, class:"uk-form-label" %>
-    <%= form.datetime_local_field :available_on, class:"uk-input" %>
-    <small class="uk-text-danger">
-      <%= @discipline&.errors.full_messages_for(:available_on).join.capitalize %>
-    </small>
+    <div class="uk-form-controls" >
+      <%= form.datetime_local_field :available_on, class:"uk-input" %>
+      <small class="uk-text-danger">
+        <%= @discipline&.errors.full_messages_for(:available_on).join.capitalize %>
+      </small>
+    </div>
   </div>
 
-  <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-    <div>
-      <%= form.label :team_ids, 'Turmas', class:"uk-form-label" %>
+  <div class="uk-margin">
+    <%= form.label :team_ids, 'Turmas', class:"uk-form-label" %>
+     <div class="uk-form-controls uk-form-controls-text">
       <%= form.collection_check_boxes(:team_ids, @teams, :id, :name, {}, { class: 'uk-checkbox' }) do |b| %>
         <label>
           <%= b.check_box %>
