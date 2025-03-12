@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature Admin::TeamsController do
   let(:admin_user) { create(:user, :with_profile, :admin) }
-  let!(:team) { create(:team, name: 'Colegio Estadual Computador & Cia', active: false) }
+  let(:team) { create(:team, name: 'Colegio Estadual Computador & Cia', active: false) }
 
   before do
     login_as(admin_user)
@@ -15,7 +15,15 @@ feature Admin::TeamsController do
     click_on 'Atualizar Turma'
 
     expect(current_path).to eq admin_teams_path
+    expect(page).to have_content('Registro atualizado com sucesso.')
     expect(page).to have_content('Spacedevs - Escola de desenvolvimento de software')
     expect(page).to have_content('Lançado')
+  end
+
+  scenario 'without name attributes' do
+    fill_in 'Nome', with: ''
+    click_on 'Atualizar Turma'
+
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 end

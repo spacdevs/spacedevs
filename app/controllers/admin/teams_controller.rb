@@ -22,9 +22,9 @@ module Admin
     end
 
     def update
-      return redirect_to admin_teams_path, notice: 'messages.update.success' if @team.update(team_params)
+      return render :edit unless @team.update(team_params)
 
-      render :edit
+      redirect_to admin_teams_path, notice: I18n.t('messages.update.success')
     end
 
     private
