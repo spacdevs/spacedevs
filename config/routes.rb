@@ -23,13 +23,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :disciplines, except: %i[show] do
+    resources :disciplines, except: %i[show destroy] do
       scope module: :disciplines do
-        resources :contents, except: %i[show]
+        resources :contents, except: %i[show destroy]
       end
     end
 
-    resources :teams, except: %i[show]
+    resources :teams, except: %i[show destroy]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
