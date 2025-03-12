@@ -91,7 +91,7 @@ feature Admin::UsersController do
     login_as(student)
 
     expect(page).not_to have_content('ADMIN')
-    expect(page).not_to have_content('Alunos cadastrados')
+    expect(page).not_to have_content('Alunos')
   end
 
   scenario 'user tries to access a direct route and gets redirected to the home page' do
@@ -102,7 +102,7 @@ feature Admin::UsersController do
 
     expect(current_path).to eq(root_path)
     expect(page).not_to have_content('ADMIN')
-    expect(page).not_to have_content('Alunos cadastrados')
+    expect(page).not_to have_content('Alunos')
   end
 
   scenario 'block user' do
