@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :discipline do
-    title     { Faker::Lorem.words(number: 4) }
+    title     { Faker::Lorem.sentence(word_count: 4) }
     body      { Faker::Lorem.sentence }
     abstract  { Faker::Lorem.sentence }
     available_on { 5.days.after }
