@@ -1,0 +1,47 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <h1 class="uk-text-white">Conteúdos</h1>
+    <div class="uk-margin uk-text-right">
+      <%= link_to 'Adicionar', nil, class: 'uk-button uk-button-primary' %>
+    </div>
+
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-success uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <% if @contents.present? %>
+        <table class="uk-table uk-table-middle uk-table-divider">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Disciplina</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contents.each do |content| %>
+              <tr class="contents">
+                <th>
+                  <%= content.title %>
+                </th>
+                <th>
+                  <%= content.discipline.title %>
+                </th>
+                <th>
+                  <%= Content.human_enum_name(:kind, content.kind) %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="uk-text-center uk-text-uppercase">Não há conteúdos para serem exibidos.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

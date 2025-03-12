@@ -27,7 +27,7 @@
           <% @disciplines.each do |discipline| %>
             <tr class="discipline">
               <th>
-                <%= discipline.title %>
+                <%= link_to discipline.title, admin_discipline_path(discipline) %>
               </th>
               <th>
                 <% discipline.teams.each do |team| %>

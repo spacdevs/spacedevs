@@ -2,11 +2,15 @@
 
 module Admin
   class DisciplinesController < AdminController
-    before_action :set_discipline, :set_teams, only: %i[edit update]
+    before_action :set_discipline, :set_teams, only: %i[show edit update]
     before_action :set_teams, only: %i[new create edit]
 
     def index
       @disciplines = Discipline.includes(teams: %i[users]).limit(15)
+    end
+
+    def show
+      @contents = Content.joins('JOIN disciplines discipline ON contents.discipline_id = discipline.id')
     end
 
     def new

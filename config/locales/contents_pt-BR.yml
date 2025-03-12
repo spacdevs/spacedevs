@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      content: Conteúdo
+    attributes:
+      content:
+        title: 'Título'
+        kinds:
+          text: "Texto"
+          video: "Vídeo"
