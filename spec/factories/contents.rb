@@ -1,8 +1,13 @@
 FactoryBot.define do
   factory :content do
-    title { Faker::Lorem.words(number: 4) }
+    title { Faker::Lorem.sentence(word_count: 4) }
     body { Faker::Movie.quote }
-    discipline
     kind { %i[text video].sample }
+
+    trait :with_discipline do
+      before(:create) do |content|
+        content.update(discipline: create(:discipline))
+      end
+    end
   end
 end
