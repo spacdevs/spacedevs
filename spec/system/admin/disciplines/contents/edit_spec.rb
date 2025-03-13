@@ -8,7 +8,7 @@ feature Admin::Disciplines::ContentsController do
   before do
     login_as(admin)
     click_on 'Disciplinas'
-    click_on discipline.title
+    find('a[title="view the contents"]').click
     find('a[title="edit"]').click
   end
 

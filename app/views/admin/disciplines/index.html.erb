@@ -27,7 +27,7 @@
           <% @disciplines.each do |discipline| %>
             <tr class="discipline">
               <th>
-                <%= link_to discipline.title, admin_discipline_path(discipline) %>
+                <%= discipline.title %>
               </th>
               <th>
                 <% discipline.teams.each do |team| %>
@@ -43,6 +43,8 @@
                 <%= I18n.l(discipline.available_on, format: :short) %>
               </th>
               <th>
+                <%= link_to '', admin_discipline_path(discipline), class: 'uk-icon-button',
+                            data: { uk_icon: "eye" }, title: 'view the contents' %>
                 <%= link_to '', edit_admin_discipline_path(discipline), class: 'uk-icon-button',
                             data: { uk_icon: "pencil" }, title: 'Editar' %>
               </th>
