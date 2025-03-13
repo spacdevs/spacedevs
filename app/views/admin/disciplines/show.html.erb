@@ -35,6 +35,11 @@
                 <th>
                   <%= Content.human_enum_name(:kind, content.kind) %>
                 </th>
+                <th>
+                  <%= link_to '', edit_admin_discipline_content_path(discipline_id: @discipline.id,
+                  id: content.id), class: 'uk-icon-button',
+                      data: { uk_icon: "pencil" }, title: 'edit' %>
+                </th>
               </tr>
             <% end %>
           </tbody>

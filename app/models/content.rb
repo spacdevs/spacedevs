@@ -9,6 +9,10 @@ class Content < ApplicationRecord
 
   validates :title, :body, :kind, presence: true
 
+  def self.kinds_translated
+    Content.kinds.keys.map { Content.human_enum_name(:kind, it) }
+  end
+
   private
 
   def update_slug

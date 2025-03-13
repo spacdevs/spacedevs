@@ -6,6 +6,8 @@ pt-BR:
     attributes:
       content:
         title: 'Título'
+        body: 'Conteúdo'
+        kind: 'Tipo'
         kinds:
           text: "Texto"
           video: "Vídeo"
