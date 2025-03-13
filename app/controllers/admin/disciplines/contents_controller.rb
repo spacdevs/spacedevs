@@ -4,6 +4,11 @@ module Admin
   module Disciplines
     class ContentsController < AdminController
       before_action :set_content, only: %i[edit update]
+      before_action :set_discipline, only: %i[new create]
+
+      def new
+        @content = Content.new
+      end
 
       def edit; end
 

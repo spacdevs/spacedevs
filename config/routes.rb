@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
     resources :disciplines, except: %i[destroy] do
       scope module: :disciplines do
-        resources :contents, only: %i[edit update]
+        resources :contents, only: %i[new create edit update]
       end
     end
 
