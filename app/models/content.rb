@@ -10,7 +10,7 @@ class Content < ApplicationRecord
   validates :title, :body, :kind, presence: true
 
   def self.kinds_translated
-    Content.kinds.keys.map { Content.human_enum_name(:kind, it) }
+    Content.kinds.keys.collect { |k| [Content.human_enum_name(:kind, k), k] }
   end
 
   private
