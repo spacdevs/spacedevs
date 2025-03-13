@@ -13,7 +13,7 @@ RSpec.describe Content, type: :model do
   end
 
   context 'when has slug' do
-    let(:content) { create(:content, title: 'Hello World') }
+    let(:content) { create(:content, :with_discipline, title: 'Hello World') }
 
     it 'should be present' do
       expect(content.slug).to be_present
@@ -22,7 +22,7 @@ RSpec.describe Content, type: :model do
   end
 
   context 'when updates slug' do
-    let(:content) { create(:content, title: 'Hello World') }
+    let(:content) { create(:content, :with_discipline, title: 'Hello World') }
 
     before do
       content.update!(title: 'Introduction the ruby lang')

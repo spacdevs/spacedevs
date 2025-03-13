@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :disciplines, except: %i[show destroy] do
+    resources :disciplines, except: %i[destroy] do
       scope module: :disciplines do
         resources :contents, except: %i[show destroy]
       end
