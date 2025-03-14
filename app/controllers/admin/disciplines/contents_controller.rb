@@ -12,19 +12,15 @@ module Admin
       def edit; end
 
       def create
-        if @content.save
-          redirect_to admin_discipline_path(@discipline), notice: I18n.t('messages.update.success')
-        else
-          render :new
-        end
+        return render :new unless @content.save
+
+        redirect_to admin_discipline_path(@discipline), notice: I18n.t('messages.update.success')
       end
 
       def update
-        if @content.update(content_params)
-          redirect_to admin_discipline_path(@content.discipline), notice: I18n.t('messages.update.success')
-        else
-          render :edit
-        end
+        return render :edit unless @content.update(content_params)
+
+        redirect_to admin_discipline_path(@content.discipline), notice: I18n.t('messages.update.success')
       end
 
       private
