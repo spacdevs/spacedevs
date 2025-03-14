@@ -5,7 +5,7 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
 
   describe 'GET #index' do
     context '#index' do
-      let!(:disciplines) { create_list(:discipline, 2) }
+      let!(:disciplines) { create_list(:discipline, 2, :with_teams) }
 
       before do
         sign_in(user)

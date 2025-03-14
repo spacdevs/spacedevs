@@ -6,7 +6,7 @@ module Admin
     before_action :set_teams, only: %i[new create edit]
 
     def index
-      @disciplines = Discipline.includes(teams: %i[users]).limit(15)
+      @disciplines = Discipline.eager_load(teams: %i[users]).limit(15)
     end
 
     def show
@@ -43,7 +43,7 @@ module Admin
     private
 
     def set_discipline
-      @discipline = Discipline.includes(:teams).find(params[:id])
+      @discipline = Discipline.find(params[:id])
     end
 
     # rubocop:disable Rails/StrongParametersExpect

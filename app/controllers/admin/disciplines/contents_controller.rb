@@ -32,7 +32,7 @@ module Admin
       end
 
       def find_content
-        @content = Content.includes(:discipline).find_by!(id: params[:id], discipline_id: params[:discipline_id])
+        @content = Content.find_by!(id: params[:id], discipline_id: params[:discipline_id])
       end
 
       def find_discipline
