@@ -7,30 +7,24 @@ module Admin
 
       def edit; end
 
-      # rubocop:disable Style/IfUnlessModifier
       def update
-        if @content.update(content_params.merge(kind_param))
-          return redirect_to admin_discipline_path(params[:discipline_id]), notice: I18n.t('message.update.success')
+        if @content.update(content_params)
+          redirect_to admin_discipline_path(params[:discipline_id]), notice: I18n.t('messages.update.success')
+        else
+          render :edit
         end
-
-        render :edit
       end
-      # rubocop:enable Style/IfUnlessModifier
 
       private
 
       def content_params
-        params.expect(content: %i[title body kind])
+        params.expect(content: %i[title body kind]).tap do |param|
+          param[:kind] = param[:kind]&.to_sym
+        end
       end
 
       def set_content
-        @content = Content.find_by(id: params[:id], discipline_id: params[:discipline_id])
-      end
-
-      def kind_param
-        {
-          kind: content_params[:kind].to_sym
-        }
+        @content = Content.includes(:discipline).find_by!(id: params[:id], discipline_id: params[:discipline_id])
       end
     end
   end
