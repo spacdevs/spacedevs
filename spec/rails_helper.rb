@@ -1,10 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-require "awesome_print"
+require 'awesome_print'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 # Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
@@ -49,6 +49,15 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.before(:each) do
+    Bullet.start_request
+  end
+
+  config.after(:each) do
+    Bullet.perform_out_of_channel_notifications if Bullet.notification?
+    Bullet.end_request
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')

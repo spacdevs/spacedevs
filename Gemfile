@@ -33,6 +33,7 @@ gem 'rails-controller-testing', '~> 1.0'
 
 group :development, :test do
   gem 'brakeman', require: false
+  gem 'bullet', require: true
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'

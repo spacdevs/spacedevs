@@ -14,5 +14,15 @@ FactoryBot.define do
         create_list(:content, transient.limit, :text, discipline: discipline)
       end
     end
+
+    trait :with_teams do
+      transient do
+        limit { 3 }
+      end
+
+      after(:create) do |discipline, transient|
+        create_list(:team, transient.limit, disciplines: [discipline])
+      end
+    end
   end
 end
