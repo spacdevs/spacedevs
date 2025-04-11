@@ -15,10 +15,10 @@ development:
 
 test:
   <<: *default
-  host:     localhost
+  host:     <%= ENV.fetch("DB_HOST")           { 'localhost' } %>
   username: <%= ENV.fetch("POSTGRES_USER")     { 'postgres' } %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'postgres' } %>
-  database: spacedevs_test
+  database: <%= ENV.fetch("POSTGRES_DB")       { 'spacedevs_test' } %>
 
 production:
   primary: &primary_production
