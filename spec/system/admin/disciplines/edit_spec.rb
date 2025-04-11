@@ -14,7 +14,7 @@ feature Admin::DisciplinesController do
   end
 
   scenario 'edits discipline' do
-    create(:team, name: 'Colégio Estadual Deputado Luis Eduardo Magalhaes - Turma 03')
+    team = create(:team, name: 'Colégio Estadual Deputado Luis Eduardo Magalhaes - Turma 03')
 
     find('a[title="Editar"]').click
     fill_in  'Título', with: 'Introdução a computação - Segunda edição'
@@ -22,7 +22,7 @@ feature Admin::DisciplinesController do
     fill_in  'Conteúdo', with: 'Conteúdo da disciplina'
     fill_in  'Disponível em', with: Time.zone.local(2025, 12, 1, 9, 0, 0)
     fill_in  'Posição', with: '2'
-    find(:css, "#discipline_team_ids_2[value='2']").set(true)
+    find(:css, "#discipline_team_ids_#{team.id}[value='#{team.id}']").set(true)
     click_on 'Atualizar Disciplina'
     discipline.reload
 
@@ -37,8 +37,10 @@ feature Admin::DisciplinesController do
   end
 
   scenario 'remove all associate teams' do
+    team = Team.first
+
     find('a[title="Editar"]').click
-    find(:css, "#discipline_team_ids_1[value='1']").set(false)
+    find(:css, "#discipline_team_ids_#{team.id}[value='#{team.id}']").set(false)
     click_on 'Atualizar Disciplina'
 
     expect(discipline.reload.teams.count).to eq(0)
