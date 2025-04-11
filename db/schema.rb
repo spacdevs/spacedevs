@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension 'pg_catalog.plpgsql'
+
   create_table 'contents', force: :cascade do |t|
     t.string 'title'
     t.text 'body'
-    t.integer 'discipline_id', null: false
+    t.bigint 'discipline_id', null: false
     t.integer 'kind', default: 1
     t.string 'slug'
     t.datetime 'created_at', null: false
@@ -42,12 +45,12 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
     t.string 'last_name', null: false
     t.string 'document', null: false
     t.string 'avatar'
+    t.string 'slug', null: false
     t.datetime 'birthday', null: false
     t.integer 'degree'
-    t.integer 'user_id', null: false
+    t.bigint 'user_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'slug', null: false
     t.index ['slug'], name: 'index_profiles_on_slug', unique: true
     t.index ['user_id'], name: 'index_profiles_on_user_id'
   end
@@ -60,7 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
   end
 
   create_table 'sessions', force: :cascade do |t|
-    t.integer 'user_id', null: false
+    t.bigint 'user_id', null: false
     t.string 'ip_address'
     t.string 'user_agent'
     t.datetime 'created_at', null: false
@@ -69,8 +72,8 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
   end
 
   create_table 'team_disciplines', force: :cascade do |t|
-    t.integer 'discipline_id', null: false
-    t.integer 'team_id', null: false
+    t.bigint 'discipline_id', null: false
+    t.bigint 'team_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['discipline_id'], name: 'index_team_disciplines_on_discipline_id'
@@ -78,8 +81,8 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
   end
 
   create_table 'team_users', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.integer 'team_id', null: false
+    t.bigint 'user_id', null: false
+    t.bigint 'team_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['team_id'], name: 'index_team_users_on_team_id'
@@ -99,7 +102,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_223_233_858) do
     t.integer 'role', default: 0, null: false
     t.string 'password_digest', null: false
     t.datetime 'disabled_at'
-    t.integer 'school_id', null: false
+    t.bigint 'school_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['email_address'], name: 'index_users_on_email_address', unique: true

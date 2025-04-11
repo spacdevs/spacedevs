@@ -5,11 +5,13 @@ class CreateProfiles < ActiveRecord::Migration[8.0]
       t.string :last_name, null: false
       t.string :document, null: false
       t.string :avatar
+      t.string :slug, null: false
       t.datetime :birthday, null: false
       t.integer :degree
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
+    add_index :profiles, :slug, unique: true
   end
 end
