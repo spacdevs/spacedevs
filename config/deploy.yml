@@ -1,54 +1,62 @@
 service: spacedevs
 
-# image: ghcr.io/seu-usuario/minhaapp:latest
+# Name of the container image.
+image: marcusmann/spacedevs
 
 servers:
   web:
-    hosts:
-      - RAILS_WEB_HOST
+    - 209.38.78.49
 
-proxy: false
+# Enable SSL auto certification via Let's Encrypt and allow for multiple apps on a single web server.
+proxy:
+  ssl: true
+  host: plataforma.spacedevs.com.br
 
-# registry:
-#   server:
-#     - CONTAINER_REGISTRY_SERVER
-#   username:
-#     - CONTAINER_REGISTRY_USER
-#   password:
-#     - CONTAINER_REGISTRY_PASSWORD
+# Credentials for your image host.
+registry:
+  username: marcusmann
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
 
 env:
   secret:
     - RAILS_MASTER_KEY
-    - POSTGRES_DB
-    - POSTGRES_USER
+    - DB_HOST
     - POSTGRES_PASSWORD
-
+    - POSTGRES_USER
+    - POSTGRES_DB
   clear:
     RAILS_ENV: production
     SOLID_QUEUE_IN_PUMA: false
-    DB_HOST: spacedevs-db
 
+# Use a persistent storage volume for sqlite database files and local Active Storage files.
+volumes:
+  - "spacedevs_storage:/rails/storage"
+
+# Bridge fingerprinted assets, like JS and CSS, between versions to avoid
+# hitting 404 on in-flight requests.
 asset_path: /rails/public/assets
 
 builder:
   arch: amd64
-  args:
-    RUBY_VERSION: system
 
-ssh:
-  user: deploy
-
+# Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
-    image: postgres:17.4
-    host: spacedevs-db
+    image: postgres:16
+    host: <%= ENV["DB_HOST"] %>
     env:
       secret:
-        - POSTGRES_DB
         - POSTGRES_USER
         - POSTGRES_PASSWORD
+        - POSTGRES_DB
     files:
-      - config/init.sql:/docker-entrypoint-initdb.d/setup.sql
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
     directories:
       - data:/var/lib/postgresql/data
