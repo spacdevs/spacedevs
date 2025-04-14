@@ -4,10 +4,10 @@ gem 'awesome_print'
 
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'pg', '1.5.4'
 gem 'propshaft'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 8.0.1'
-gem 'sqlite3', '>= 2.1'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
@@ -15,9 +15,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-gem 'solid_cable'
-gem 'solid_cache'
-gem 'solid_queue'
+# gem 'solid_cable'
+# gem 'solid_cache'
+# gem 'solid_queue'
 
 gem 'bootsnap', require: false
 
