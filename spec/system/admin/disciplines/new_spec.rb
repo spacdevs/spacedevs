@@ -9,6 +9,8 @@ feature Admin::DisciplinesController do
   end
 
   scenario 'admin create discipline' do
+    team = Team.first
+
     login_as(admin_user)
     click_on 'Disciplinas'
     click_on 'Adicionar'
@@ -17,7 +19,7 @@ feature Admin::DisciplinesController do
     fill_in  'Conteúdo', with: 'Introdução a disciplina de tecnologia da informação'
     fill_in  'Disponível em', with: Time.zone.local(2025, 10, 12, 12, 0, 0)
     fill_in  'Posição', with: '1'
-    find(:css, "#discipline_team_ids_1[value='1']").set(true)
+    find(:css, "#discipline_team_ids_#{team.id}[value='#{team.id}']").set(true)
     click_on 'Criar Disciplina'
 
     expect(current_path).to eq(admin_disciplines_path)
