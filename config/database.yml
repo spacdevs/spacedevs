@@ -9,6 +9,7 @@ development:
 
 test:
   <<: *default
+  host: localhost
   username: <%= ENV["POSTGRES_USER"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
   database: spacedevs_test

@@ -311,10 +311,6 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
-    sqlite3 (2.6.0)
-      mini_portile2 (~> 2.8.0)
-    sqlite3 (2.6.0-aarch64-linux-gnu)
-    sqlite3 (2.6.0-x86_64-linux-gnu)
     sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
@@ -386,7 +382,6 @@ DEPENDENCIES
   rubocop-rails
   selenium-webdriver
   shoulda-matchers (~> 6.0)
-  sqlite3 (>= 2.1)
   stimulus-rails
   thruster
   turbo-rails
