@@ -9,9 +9,9 @@ development:
 
 test:
   <<: *default
-  host: localhost
-  username: <%= ENV["POSTGRES_USER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host:     localhost
+  username: postgres
+  password: postgres
   database: spacedevs_test
 
 production:
