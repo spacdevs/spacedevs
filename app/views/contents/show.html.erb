@@ -2,7 +2,11 @@
   <div class="uk-container">
     <div class="uk-grid-match" uk-grid>
       <div class="uk-width-3-4@m uk-width-1-1@s">
-        <%= @content.body %>
+        <% if @content.video? %>
+          <%= raw @content.body.to_plain_text %>
+        <% else %>
+          <%= @content.body %>
+        <% end %>
       </div>
       <div class="uk-width-1-4@m uk-width-1-1@s">
         <div class="uk-card uk-card-secondary uk-card-body">
