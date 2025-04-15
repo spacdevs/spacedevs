@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   before_validation :generate_registration_code
 
-  belongs_to :school
+  belongs_to :school, optional: true
   has_one    :profile, dependent: :destroy
   has_many   :sessions, dependent: :destroy
   has_many   :team_users, dependent: :destroy
