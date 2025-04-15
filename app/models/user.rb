@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  before_validation :generate_registration_code
+  before_create :generate_registration_code
 
   belongs_to :school, optional: true
   has_one    :profile, dependent: :destroy
@@ -18,7 +18,6 @@ class User < ApplicationRecord
 
   enum :role, { admin: 0, student: 1 }, default: :student
 
-  validates :registration_code, presence: true
   validates :email_address, presence: true, uniqueness: true, format: {
     with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
     message: I18n.t('activerecord.errors.invalid_email_address')
