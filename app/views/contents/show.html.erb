@@ -5,7 +5,9 @@
         <% if @content.video? %>
           <%= raw @content.body.to_plain_text %>
         <% else %>
-          <%= @content.body %>
+          <p class="uk-text-white">
+            <%= @content.body %>
+          </p>
         <% end %>
       </div>
       <div class="uk-width-1-4@m uk-width-1-1@s">
@@ -14,6 +16,7 @@
             <% @content.discipline.contents.each do |content| %>
               <li>
                 <%= link_to content.title, discipline_content_path(discipline_slug: @content.discipline.slug, content_slug: content.slug) %>
+              </li>
             <% end %>
           </ol>
         </div>
