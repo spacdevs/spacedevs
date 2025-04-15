@@ -11,7 +11,7 @@ feature :contents do
     visit root_path
     click_on discipline.title
 
-    expect(page).to have_content(discipline.body)
+    expect(page).to have_content(discipline.body.to_plain_text)
   end
 
   scenario 'must have contents' do
@@ -27,7 +27,7 @@ feature :contents do
     click_on current_content.title
 
     expect(page).to have_content(current_content.title)
-    expect(page).to have_content(current_content.body)
+    expect(page).to have_content(current_content.body.to_plain_text)
   end
 
   scenario 'not found page' do

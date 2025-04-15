@@ -29,7 +29,7 @@ RSpec.describe Admin::Disciplines::ContentsController, type: :controller do
         patch :update, params: { discipline_id: discipline.id, id: content.id, content: new_attributes }
         content.reload
         expect(content.title).to eq('Updated Title')
-        expect(content.body).to eq('Updated Body')
+        expect(content.body.to_plain_text).to eq('Updated Body')
         expect(content.kind.to_sym).to eq(:text)
       end
 

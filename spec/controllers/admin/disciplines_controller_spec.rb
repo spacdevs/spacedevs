@@ -133,8 +133,8 @@ RSpec.describe Admin::DisciplinesController, type: :controller do
 
         expect(flash[:notice]).to eq('Registro atualizado com sucesso.')
         expect(discipline.title).to eq 'Introdução aos algoritmos'
-        expect(discipline.abstract).to eq 'Aprenda a criar algoritimos'
-        expect(discipline.body).to eq 'Conteúdo sobre algoritmos'
+        expect(discipline.abstract.to_plain_text).to eq 'Aprenda a criar algoritimos'
+        expect(discipline.body.to_plain_text).to eq 'Conteúdo sobre algoritmos'
         expect(I18n.l(discipline.available_on, format: :short)).to eq '12 de outubro, 08:00'
         expect(discipline.position).to eq 2
       end

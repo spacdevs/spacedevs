@@ -33,7 +33,7 @@ module Admin
 
       render :edit unless @discipline.persisted?
 
-      redirect_to admin_disciplines_path, notice: I18n.t('messages.update.success', title: 'Disciplína')
+      redirect_to edit_admin_discipline_path(@discipline.id), notice: I18n.t('messages.update.success', title: 'Disciplína')
     end
 
     def set_teams
