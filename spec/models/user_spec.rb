@@ -35,9 +35,11 @@ RSpec.describe User, type: :model do
   end
 
   context 'auto generate registration code' do
-    let(:user) { create(:user) }
+    let(:user) { build(:user, registration_code: nil) }
 
     it 'should generate when the user has been registrated' do
+      expect { user.save }.to change(user, :registration_code)
+
       expect(user.registration_code).to be_present
     end
   end

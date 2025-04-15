@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many   :team_users, dependent: :destroy
   has_many   :teams, through: :team_users
 
+  before_validation :generate_registration_code
+
   alias_attribute :email, :email_address
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
@@ -21,4 +23,10 @@ class User < ApplicationRecord
     with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
     message: I18n.t('activerecord.errors.invalid_email_address')
   }
+
+  private
+
+  def generate_registration_code
+    self.registration_code = "SD-#{SecureRandom.hex(4)}"
+  end
 end
