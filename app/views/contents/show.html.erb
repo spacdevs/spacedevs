@@ -3,10 +3,12 @@
     <div class="uk-grid-match" uk-grid>
       <div class="uk-width-3-4@m uk-width-1-1@s">
         <% if @content.video? %>
-          <%= raw @content.body.to_plain_text %>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <%= sanitize(@content.body.to_plain_text, tags: %w[div iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
+          </div>
         <% else %>
           <p class="uk-text-white">
-            <%= @content.body %>
+            <%= sanitize(@content.body) %>
           </p>
         <% end %>
       </div>

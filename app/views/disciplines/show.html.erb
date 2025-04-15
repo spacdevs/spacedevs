@@ -4,7 +4,9 @@
       <div class="uk-width-3-4@m uk-width-1-1@s">
         <h1 class="uk-text-white"> <%= @discipline.title %> </h1>
         <p class="uk-text-white">
-          <%= raw @discipline.body.to_plain_text %>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <%= sanitize(@discipline.body.to_plain_text, tags: %w[div iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
+          </div>
         </p>
       </div>
       <% if @discipline.contents.present? %>
