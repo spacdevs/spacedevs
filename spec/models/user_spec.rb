@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'association' do
-    it { is_expected.to belong_to(:school) }
+    it { is_expected.to belong_to(:school).optional }
     it { is_expected.to have_many(:sessions) }
     it { is_expected.to have_many(:teams) }
     it { is_expected.to have_one(:profile) }
