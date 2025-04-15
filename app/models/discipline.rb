@@ -10,6 +10,9 @@ class Discipline < ApplicationRecord
 
   before_validation :update_slug
 
+  has_rich_text :body
+  has_rich_text :abstract
+
   private
 
   def update_slug

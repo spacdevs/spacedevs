@@ -7,6 +7,7 @@ feature Admin::Disciplines::ContentsController do
 
   before do
     login_as(admin)
+    click_on 'Administração'
     click_on 'Disciplinas'
     find('a[title="view the contents"]').click
     find('a[title="edit"]').click
@@ -14,30 +15,31 @@ feature Admin::Disciplines::ContentsController do
 
   context 'when is successfully' do
     before do
-      fill_in 'Título', with: 'Introdução a linguagem Python'
-      fill_in 'Conteúdo', with: 'Nesta aula você aprenderá os princípios básicos da linguagem Python.'
-      select  'Vídeo', from: 'Tipo'
+      fill_in 'Título', with: 'INTRODUÇÃO A LINGUAGEM PYTHON'
+      find("input[name='content[body]']", visible: false).set('Aula de Python')
+
+      select 'Vídeo', from: 'Tipo'
       click_on 'Atualizar Conteúdo'
-      content.reload
     end
 
     scenario 'admin updates content' do
-      expect(page).to have_content('Introdução a linguagem Python')
-      expect(content.body).to eq 'Nesta aula você aprenderá os princípios básicos da linguagem Python.'
-      expect(content.video?).to be_truthy
+      expect(page).to have_content('INTRODUÇÃO A LINGUAGEM PYTHON')
+      expect(content.reload.body.to_plain_text).to eq 'Aula de Python'
+      expect(content.reload.video?).to be_truthy
     end
   end
 
   context 'when exists fails in process' do
     before do
       fill_in 'Título', with: ''
-      fill_in 'Conteúdo', with: ''
-      select  'Vídeo', from: 'Tipo'
+      find("input[name='content[body]']", visible: false).set(' ')
+      select 'Vídeo', from: 'Tipo'
       click_on 'Atualizar Conteúdo'
     end
 
-    scenario { expect(page).to have_content('Título não pode ficar em branco') }
-
-    scenario { expect(page).to have_content('Conteúdo não pode ficar em branco') }
+    scenario do
+      expect(page).to have_content('Título não pode ficar em branco')
+      expect(page).to have_content('Conteúdo não pode ficar em branco')
+    end
   end
 end

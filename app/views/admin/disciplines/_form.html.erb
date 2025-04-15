@@ -12,7 +12,7 @@
   <div class="uk-margin">
     <%= form.label :abstract, class:"uk-form-label" %>
     <div class="uk-form-controls" >
-      <%= form.text_field :abstract, class:"uk-input" %>
+      <%= form.rich_textarea :abstract, class:"uk-input" %>
       <small class="uk-text-danger">
         <%= @discipline&.errors.full_messages_for(:abstract).join.capitalize %>
       </small>
@@ -22,7 +22,7 @@
   <div class="uk-margin">
     <%= form.label :body, class:"uk-form-label" %>
     <div class="uk-form-controls" >
-      <%= form.textarea :body, class:"uk-textarea" %>
+      <%= form.rich_textarea :body, class:"uk-textarea" %>
       <small class="uk-text-danger">
         <%= @discipline&.errors.full_messages_for(:body).join.capitalize %>
       </small>

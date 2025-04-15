@@ -1,6 +1,15 @@
 <section class="uk-section">
   <div class="uk-container">
-    <div class="uk-card uk-card-secondary uk-card-body">
+
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-success uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="uk-card uk-card-default uk-card-body">
       <%= render 'form', route_path: admin_discipline_path(@discipline) %>
     </div>
   </div>

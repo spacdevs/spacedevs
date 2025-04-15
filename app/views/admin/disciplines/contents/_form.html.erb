@@ -12,7 +12,7 @@
   <div class="uk-margin">
     <%= form.label :body, class:"uk-form-label" %>
     <div class="uk-form-controls" >
-      <%= form.textarea :body, class:"uk-textarea" %>
+      <%= form.rich_textarea :body, class:"uk-textarea" %>
       <small class="uk-text-danger">
         <%= @content&.errors.full_messages_for(:body).join %>
       </small>
