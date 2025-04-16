@@ -8,7 +8,8 @@ feature 'Admin::Disciplines::ContentsController' do
     login_as admin_user
     click_on 'Administração'
     click_on 'Disciplinas'
-    find('a[title="view the contents"]').click
+    find("a[title='#{discipline.title}']").click
+
     click_on 'Adicionar conteúdo'
   end
 

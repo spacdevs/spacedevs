@@ -9,7 +9,8 @@ feature Admin::DisciplinesController do
     before do
       login_as(admin)
       click_on 'Disciplinas'
-      find('a[title="view the contents"]').click
+
+      find("a[title='#{content.discipline.title}']").click
     end
 
     scenario 'admin view disciplines' do
@@ -21,10 +22,10 @@ feature Admin::DisciplinesController do
 
   context 'when not exist contents' do
     before do
-      create(:discipline)
+      discipline = create(:discipline)
       login_as(admin)
       click_on 'Disciplinas'
-      find('a[title="view the contents"]').click
+      find("a[title='#{discipline.title}']").click
     end
 
     scenario 'without discipline to displaying' do
