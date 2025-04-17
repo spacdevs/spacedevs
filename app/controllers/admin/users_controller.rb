@@ -29,9 +29,9 @@ module Admin
 
     def set_users
       @users = User.includes(:profile, :school)
-        .student
-        .order('profiles.first_name, profiles.last_name ASC')
-        .limit(10)
+                   .student
+                   .order('profiles.first_name, profiles.last_name ASC')
+                   .limit(10)
     end
 
     def q

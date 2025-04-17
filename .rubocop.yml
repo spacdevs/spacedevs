@@ -57,8 +57,8 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Max: 175
 
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
+# Layout/MultilineMethodCallIndentation:
+#   EnforcedStyle: indented
 Layout/MultilineAssignmentLayout:
   EnforcedStyle: same_line
 Layout/MultilineHashKeyLineBreaks:
