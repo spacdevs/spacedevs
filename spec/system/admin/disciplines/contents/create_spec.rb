@@ -19,6 +19,7 @@ feature 'Admin::Disciplines::ContentsController' do
     before do
       fill_in 'Título', with: 'Introdução a linguagem Python'
       find("input[name='content[body]']", visible: false).set('Aula de Python.')
+      fill_in 'Posição', with: 2
       select 'Vídeo', from: 'Tipo'
       click_on 'Criar Conteúdo'
       discipline.reload
@@ -27,6 +28,7 @@ feature 'Admin::Disciplines::ContentsController' do
     scenario 'creates content' do
       expect(page).to have_content('Introdução a linguagem Python')
       expect(content.body.to_plain_text).to eq 'Aula de Python.'
+      expect(content.position).to eq 2
       expect(content.video?).to be_truthy
     end
   end
@@ -35,10 +37,12 @@ feature 'Admin::Disciplines::ContentsController' do
     before do
       fill_in 'Título', with: ''
       select  'Vídeo', from: 'Tipo'
+      fill_in 'Posição', with: ''
       click_on 'Criar Conteúdo'
     end
 
     scenario { expect(page).to have_content('Título não pode ficar em branco') }
+    scenario { expect(page).to have_content('Posição não pode ficar em branco') }
 
     scenario { expect(page).to have_content('Conteúdo não pode ficar em branco') }
   end
