@@ -23,7 +23,7 @@ RSpec.describe Admin::Disciplines::ContentsController, type: :controller do
 
   describe 'PATCH #update' do
     context 'with valid params' do
-      let(:new_attributes) { { title: 'Updated Title', body: 'Updated Body', kind: 'text' } }
+      let(:new_attributes) { { title: 'Updated Title', body: 'Updated Body', kind: 'text', position: 5 } }
 
       it 'updates the requested content' do
         patch :update, params: { discipline_id: discipline.id, id: content.id, content: new_attributes }
@@ -31,6 +31,7 @@ RSpec.describe Admin::Disciplines::ContentsController, type: :controller do
         expect(content.title).to eq('Updated Title')
         expect(content.body.to_plain_text).to eq('Updated Body')
         expect(content.kind.to_sym).to eq(:text)
+        expect(content.position).to eq(5)
       end
 
       it 'redirects to the discipline path with a success notice' do
