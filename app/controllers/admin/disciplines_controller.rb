@@ -11,6 +11,7 @@ module Admin
 
     def show
       @contents = Content.joins('JOIN disciplines discipline ON contents.discipline_id = discipline.id')
+                         .where(discipline_id: @discipline.id)
     end
 
     def new
