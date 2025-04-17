@@ -15,6 +15,7 @@ feature Admin::Disciplines::ContentsController do
 
   scenario 'admin sees disciplines already registered' do
     expect(page).to have_field('Título')
+    expect(page).to have_field('Posição')
     expect(page).to have_selector("trix-editor[input='content_body_trix_input_content_#{content.id}']")
     expect(page).to have_select('Tipo')
   end
