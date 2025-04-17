@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature :contents do
   let(:user) { create(:user, :with_profile, :student) }
-  let!(:discipline) { create(:discipline, :with_contents) }
+  let!(:discipline) { create(:discipline, :with_contents, position: 4) }
   let(:current_content) { discipline.contents.last }
 
   before { login_as user }
@@ -12,6 +12,30 @@ feature :contents do
     click_on discipline.title
 
     expect(page).to have_content(discipline.body.to_plain_text)
+  end
+
+  scenario 'student sees contents in the correct order of their position' do
+    create(:content, discipline: discipline, title: 'Content 1', position: 1)
+    create(:content, discipline: discipline, title: 'Content 3', position: 3)
+    create(:content, discipline: discipline, title: 'Content 2', position: 2)
+
+    visit discipline_path(discipline.slug)
+
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(1)' do
+      expect(page).to have_content('Content 1')
+    end
+
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(2)' do
+      expect(page).to have_content('Content 2')
+    end
+
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(3)' do
+      expect(page).to have_content('Content 3')
+    end
+
+    discipline.contents.each do |content|
+      expect(page).to have_content(content.title)
+    end
   end
 
   scenario 'must have contents' do

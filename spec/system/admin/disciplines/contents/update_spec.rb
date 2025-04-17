@@ -9,7 +9,7 @@ feature Admin::Disciplines::ContentsController do
     login_as(admin)
     click_on 'Administração'
     click_on 'Disciplinas'
-    find('a[title="view the contents"]').click
+    find("a[title='#{discipline.title}']").click
     find('a[title="edit"]').click
   end
 
@@ -17,15 +17,17 @@ feature Admin::Disciplines::ContentsController do
     before do
       fill_in 'Título', with: 'INTRODUÇÃO A LINGUAGEM PYTHON'
       find("input[name='content[body]']", visible: false).set('Aula de Python')
-
       select 'Vídeo', from: 'Tipo'
+      fill_in 'Posição', with: 5
       click_on 'Atualizar Conteúdo'
+      content.reload
     end
 
     scenario 'admin updates content' do
       expect(page).to have_content('INTRODUÇÃO A LINGUAGEM PYTHON')
-      expect(content.reload.body.to_plain_text).to eq 'Aula de Python'
-      expect(content.reload.video?).to be_truthy
+      expect(content.body.to_plain_text).to eq 'Aula de Python'
+      expect(content.position).to eq 5
+      expect(content.video?).to be_truthy
     end
   end
 
@@ -33,12 +35,14 @@ feature Admin::Disciplines::ContentsController do
     before do
       fill_in 'Título', with: ''
       find("input[name='content[body]']", visible: false).set(' ')
+      fill_in 'Posição', with: ''
       select 'Vídeo', from: 'Tipo'
       click_on 'Atualizar Conteúdo'
     end
 
     scenario do
       expect(page).to have_content('Título não pode ficar em branco')
+      expect(page).to have_content('Posição não pode ficar em branco')
       expect(page).to have_content('Conteúdo não pode ficar em branco')
     end
   end

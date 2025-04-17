@@ -26,7 +26,7 @@ module Admin
       private
 
       def content_params
-        params.expect(content: %i[title body kind]).tap do |param|
+        params.expect(content: %i[title body kind position]).tap do |param|
           param[:kind] = param[:kind]&.to_sym
         end
       end
