@@ -10,7 +10,7 @@ module Admin
     end
 
     def show
-      @contents = Content.joins('JOIN disciplines discipline ON contents.discipline_id = discipline.id')
+      @contents = Content.includes(:discipline)
                          .where(discipline: { id: @discipline.id })
     end
 
