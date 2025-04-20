@@ -49,6 +49,8 @@ module Admin
 
     def discipline_params
       params.expect(discipline: [:title, :abstract, :position, :body, :available_on, { team_ids: [], resources: [] }])
+            .transform_values! { |param| param.is_a?(Array) ? param.compact_blank : param }
+            .compact_blank
     end
 
     def teams
