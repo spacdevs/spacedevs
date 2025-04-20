@@ -3,7 +3,7 @@
     <div class="uk-grid-match" uk-grid>
       <div class="uk-width-3-4@m uk-width-1-1@s">
         <% if @content.video? %>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="uk-text-white">
             <%= sanitize(@content.body.to_plain_text, tags: %w[div iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
           </div>
         <% else %>
@@ -24,5 +24,6 @@
         </div>
       </div>
     </div>
+    <%= render 'layouts/supplies', { discipline: @content.discipline } %>
   </div>
 </section>

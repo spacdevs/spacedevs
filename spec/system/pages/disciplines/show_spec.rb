@@ -15,6 +15,7 @@ feature :disciplines do
     end
     expect(page).to have_content(discipline.title)
   end
+
   scenario 'student sees contents in the correct order of their position' do
     create(:content, discipline: discipline, title: 'Content 1', position: 1)
     create(:content, discipline: discipline, title: 'Content 3', position: 3)
@@ -37,6 +38,16 @@ feature :disciplines do
     discipline.contents.each do |content|
       expect(page).to have_content(content.title)
     end
+  end
+
+  scenario 'sees supplies' do
+    file = Rails.root.join('spec/fixtures/resources.zip').open
+    discipline.resources.attach(io: file, filename: 'resource.zip', content_type: 'application/zip')
+
+    visit discipline_path(discipline.slug)
+
+    expect(page).to have_content 'Materiais'
+    expect(page).to have_content 'resource.zip'
   end
 
   scenario 'must redirect to a 404 page' do

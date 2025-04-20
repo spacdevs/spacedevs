@@ -86,3 +86,8 @@ a[disabled] {
 textarea {
   resize: vertical;
 }
+
+/* list */
+.uk-list-default>::before {
+  color: var(--primary-color) !important;
+}
