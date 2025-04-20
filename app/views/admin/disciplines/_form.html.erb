@@ -1,4 +1,4 @@
-<%= form_with model: @discipline, url: route_path, class: 'uk-form-horizontal', data: { turbo: false } do | form | %>
+<%= form_with model: @discipline, url: route_path, class: 'uk-form-horizontal', enctype: "multipart/form-data", data: { turbo: false } do | form | %>
   <div class="uk-margin">
     <%= form.label :title, class:"uk-form-label" %>
     <div class="uk-form-controls" >
@@ -46,6 +46,14 @@
       <small class="uk-text-danger">
         <%= @discipline&.errors.full_messages_for(:available_on).join.capitalize %>
       </small>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <%= form.label :resources, class:"uk-form-label" %>
+    <div class="js-upload uk-padding-small" uk-form-custom >
+      <%= form.file_field :resources, multiple: true, class:"uk-select" %>
+      <%= button_tag 'Selecionar', class: 'uk-button uk-button-default', tabindex: "-1"  %>
     </div>
   </div>
 

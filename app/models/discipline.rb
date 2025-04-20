@@ -10,6 +10,7 @@ class Discipline < ApplicationRecord
 
   before_validation :update_slug
 
+  has_many_attached :resources
   has_rich_text :body
   has_rich_text :abstract
 

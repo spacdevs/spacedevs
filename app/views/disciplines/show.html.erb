@@ -3,8 +3,8 @@
     <div class="uk-grid-match" uk-grid>
       <div class="uk-width-3-4@m uk-width-1-1@s">
         <h1 class="uk-text-white"> <%= @discipline.title %> </h1>
-        <p class="uk-text-white">
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="uk-text-white">
             <%= sanitize(@discipline.body.to_plain_text, tags: %w[div iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
           </div>
         </p>

@@ -47,11 +47,9 @@ module Admin
       @discipline = Discipline.find(params[:id])
     end
 
-    # rubocop:disable Rails/StrongParametersExpect
     def discipline_params
-      params.require(:discipline).permit(:title, :abstract, :position, :body, :available_on, { team_ids: [] })
+      params.expect(discipline: [:title, :abstract, :position, :body, :available_on, { team_ids: [], resources: [] }])
     end
-    # rubocop:enable Rails/StrongParametersExpect
 
     def teams
       Team.where(id: discipline_params[:team_ids])
