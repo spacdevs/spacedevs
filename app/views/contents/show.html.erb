@@ -24,19 +24,6 @@
         </div>
       </div>
     </div>
-
-    <div class="uk-margin-top">
-      <h3 class="uk-heading-line uk-text-white"><span>Materiais</span></h3>
-      <ul class="uk-list  uk-list-disc uk-list-default ">
-        <% if @content.discipline.resources.attached? %>
-
-          <% @content.discipline.resources.each do |resource| %>
-            <li>
-              <%= link_to resource.filename, rails_blob_path(resource, disposition: 'attachment') %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+    <%= render 'layouts/supplies', { discipline: @content.discipline } %>
   </div>
 </section>
