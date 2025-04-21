@@ -13,10 +13,28 @@ feature Admin::DisciplinesController do
       find("a[title='#{content.discipline.title}']").click
     end
 
-    scenario 'admin view disciplines' do
-      expect(page).to have_content(content.discipline.title)
-      expect(page).to have_content(content.title)
-      expect(page).to have_content('Texto')
+    scenario 'must have content title' do
+      within 'table > tbody > tr:nth-child(1) > td:nth-child(1)' do
+        expect(page).to have_content(content.title)
+      end
+    end
+
+    scenario 'must have discipline title' do
+      within 'table > tbody > tr:nth-child(1) > td:nth-child(2)' do
+        expect(page).to have_content(content.discipline.title)
+      end
+    end
+
+    scenario 'must have content kind' do
+      within 'table > tbody > tr:nth-child(1) > td:nth-child(3)' do
+        expect(page).to have_content('Texto')
+      end
+    end
+
+    scenario 'must have content position' do
+      within 'table > tbody > tr:nth-child(1) > td:nth-child(4)' do
+        expect(page).to have_content(content.position)
+      end
     end
   end
 

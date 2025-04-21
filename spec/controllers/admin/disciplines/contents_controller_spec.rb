@@ -36,7 +36,8 @@ RSpec.describe Admin::Disciplines::ContentsController, type: :controller do
 
       it 'redirects to the discipline path with a success notice' do
         patch :update, params: { discipline_id: discipline.id, id: content.id, content: new_attributes }
-        expect(response).to redirect_to(admin_discipline_path(discipline))
+
+        expect(response).to redirect_to(edit_admin_discipline_content_path(discipline_id: discipline.id, content_id: content.id))
         expect(flash[:notice]).to eq(I18n.t('messages.update.success'))
       end
     end

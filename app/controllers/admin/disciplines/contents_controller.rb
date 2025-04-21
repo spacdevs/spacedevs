@@ -4,7 +4,7 @@ module Admin
   module Disciplines
     class ContentsController < AdminController
       before_action :find_content, only: %i[edit update]
-      before_action :find_discipline, only: %i[new create]
+      before_action :find_discipline, only: %i[new create update]
       before_action :initialize_content, only: %i[new create]
 
       def new; end
@@ -20,7 +20,9 @@ module Admin
       def update
         return render :edit unless @content.update(content_params)
 
-        redirect_to admin_discipline_path(@content.discipline), notice: I18n.t('messages.update.success')
+        redirect_to edit_admin_discipline_content_path(
+          discipline_id: @discipline.id, content_id: @content.id
+        ), notice: I18n.t('messages.update.success')
       end
 
       private

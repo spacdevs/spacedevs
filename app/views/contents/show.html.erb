@@ -1,7 +1,8 @@
 <section class="uk-section">
   <div class="uk-container">
+    <h1 class="uk-text-white"> <%= @content.title %> </h1>
     <div class="uk-grid-match" uk-grid>
-      <div class="uk-width-3-4@m uk-width-1-1@s">
+      <div class="uk-width-3-4@m uk-width-1-1@s uk-margin-large-top ">
         <% if @content.video? %>
           <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="uk-text-white">
             <%= sanitize(@content.body.to_plain_text, tags: %w[div iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
@@ -14,13 +15,15 @@
       </div>
       <div class="uk-width-1-4@m uk-width-1-1@s">
         <div class="uk-card uk-card-secondary uk-card-body">
-          <ol class="uk-nav uk-nav-secondary uk-list uk-list-decimal">
+          <ul class="uk-nav uk-nav-secondary uk-list uk-list-decimal">
             <% @sidebar_contents.each do |content| %>
               <li>
-                <%= link_to content.title, discipline_content_path(discipline_slug: @content.discipline.slug, content_slug: content.slug) %>
+                 <%= link_to discipline_content_path(discipline_slug: @content.discipline.slug, content_slug: content.slug) do %>
+                  <%= content.title %>
+                 <% end %>
               </li>
             <% end %>
-          </ol>
+          </ul>
         </div>
       </div>
     </div>
