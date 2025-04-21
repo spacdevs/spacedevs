@@ -21,21 +21,26 @@
               <th>Título</th>
               <th>Disciplina vinculada</th>
               <th>Tipo</th>
+              <th>Posição</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <% @contents.each do |content| %>
               <tr class="contents">
-                <th>
+                <td>
                   <%= content.title %>
-                </th>
-                <th>
+                </td>
+                <td>
                   <%= content.discipline.title %>
-                </th>
-                <th>
+                </td>
+                <td>
                   <%= Content.human_enum_name(:kind, content.kind) %>
-                </th>
-                <th>
+                </td>
+                <td>
+                  <%=  content.position %>
+                </td>
+                <td>
                   <%= link_to '', edit_admin_discipline_content_path(discipline_id: @discipline.id,
                   id: content.id), class: 'uk-icon-button',
                       data: { uk_icon: "pencil" }, title: 'edit' %>
