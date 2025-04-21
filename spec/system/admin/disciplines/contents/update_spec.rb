@@ -24,6 +24,8 @@ feature Admin::Disciplines::ContentsController do
     end
 
     scenario 'admin updates content' do
+      visit admin_discipline_path(content.discipline)
+
       expect(page).to have_content('INTRODUÇÃO A LINGUAGEM PYTHON')
       expect(content.body.to_plain_text).to eq 'Aula de Python'
       expect(content.position).to eq 5

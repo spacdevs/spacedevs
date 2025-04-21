@@ -11,7 +11,7 @@ module Admin
 
     def show
       @contents = Content.includes(:discipline)
-                         .where(discipline: { id: @discipline.id })
+                         .where(discipline: { id: @discipline.id }).order(:position)
     end
 
     def new
