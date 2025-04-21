@@ -15,7 +15,7 @@
       <div class="uk-width-1-4@m uk-width-1-1@s">
         <div class="uk-card uk-card-secondary uk-card-body">
           <ol class="uk-nav uk-nav-secondary uk-list uk-list-decimal">
-            <% @content.discipline.contents.each do |content| %>
+            <% @sidebar_contents.each do |content| %>
               <li>
                 <%= link_to content.title, discipline_content_path(discipline_slug: @content.discipline.slug, content_slug: content.slug) %>
               </li>
