@@ -15,21 +15,24 @@ feature :contents do
   end
 
   scenario 'student sees contents in the correct order of their position' do
-    content = create(:content, discipline: discipline, title: 'Content 1', position: 1)
+    content = create(:content, discipline: discipline, title: 'Introducation to Github', position: 1)
     create(:content, discipline: discipline, title: 'Content 3', position: 3)
     create(:content, discipline: discipline, title: 'Content 2', position: 2)
 
     visit discipline_content_path(discipline_slug: discipline.slug, content_slug: content.slug)
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(1)' do
-      expect(page).to have_content('Content 1')
+    # title of content in page
+    expect(page).to have_content('Introducation to Github')
+
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(1)' do
+      expect(page).to have_content('Introducation to Github')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(2)' do
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(2)' do
       expect(page).to have_content('Content 2')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(3)' do
+    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(3)' do
       expect(page).to have_content('Content 3')
     end
 
