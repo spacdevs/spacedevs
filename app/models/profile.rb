@@ -8,10 +8,14 @@ class Profile < ApplicationRecord
   enum :degree, first_year: 1, second_year: 2, third_year: 3
   accepts_nested_attributes_for :user, update_only: true
 
-  validates :first_name, :last_name, :birthday, :degree, presence: true
+  validates :fullname, :birthday, :degree, presence: true
 
-  def fullname
-    "#{first_name} #{last_name}"
+  def first_name
+    fullname.split(' ').first
+  end
+
+  def last_name
+    fullname.split(' ').last
   end
 
   def age

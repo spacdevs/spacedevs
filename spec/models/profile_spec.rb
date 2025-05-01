@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
   context 'validates' do
-    it { is_expected.to validate_presence_of(:first_name).with_message('não pode ficar em branco') }
-    it { is_expected.to validate_presence_of(:last_name).with_message('não pode ficar em branco') }
+    it { is_expected.to validate_presence_of(:fullname).with_message('não pode ficar em branco') }
     it { is_expected.to validate_presence_of(:birthday).with_message('não pode ficar em branco') }
     it { is_expected.to validate_presence_of(:degree).with_message('não pode ficar em branco') }
   end
@@ -23,14 +22,8 @@ RSpec.describe Profile, type: :model do
     it { expect(profile.avatar).to include('gravatar') }
   end
 
-  context '#fullname' do
-    let(:profile) { create(:profile, first_name: 'John', last_name: 'Doe') }
-
-    it { expect(profile.fullname).to eq 'John Doe' }
-  end
-
   context '#slug' do
-    let(:profile) { create(:profile, first_name: 'John', last_name: 'Doe') }
+    let(:profile) { create(:profile, fullname: 'John Doe') }
 
     it { expect(profile.slug).to eq 'john-doe' }
   end
