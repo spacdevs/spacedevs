@@ -60,4 +60,19 @@ RSpec.describe User, type: :model do
       expect(user.registration_code).to be_present
     end
   end
+
+  context 'when registered send welcome email' do
+    let(:mailer_double) { double('WelcomeMailer', deliver_now: true) }
+
+    before do
+      allow(WelcomeMailer).to receive(:send_email).and_return(mailer_double)
+      allow(mailer_double).to receive(:deliver_now)
+    end
+
+    it 'send e-mail when registered' do
+      user = create(:user, :with_profile)
+      expect(WelcomeMailer).to have_received(:send_email).with(user).exactly(1).times
+      expect(mailer_double).to have_received(:deliver_now).once
+    end
+  end
 end

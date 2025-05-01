@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
 
   before_create :generate_registration_code
+  after_create  :send_welcome_email
 
   belongs_to :school, optional: true
   has_one    :profile, dependent: :destroy
@@ -27,5 +28,9 @@ class User < ApplicationRecord
 
   def generate_registration_code
     self.registration_code = "SD-#{SecureRandom.hex(4)}"
+  end
+
+  def send_welcome_email
+    WelcomeMailer.send_email(self).deliver_now
   end
 end
