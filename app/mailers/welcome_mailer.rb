@@ -3,7 +3,7 @@
 class WelcomeMailer < ApplicationMailer
   def send_email(user)
     @user = user
-    @password_temp = SecureRandom.hex(5).upcase
+    @password_temp = SecureRandom.base64(6).upcase
 
     return unless @user.profile
 
