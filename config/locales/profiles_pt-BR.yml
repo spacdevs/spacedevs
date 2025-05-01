@@ -5,7 +5,7 @@ pt-BR:
       profile: Perfil
     attributes:
       profile:
-        first_name: 'Nome'
+        fullname: 'Nome completo'
         degrees:
           first_year: "1º ano do ensino médio"
           second_year: "2º ano do ensino médio"

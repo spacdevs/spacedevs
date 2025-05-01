@@ -10,8 +10,7 @@ feature Admin::UsersController do
   end
 
   scenario 'admin sees students' do
-    school = create(:school, name: 'Colégio Estadual Governador Roberto Santos')
-    student = create(:user, :with_profile, :student, school:)
+    student = create(:user, :with_profile, :student)
     student.profile.update!(degree: :first_year)
 
     login_as(admin)
@@ -21,7 +20,6 @@ feature Admin::UsersController do
     expect(page).to have_content(student.profile.fullname)
     expect(page).to have_content(student.email)
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
-    expect(page).to have_content('Colégio Estadual Governador Roberto Santos')
     expect(page).to have_content('1º ano do ensino médio')
   end
 
@@ -37,8 +35,8 @@ feature Admin::UsersController do
   scenario 'admin sees ordered users' do
     user1 = create(:user, :with_profile, :student)
     user2 = create(:user, :with_profile, :student)
-    user1.profile.update!(first_name: 'Marcelo', last_name: 'Aguiar')
-    user2.profile.update!(first_name: 'Ana Claudia', last_name: 'Melo')
+    user1.profile.update!(fullname: 'Marcelo Aguiar')
+    user2.profile.update!(fullname: 'Ana Claudia Melo')
 
     login_as(admin)
     click_on 'Alunos'
@@ -52,8 +50,8 @@ feature Admin::UsersController do
   end
 
   scenario 'admin search user' do
-    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
-    create(:user, :with_profile, :student, first_name: 'Simão', last_name: 'Silva')
+    create(:user, :with_profile, :student, fullname: 'Ana Claudia Melo')
+    create(:user, :with_profile, :student, fullname: 'Simão Silva')
 
     login_as(admin)
     click_on 'Alunos'
@@ -64,8 +62,21 @@ feature Admin::UsersController do
     expect(page).not_to have_content('Simão Silva')
   end
 
+  scenario 'admin finds user by part of name' do
+    create(:user, :with_profile, :student, fullname: 'Ana Claudia Melo')
+    create(:user, :with_profile, :student, fullname: 'Simão Silva')
+
+    login_as(admin)
+    click_on 'Alunos'
+    find('input[placeholder="Buscar"]').set('Claudia')
+    click_on 'manda vê'
+
+    expect(page).to have_content('Ana Claudia Melo')
+    expect(page).not_to have_content('Simão Silva')
+  end
+
   scenario 'user cannot found' do
-    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
+    create(:user, :with_profile, :student, fullname: 'Ana Claudia Melo')
 
     login_as(admin)
     click_on 'Alunos'
@@ -106,7 +117,7 @@ feature Admin::UsersController do
   end
 
   scenario 'block user' do
-    user = create(:user, :with_profile, :student, first_name: 'Camila', last_name: 'Rosa')
+    user = create(:user, :with_profile, :student, fullname: 'Camila Rosa')
 
     login_as(admin)
     visit admin_users_path
