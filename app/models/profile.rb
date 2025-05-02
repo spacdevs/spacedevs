@@ -7,7 +7,8 @@ class Profile < ApplicationRecord
 
   accepts_nested_attributes_for :user, update_only: true
 
-  validates :fullname, :birthday, presence: true
+  validates :fullname, :birthday, :whatsapp, presence: true
+  validates :whatsapp, uniqueness: true
 
   def first_name
     fullname.split.first
