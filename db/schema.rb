@@ -134,8 +134,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_01_223553) do
   end
 
   create_table "user_school_enrollments", force: :cascade do |t|
-    t.integer "period", default: 0
-    t.integer "degree", default: 0
+    t.integer "period", default: 1
+    t.integer "degree", default: 1
     t.bigint "school_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
