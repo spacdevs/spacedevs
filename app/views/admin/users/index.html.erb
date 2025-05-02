@@ -25,9 +25,11 @@
           <tr>
               <th class="uk-width-small">Nome completo</th>
               <th>E-mail</th>
+              <th>Whatsapp</th>
               <th>Colégio</th>
               <th>Turma</th>
               <th>Data de cadastro</th>
+              <th></th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +41,9 @@
               <th>
                 <%= user.email %>
               </th>
+              <th>
+                <%= user.profile.whatsapp %>
+              </p>
               <th>
                 <%= I18n.l(user.created_at, format: :short) %>
               </th>

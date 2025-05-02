@@ -25,6 +25,7 @@ feature Admin::UsersController do
     expect(page).to have_content(student.email)
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
     expect(page).to have_content('1º ano do ensino médio')
+    expect(page).to have_content(student.profile.whatsapp)
   end
 
   scenario 'admin sees only 10 students' do
