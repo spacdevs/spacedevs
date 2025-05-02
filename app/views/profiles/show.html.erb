@@ -32,7 +32,7 @@
       </p>
       <p class="uk-text-lead">Turma:
         <span class="uk-text-white">
-          <%= UserSchoolEnrollments.human_enum_name(:degree, @profile.user.user_school_enrollments.degree) %>
+          <%= UserSchoolEnrollments.human_enum_name(:degree, @profile&.user&.user_school_enrollments&.degree) %>
         </span>
       </p>
       <p class="uk-text-lead">E-mail:

@@ -44,6 +44,8 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
+Rails/DynamicFindBy:
+  Enabled: false
 
 Metrics/BlockLength:
   Max: 150
