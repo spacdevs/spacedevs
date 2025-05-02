@@ -7,7 +7,9 @@ class User < ApplicationRecord
   after_create  :send_welcome_email
 
   belongs_to :school, optional: true
+
   has_one    :profile, dependent: :destroy
+  has_one    :user_school_enrollments, dependent: :destroy
   has_many   :sessions, dependent: :destroy
   has_many   :team_users, dependent: :destroy
   has_many   :teams, through: :team_users

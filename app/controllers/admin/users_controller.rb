@@ -26,7 +26,7 @@ module Admin
     private
 
     def set_users
-      @users = User.includes(:profile, :school)
+      @users = User.includes(:profile, :school, :user_school_enrollments)
                    .student
                    .order('profiles.fullname ASC')
                    .limit(10)

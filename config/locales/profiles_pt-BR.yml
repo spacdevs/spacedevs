@@ -6,7 +6,3 @@ pt-BR:
     attributes:
       profile:
         fullname: 'Nome completo'
-        degrees:
-          first_year: "1º ano do ensino médio"
-          second_year: "2º ano do ensino médio"
-          third_year:  "3º ano do ensino médio"

@@ -46,7 +46,7 @@
                 <%= user.school.name %>
               </th>
               <th>
-              <%= Profile.human_enum_name(:degree, user.profile.degree) %>
+                <%= UserSchoolEnrollments.human_enum_name(:degree, user.user_school_enrollments.degree) %>
               </th>
               <th>
                 <% if user.disabled_at.present? %>

@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user_school_enrollments: Informação escolar do usuário
+    attributes:
+      user_school_enrollments:
+        fullname: 'Nome completo'
+        degrees:
+          first_year: "1º ano do ensino médio"
+          second_year: "2º ano do ensino médio"
+          third_year:  "3º ano do ensino médio"

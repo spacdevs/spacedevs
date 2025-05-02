@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:sessions) }
     it { is_expected.to have_many(:teams) }
     it { is_expected.to have_one(:profile) }
+    it { is_expected.to have_one(:user_school_enrollments) }
   end
 
   context 'user is on multiple teams' do

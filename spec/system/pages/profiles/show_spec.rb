@@ -9,7 +9,8 @@ feature 'Visit profile' do
 
   context 'when have profile' do
     before do
-      user.profile.update!(birthday: Date.new(2000, 1, 1), degree: :first_year)
+      user.profile.update!(birthday: Date.new(2000, 1, 1))
+      create(:user_school_enrollments, degree: :first_year, school: user.school, user: user)
       click_on 'Meu perfil'
     end
 

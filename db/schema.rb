@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_01_214340) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_01_223553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -83,7 +83,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_01_214340) do
     t.string "document", null: false
     t.string "avatar"
     t.datetime "birthday", null: false
-    t.integer "degree"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,6 +133,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_01_214340) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_school_enrollments", force: :cascade do |t|
+    t.integer "period", default: 0
+    t.integer "degree", default: 0
+    t.bigint "school_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_user_school_enrollments_on_school_id"
+    t.index ["user_id"], name: "index_user_school_enrollments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "registration_code", null: false
@@ -157,5 +167,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_01_214340) do
   add_foreign_key "team_disciplines", "teams"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
+  add_foreign_key "user_school_enrollments", "schools"
+  add_foreign_key "user_school_enrollments", "users"
   add_foreign_key "users", "schools"
 end
