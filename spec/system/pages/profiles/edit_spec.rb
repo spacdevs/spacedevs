@@ -4,6 +4,7 @@ feature ProfilesController do
   let(:user) { create(:user, :with_profile) }
 
   before do
+    user.create_user_school_enrollments!(school: user.school, degree: :first_year)
     allow(PasswordsMailer).to receive(:reset).with(user).and_return(double(deliver_now: true))
   end
 

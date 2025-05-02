@@ -7,9 +7,7 @@ module Admin
     def index; end
 
     def search
-      @users = @users.where(
-        "CONCAT(LOWER(profiles.first_name), ' ', LOWER(profiles.last_name)) LIKE ?", "%#{q.downcase}%"
-      )
+      @users = @users.where('LOWER(profiles.fullname) LIKE ?', "%#{q.downcase}%")
 
       render :index
     end
@@ -28,9 +26,9 @@ module Admin
     private
 
     def set_users
-      @users = User.includes(:profile, :school)
+      @users = User.includes(:profile, :school, :user_school_enrollments)
                    .student
-                   .order('profiles.first_name, profiles.last_name ASC')
+                   .order('profiles.fullname ASC')
                    .limit(10)
     end
 

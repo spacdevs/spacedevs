@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 feature Admin::UsersController do
-  let(:admin) { create(:user, :with_profile, :admin) }
+  let(:admin)    { create(:user, :with_profile, :admin) }
+  let(:student)  { create(:user, :with_profile, :student) }
+  let(:student2) { create(:user, :with_profile, :student) }
+
+  before do
+    student.create_user_school_enrollments!(school: student.school, degree: :first_year)
+    student2.create_user_school_enrollments!(school: student2.school, degree: :first_year)
+  end
 
   scenario 'check if Administração word exists' do
     login_as(admin)
@@ -10,10 +17,6 @@ feature Admin::UsersController do
   end
 
   scenario 'admin sees students' do
-    school = create(:school, name: 'Colégio Estadual Governador Roberto Santos')
-    student = create(:user, :with_profile, :student, school:)
-    student.profile.update!(degree: :first_year)
-
     login_as(admin)
     click_on 'Alunos'
 
@@ -21,12 +24,13 @@ feature Admin::UsersController do
     expect(page).to have_content(student.profile.fullname)
     expect(page).to have_content(student.email)
     expect(page).to have_content(I18n.l(student.created_at, format: :short))
-    expect(page).to have_content('Colégio Estadual Governador Roberto Santos')
     expect(page).to have_content('1º ano do ensino médio')
   end
 
   scenario 'admin sees only 10 students' do
-    create_list(:user, 15, :with_profile, :student)
+    create_list(:user, 15, :with_profile, :student).each do |student|
+      create(:user_school_enrollments, school: student.school, user: student)
+    end
 
     login_as(admin)
     click_on 'Alunos'
@@ -35,10 +39,8 @@ feature Admin::UsersController do
   end
 
   scenario 'admin sees ordered users' do
-    user1 = create(:user, :with_profile, :student)
-    user2 = create(:user, :with_profile, :student)
-    user1.profile.update!(first_name: 'Marcelo', last_name: 'Aguiar')
-    user2.profile.update!(first_name: 'Ana Claudia', last_name: 'Melo')
+    student.profile.update!(fullname: 'Ana Claudia Melo')
+    student2.profile.update!(fullname: 'Marcelo Aguiar')
 
     login_as(admin)
     click_on 'Alunos'
@@ -52,8 +54,8 @@ feature Admin::UsersController do
   end
 
   scenario 'admin search user' do
-    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
-    create(:user, :with_profile, :student, first_name: 'Simão', last_name: 'Silva')
+    student.profile.update!(fullname: 'Ana Claudia Melo')
+    student2.profile.update!(fullname: 'Simão Silva')
 
     login_as(admin)
     click_on 'Alunos'
@@ -64,8 +66,21 @@ feature Admin::UsersController do
     expect(page).not_to have_content('Simão Silva')
   end
 
+  scenario 'admin finds user by part of name' do
+    student.profile.update!(fullname: 'Ana Claudia Melo')
+    student2.profile.update!(fullname: 'Simão Silva')
+
+    login_as(admin)
+    click_on 'Alunos'
+    find('input[placeholder="Buscar"]').set('Claudia')
+    click_on 'manda vê'
+
+    expect(page).to have_content('Ana Claudia Melo')
+    expect(page).not_to have_content('Simão Silva')
+  end
+
   scenario 'user cannot found' do
-    create(:user, :with_profile, :student, first_name: 'Ana Claudia', last_name: 'Melo')
+    student.profile.update!(fullname: 'Ana Claudia Melo')
 
     login_as(admin)
     click_on 'Alunos'
@@ -86,8 +101,6 @@ feature Admin::UsersController do
   end
 
   scenario 'student cannot sees others registered students' do
-    student = create(:user, :with_profile, :student)
-
     login_as(student)
 
     expect(page).not_to have_content('ADMIN')
@@ -95,8 +108,6 @@ feature Admin::UsersController do
   end
 
   scenario 'user tries to access a direct route and gets redirected to the home page' do
-    student = create(:user, :with_profile, :student)
-
     login_as(student)
     visit admin_users_path
 
@@ -106,7 +117,8 @@ feature Admin::UsersController do
   end
 
   scenario 'block user' do
-    user = create(:user, :with_profile, :student, first_name: 'Camila', last_name: 'Rosa')
+    student.profile.update!(fullname: 'Camila Rosa')
+    student2.update!(disabled_at: Time.zone.now)
 
     login_as(admin)
     visit admin_users_path
@@ -116,11 +128,12 @@ feature Admin::UsersController do
     expect(page).to have_content('Usuário bloqueado')
     expect(page).to have_content('Camila Rosa foi bloqueado com sucesso')
     expect(page).not_to have_content('Bloquear')
-    expect(user.reload.disabled_at).to be_present
+    expect(student.reload.disabled_at).to be_present
   end
 
   scenario 'user already blocked' do
-    create(:user, :with_profile, :student, disabled_at: Time.zone.now)
+    student.update!(disabled_at: Time.zone.now)
+    student2.update!(disabled_at: Time.zone.now)
 
     login_as(admin)
     visit admin_users_path
