@@ -121,7 +121,9 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    ffi (1.16.3)
+    ffi (1.17.2)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -366,7 +368,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  ffi (= 1.16.3)
+  ffi (= 1.17.2)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
