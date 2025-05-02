@@ -4,6 +4,7 @@ RSpec.describe Profile, type: :model do
   context 'validates' do
     it { is_expected.to validate_presence_of(:fullname).with_message('não pode ficar em branco') }
     it { is_expected.to validate_presence_of(:birthday).with_message('não pode ficar em branco') }
+    it { is_expected.to validate_presence_of(:whatsapp).with_message('não pode ficar em branco') }
   end
 
   context 'associations' do

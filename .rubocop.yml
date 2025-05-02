@@ -46,6 +46,10 @@ Rails/UniqueValidationWithoutIndex:
   Enabled: false
 Rails/DynamicFindBy:
   Enabled: false
+Rails/ThreeStateBooleanColumn:
+  Enabled: false
+Rails/CreateTableWithTimestamps:
+  Enabled: false
 
 Metrics/BlockLength:
   Max: 150
