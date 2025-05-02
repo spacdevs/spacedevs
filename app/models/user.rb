@@ -37,6 +37,12 @@ class User < ApplicationRecord
   end
 
   def send_welcome_email
+    return unless smtp_enabled?
+
     WelcomeMailer.send_email(self, password).deliver_now
+  end
+
+  def smtp_enabled?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('EMAIL_SMTP_ENABLED', false.to_s))
   end
 end

@@ -66,6 +66,7 @@ RSpec.describe User, type: :model do
     let(:mailer_double) { double('WelcomeMailer', deliver_now: true) }
 
     before do
+      ENV['EMAIL_SMTP_ENABLED'] = 'true'
       allow(WelcomeMailer).to receive(:send_email).and_return(mailer_double)
       allow(mailer_double).to receive(:deliver_now)
       allow(SecureRandom).to receive(:base64).with(6).and_return('D+1UR3HW')
