@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  before_create :generate_registration_code
+  before_create :generate_registration_code, :generate_temp_password
   after_create  :send_welcome_email
 
   belongs_to :school, optional: true
@@ -32,7 +32,11 @@ class User < ApplicationRecord
     self.registration_code = "SD-#{SecureRandom.hex(4)}"
   end
 
+  def generate_temp_password
+    self.password = SecureRandom.base64(6).upcase
+  end
+
   def send_welcome_email
-    WelcomeMailer.send_email(self).deliver_now
+    WelcomeMailer.send_email(self, password).deliver_now
   end
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class WelcomeMailer < ApplicationMailer
-  def send_email(user)
+  def send_email(user, generate_temp_password = nil)
     @user = user
-    @password_temp = SecureRandom.base64(6).upcase
+    @password_temp = generate_temp_password
 
     return unless @user.profile
 

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 feature 'Visit profile' do
-  let(:user) { create(:user, :with_profile) }
-
   before do
     login_as(user)
   end
 
   context 'when have profile' do
+    let(:user) { create(:user, :with_profile) }
+
     before do
       user.profile.update!(birthday: Date.new(2000, 1, 1))
       create(:user_school_enrollments, degree: :first_year, school: user.school, user: user)

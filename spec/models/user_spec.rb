@@ -68,11 +68,12 @@ RSpec.describe User, type: :model do
     before do
       allow(WelcomeMailer).to receive(:send_email).and_return(mailer_double)
       allow(mailer_double).to receive(:deliver_now)
+      allow(SecureRandom).to receive(:base64).with(6).and_return('D+1UR3HW')
     end
 
     it 'send e-mail when registered' do
       user = create(:user, :with_profile)
-      expect(WelcomeMailer).to have_received(:send_email).with(user).exactly(1).times
+      expect(WelcomeMailer).to have_received(:send_email).with(user, 'D+1UR3HW').exactly(1).times
       expect(mailer_double).to have_received(:deliver_now).once
     end
   end
