@@ -1,19 +1,17 @@
 service: spacedevs
 
 # Name of the container image.
-image: marcusmann/spacedevs
+image: spacedevs/spacedevs
 
 servers:
   web: 
     - <%= ENV.fetch("APP_HOST", "127.0.0.1") %>
 
 proxy: false
-  # ssl: true
-  # host: <%= ENV.fetch("APP_HOST", "127.0.0.1") %>
 
-# Credentials for your image host.
 registry:
-  username: marcusmann
+  server:   <%= ENV.fetch("KAMAL_REGISTRY_SERVER", "hub.docker.io") %>
+  username: <%= ENV.fetch("KAMAL_REGISTRY_USERNAME", "kamal") %>
   password:
     - KAMAL_REGISTRY_PASSWORD
 
@@ -25,10 +23,13 @@ aliases:
 
 
 env:
+  clear:
+    DB_HOST: spacedevs-db
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_USER
     - POSTGRES_PASSWORD
-    - DB_HOST
+    - POSTGRES_DB
 
 # Use a persistent storage volume for sqlite database files and local Active Storage files.
 # Recommended to change this to a mounted volume path that is backed up off server.
@@ -45,11 +46,14 @@ asset_path: /rails/public/assets
 builder:
   arch: amd64
 
+ssh:
+  user: ubuntu
+
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
     image: postgres:17
-    host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+    host: <%= ENV.fetch("APP_HOST", "127.0.0.1") %>
     env:
       secret:
         - POSTGRES_PASSWORD
