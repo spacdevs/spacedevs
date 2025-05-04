@@ -7,7 +7,7 @@ class Content < ApplicationRecord
 
   enum :kind, { text: 0, video: 1 }
 
-  validates :title, :body, :kind, :position, presence: true
+  validates :title, :body, :kind, :position, :video_id, presence: true
 
   has_rich_text :body
 

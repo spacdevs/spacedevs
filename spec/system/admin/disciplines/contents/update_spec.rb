@@ -19,6 +19,7 @@ feature Admin::Disciplines::ContentsController do
       find("input[name='content[body]']", visible: false).set('Aula de Python')
       select 'Vídeo', from: 'Tipo'
       fill_in 'Posição', with: 5
+      fill_in 'ID do vídeo', with: '121920988'
       click_on 'Atualizar Conteúdo'
       content.reload
     end

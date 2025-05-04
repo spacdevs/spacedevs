@@ -20,6 +20,7 @@ feature 'Admin::Disciplines::ContentsController' do
       fill_in 'Título', with: 'Introdução a linguagem Python'
       find("input[name='content[body]']", visible: false).set('Aula de Python.')
       fill_in 'Posição', with: 2
+      fill_in 'ID do vídeo', with: '121920988'
       select 'Vídeo', from: 'Tipo'
       click_on 'Criar Conteúdo'
       discipline.reload

@@ -4,6 +4,7 @@ FactoryBot.define do
     body      { Faker::Movie.quote }
     kind      { %i[text video].sample }
     position  { Faker::Number.between(from: 1, to: 20) }
+    video_id  { Faker::Number.between(from: 1, to: 20) }
     discipline
 
     trait :with_discipline do
