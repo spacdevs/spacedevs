@@ -4,7 +4,7 @@ plugins: rubocop-rails
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.3.8
+  TargetRubyVersion: 3.4.3
   Exclude:
     - '*.html.erb'
     - 'bin/**/*'
