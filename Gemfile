@@ -4,7 +4,7 @@ gem 'awesome_print'
 
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'pg', '1.5.4'
+gem 'pg', '1.5.9'
 gem 'propshaft'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 8.0.1'
