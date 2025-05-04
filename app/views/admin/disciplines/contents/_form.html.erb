@@ -30,6 +30,16 @@
   </div>
 
   <div class="uk-margin">
+    <%= form.label :video_id, class:"uk-form-label" %>
+    <div class="uk-form-controls" >
+      <%= form.text_field :video_id, { class:"uk-input" } %>
+      <small class="uk-text-danger">
+        <%= @content&.errors.full_messages_for(:video_id).join %>
+      </small>
+    </div>
+  </div>
+
+  <div class="uk-margin">
     <%= form.label :kind, class:"uk-form-label" %>
     <div class="uk-form-controls" >
       <%= form.select :kind, Content.kinds_translated, {}, { class:"uk-select" } %>

@@ -74,7 +74,7 @@ RSpec.describe Admin::Disciplines::ContentsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      let(:valid_attributes) { { title: 'New Title', body: 'New Body', kind: 'text' } }
+      let(:valid_attributes) { { title: 'New Title', body: 'New Body', kind: 'text', video_id: '10290812' } }
 
       it 'creates a new content' do
         expect do
