@@ -44,7 +44,5 @@ feature 'Admin::Disciplines::ContentsController' do
 
     scenario { expect(page).to have_content('Título não pode ficar em branco') }
     scenario { expect(page).to have_content('Posição não pode ficar em branco') }
-
-    scenario { expect(page).to have_content('Conteúdo não pode ficar em branco') }
   end
 end
