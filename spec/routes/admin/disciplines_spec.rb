@@ -36,4 +36,13 @@ RSpec.describe 'User', type: :routing do
       )
     end
   end
+  context 'PATCH /admin/disciplines/1/sortable' do
+    it do
+      expect(patch: '/admin/disciplines/1/sortable').to route_to(
+        controller: 'admin/disciplines',
+        action: 'update_position',
+        id: '1'
+      )
+    end
+  end
 end

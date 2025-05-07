@@ -37,6 +37,14 @@ module Admin
       redirect_to edit_admin_discipline_path(@discipline.id), notice: I18n.t('messages.update.success', title: 'Disciplína')
     end
 
+    # rubocop:disable Rails/SkipsModelValidations
+    def update_position
+      params[:order].each_with_index do |content_id, content_index|
+        Content.where(id: content_id).update_all(position: content_index + 1)
+      end
+    end
+    # rubocop:enable Rails/SkipsModelValidations
+
     def set_teams
       @teams = Team.all
     end

@@ -10,3 +10,4 @@ pin "uikit", to: "https://cdn.jsdelivr.net/npm/uikit@3.21.16/dist/js/uikit.min.j
 pin "uikit-icons", to: "https://cdn.jsdelivr.net/npm/uikit@3.21.16/dist/js/uikit-icons.min.js"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
+pin "sortablejs" # @1.15.6
