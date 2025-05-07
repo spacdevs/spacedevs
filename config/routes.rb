@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     end
 
     resources :disciplines, except: %i[destroy] do
+      member do
+        patch :update_position, path: :sortable
+      end
+
       scope module: :disciplines do
         resources :contents, only: %i[new create edit update]
       end
