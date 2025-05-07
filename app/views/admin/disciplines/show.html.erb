@@ -1,57 +1,54 @@
-<div class="uk-section">
+<section class="uk-section">
   <div class="uk-container">
-    <h1 class="uk-text-white">Conteúdos</h1>
-    <div class="uk-margin uk-text-right">
+    <header class="uk-margin-bottom uk-flex uk-flex-between uk-flex-middle">
+      <h1 class="uk-text-white">Conteúdos</h1>
       <%= link_to 'Adicionar conteúdo', new_admin_discipline_content_path(discipline_id: @discipline.id), class: 'uk-button uk-button-primary' %>
-    </div>
+    </header>
 
     <% flash.each do |_, notification| %>
-      <div class="uk-margin-top">
-        <div class="uk-alert uk-alert-success uk-text-center">
-          <%= notification %>
-        </div>
+      <div class="uk-alert uk-alert-success uk-text-center uk-margin-small">
+        <%= notification %>
       </div>
     <% end %>
 
-    <div class="uk-card uk-card-secondary uk-card-body">
+    <div class="uk-margin-top" data-discipline-id="<%= @discipline.id %>">
       <% if @contents.present? %>
-        <table class="uk-table uk-table-middle uk-table-divider">
-          <thead>
-            <tr>
-              <th>Título</th>
-              <th>Disciplina vinculada</th>
-              <th>Tipo</th>
-              <th>Posição</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @contents.each do |content| %>
-              <tr class="contents">
-                <td>
-                  <%= content.title %>
-                </td>
-                <td>
-                  <%= content.discipline.title %>
-                </td>
-                <td>
-                  <%= Content.human_enum_name(:kind, content.kind) %>
-                </td>
-                <td>
-                  <%=  content.position %>
-                </td>
-                <td>
-                  <%= link_to '', edit_admin_discipline_content_path(discipline_id: @discipline.id,
-                  id: content.id), class: 'uk-icon-button',
-                      data: { uk_icon: "pencil" }, title: 'edit' %>
-                </th>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="uk-grid uk-grid-medium uk-child-width-1-2@m uk-child-width-1-1@s" data-controller="sortable" uk-grid>
+          <% @contents.each do |content| %>
+            <div data-id="<%= content.id %>">
+              <article class="uk-card uk-card-secondary uk-card-hover">
+                <header class="uk-card-header uk-padding-small">
+                  <h3 class="uk-card-title uk-margin-remove-bottom uk-text-truncate">
+                    <%= content.title %>
+                    <span class="uk-badge uk-float-right" title="Posição">
+                      Posição: <%= content.position %>
+                    </span>
+                  </h3>
+                </header>
+
+                <div class="uk-card-body uk-padding-small">
+                  <p class="uk-text-small">Disciplina: <%= content.discipline.title %></p>
+                </div>
+
+                <footer class="uk-card-footer uk-padding-small uk-flex uk-flex-between uk-flex-middle">
+                  <span class="uk-text-muted uk-text-small">
+                    <span uk-icon="icon: move; ratio: 0.8" class="drag-handle" style="cursor: move;"></span>
+                    Arraste para reordenar
+                  </span>
+                  <%= link_to edit_admin_discipline_content_path(discipline_id: @discipline.id, id: content.id),
+                      class: 'uk-button uk-button-primary uk-button-small' do %>
+                    <span uk-icon="pencil"></span> Editar
+                  <% end %>
+                </footer>
+              </article>
+            </div>
+          <% end %>
+        </div>
       <% else %>
-        <p class="uk-text-center uk-text-uppercase">Não há conteúdos para serem exibidos.</p>
+        <div class="uk-alert uk-alert-warning uk-text-center">
+          <p>Não há conteúdos para serem exibidos.</p>
+        </div>
       <% end %>
     </div>
   </div>
-</div>
+</section>

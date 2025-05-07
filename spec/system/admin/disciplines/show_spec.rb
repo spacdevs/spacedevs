@@ -14,25 +14,19 @@ feature Admin::DisciplinesController do
     end
 
     scenario 'must have content title' do
-      within 'table > tbody > tr:nth-child(1) > td:nth-child(1)' do
+      within 'div > div:nth-child(1) > article > header > h3' do
         expect(page).to have_content(content.title)
       end
     end
 
     scenario 'must have discipline title' do
-      within 'table > tbody > tr:nth-child(1) > td:nth-child(2)' do
+      within 'div > div:nth-child(1) > article > div > p' do
         expect(page).to have_content(content.discipline.title)
       end
     end
 
-    scenario 'must have content kind' do
-      within 'table > tbody > tr:nth-child(1) > td:nth-child(3)' do
-        expect(page).to have_content('Texto')
-      end
-    end
-
     scenario 'must have content position' do
-      within 'table > tbody > tr:nth-child(1) > td:nth-child(4)' do
+      within 'div > div:nth-child(1) > article > header > h3 > span' do
         expect(page).to have_content(content.position)
       end
     end

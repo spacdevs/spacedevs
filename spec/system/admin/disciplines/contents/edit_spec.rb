@@ -10,7 +10,7 @@ feature Admin::Disciplines::ContentsController do
     click_on 'Administração'
     click_on 'Disciplinas'
     find("a[title='#{discipline.title}']").click
-    find('a[title="edit"]').click
+    click_on 'Editar'
   end
 
   scenario 'admin sees disciplines already registered' do
