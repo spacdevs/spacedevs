@@ -1,11 +1,2 @@
-Olá <%= @user&.profile&.fullname || @user.email_address  %>, Recentemente você solicitou resetar sua senha em nossa plataforma, copie e coloque o link abaixo na barra de navegação em seu navegador. Lembrando que o link expira em  1 hora.
-
+Acesse a página abaixo para redefinir sua senha, lembrando que a página expira em 1 hora.
 <%= edit_password_url(@user.password_reset_token) %>
-
-Para sua segurança, não compartilhe este link com ninguém.
-
-Cordialmente,
-Spacedevs
-
-Spacedevs,
-(71) 92002-1145

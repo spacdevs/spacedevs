@@ -10,7 +10,7 @@ RSpec.describe WelcomeMailer do
 
       expect(email.from).to eq ['contato@spacedevs.com.br']
       expect(email.to).to eq [user.email_address]
-      expect(email.subject).to eq "Boas vindas #{user.profile.first_name} 🧸"
+      expect(email.subject).to eq "Boas vindas a Spacedevs, #{user.profile.first_name}!"
       expect(email.body.to_s).to be_blank
     end
 
