@@ -7,6 +7,6 @@ class WelcomeMailer < ApplicationMailer
 
     return unless @user.profile
 
-    mail subject: "Boas vindas #{user.profile.first_name} 🧸", to: user.email_address
+    mail subject: "Boas vindas a Spacedevs, #{user.profile.first_name}!", to: user.email_address
   end
 end
