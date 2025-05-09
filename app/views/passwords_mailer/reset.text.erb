@@ -1,11 +1,12 @@
-Olá <%= @user&.profile&.fullname || @user.email_address  %>, Recentemente você solicitou resetar sua senha em nossa plataforma, copie e coloque o link abaixo na barra de navegação em seu navegador. Lembrando que o link expira em  1 hora.
+Olá <strong><%= @user&.profile&.fullname || @user.email_address  %></strong>, Recentemente você solicitou resetar sua senha em nossa plataforma, <%= link_to 'Clique aqui', edit_password_url(@user.password_reset_token), target: '_blank' %> para iniciar o processo de resete de senha.
+<br />
+<br />
 
-<%= edit_password_url(@user.password_reset_token) %>
+<span style="color: red;">O link expira em  1 hora e para sua segurança, não compartilhe este link com ninguém.</span>
 
-Para sua segurança, não compartilhe este link com ninguém.
-
+<br />
+<br />
 Cordialmente,
-Spacedevs
+<br />
+Marcus Almeida
 
-Spacedevs,
-(71) 92002-1145
