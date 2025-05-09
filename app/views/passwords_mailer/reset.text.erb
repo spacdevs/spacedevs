@@ -1,12 +1,2 @@
-Olá <strong><%= @user&.profile&.fullname || @user.email_address  %></strong>, Recentemente você solicitou resetar sua senha em nossa plataforma, <%= link_to 'Clique aqui', edit_password_url(@user.password_reset_token), target: '_blank' %> para iniciar o processo de resete de senha.
-<br />
-<br />
-
-<span style="color: red;">O link expira em  1 hora e para sua segurança, não compartilhe este link com ninguém.</span>
-
-<br />
-<br />
-Cordialmente,
-<br />
-Marcus Almeida
-
+Acesse a página abaixo para redefinir sua senha, lembrando que a página expira em 1 hora.
+<%= edit_password_url(@user.password_reset_token) %>
