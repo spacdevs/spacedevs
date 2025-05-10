@@ -23,7 +23,7 @@ feature :disciplines do
 
     visit discipline_path(discipline.slug)
 
-    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(1)' do
+    within 'div.uk-width-1-3\@m > div.uk-card.uk-card-secondary.uk-card-body.uk-margin-bottom > ul > li:nth-child(1)' do
       expect(page).to have_content('Content 1')
     end
 
