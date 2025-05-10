@@ -3,7 +3,7 @@
 class DisciplinesController < ApplicationController
   def show
     @discipline = Discipline.find_by!(slug: discipline_params[:slug])
-    @contents = @discipline.contents.order(:position)
+    @contents = @discipline.contents
   end
 
   def discipline_params

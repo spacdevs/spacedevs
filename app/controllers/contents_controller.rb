@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ContentsController < ApplicationController
-  before_action :find_content, :sidebar_contents, only: %i[show]
+  before_action :find_content, :set_contents, only: %i[show]
 
   def show; end
 
@@ -11,7 +11,7 @@ class ContentsController < ApplicationController
     @content = Content.includes(:discipline).find_by!(slug: params[:content_slug])
   end
 
-  def sidebar_contents
-    @sidebar_contents = @content.discipline.contents.order(:position)
+  def set_contents
+    @contents = @content.discipline.contents
   end
 end
