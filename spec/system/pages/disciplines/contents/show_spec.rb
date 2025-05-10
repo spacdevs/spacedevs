@@ -24,15 +24,15 @@ feature :contents do
     # title of content in page
     expect(page).to have_content('Introducation to Github')
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(1)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(1)' do
       expect(page).to have_content('Introducation to Github')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(2)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(2)' do
       expect(page).to have_content('Content 2')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ul.uk-list > li:nth-child(3)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(3)' do
       expect(page).to have_content('Content 3')
     end
 

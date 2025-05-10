@@ -23,15 +23,15 @@ feature :disciplines do
 
     visit discipline_path(discipline.slug)
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(1)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(1)' do
       expect(page).to have_content('Content 1')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(2)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(2)' do
       expect(page).to have_content('Content 2')
     end
 
-    within 'div.uk-width-1-4\@m.uk-width-1-1\@s > div > ol > li:nth-child(3)' do
+    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(3)' do
       expect(page).to have_content('Content 3')
     end
 
