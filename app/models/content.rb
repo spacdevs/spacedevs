@@ -11,6 +11,8 @@ class Content < ApplicationRecord
 
   has_rich_text :body
 
+  default_scope { order(:position) }
+
   def self.kinds_translated
     Content.kinds.keys.collect { |k| [Content.human_enum_name(:kind, k), k] }
   end
