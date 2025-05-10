@@ -1,10 +1,10 @@
 <h3 class="uk-heading-line uk-text-white"><span>Materiais</span></h3>
-<ul class="uk-list  uk-list-disc uk-list-default ">
+<ul class="uk-list uk-list-disc uk-list-default">
   <% if discipline.resources.attached? %>
 
     <% discipline.resources.each do |resource| %>
       <li>
-        <%= link_to resource.filename, rails_blob_path(resource, disposition: 'attachment') %>
+        <%= link_to resource.filename, rails_blob_path(resource, disposition: 'attachment'), class: "uk-text-featured" %>
       </li>
     <% end %>
   <% end %>

@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #724aca;
-  --default-color: #222;
+  --default-color     : #222;
+  --primary-color     : #724aca;
+  --secondary-color   : #a2ca4a;
   --text-default-color: #d3d3d3;
 }
 
@@ -11,21 +12,21 @@ body {
 
 footer {
   background-color: #030303 !important;
-  padding: 30px;
+  padding         : 30px;
 }
 
 iframe {
-  border: 0;
+  border  : 0;
   position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  top     : 0;
+  height  : 100%;
+  width   : 100%;
 }
 
 .uk-body {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height    : 100vh;
 }
 
 .uk-content {
@@ -52,16 +53,20 @@ iframe {
   color: var(--primary-color) !important;
 }
 
+.uk-text-featured {
+  color: var(--secondary-color) !important;
+}
+
 .uk-button-primary {
   background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-  color: #fff !important;
+  border-color    : var(--primary-color) !important;
+  color           : #fff !important;
 }
 
 a[disabled] {
   pointer-events: none;
-  cursor: default;
-  color: #ccc !important;
+  cursor        : default;
+  color         : #ccc !important;
 }
 
 .uk-text-default {
@@ -70,9 +75,9 @@ a[disabled] {
 
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width         : 50px;
+  height        : 50px;
+  border-radius : 50%;
 }
 
 /* text */
@@ -88,11 +93,11 @@ textarea {
 }
 
 /* list */
-.uk-list-default > ::before {
+.uk-list-default> ::before {
   color: var(--primary-color) !important;
 }
 
 .uk-active {
   background-color: var(--primary-color) !important;
-  color: #fff;
+  color           : #fff;
 }

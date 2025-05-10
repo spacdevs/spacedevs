@@ -1,23 +1,26 @@
 <section class="uk-section">
   <div class="uk-container">
-    <h1 class="uk-text-white uk-margin-medium-bottom"><%= resource.title %></h1>
-
     <div class="uk-grid" uk-grid>
-      <!-- Conteúdo Principal -->
-      <div class="uk-width-2-3@m uk-text-white">
-        <div style="position:relative;padding-top:56.25%;">
-          <% if resource.respond_to? :video_id %>
+      <% if resource.respond_to? :video_id %>
+        <div class="uk-width-2-3@m uk-text-white">
+          <div style="position:relative;padding-top:56.25%;">
             <iframe src="<%= resource.video_id.gsub('play', 'embed') %>?autoplay=false&loop=false&muted=false&preload=false&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
-          <% else %>
-            <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
-          <% end %>
-        </div>
-        <div class="uk-margin-medium">
-          <%= resource.body %>
-        </div>
-      </div>
+          </div>
 
-      <!-- Sidebar -->
+          <!-- text body -->
+          <div class="uk-margin-medium">
+            <%= resource.body %>
+          </div>
+
+        </div>
+      <% else %>
+        <div class="uk-width-2-3@m uk-text-white">
+          <div style="position:relative;padding-top:56.25%;">
+            <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="uk-width-1-3@m">
         <div class="uk-card uk-card-secondary uk-card-body uk-margin-bottom">
           <ul class="uk-nav uk-nav-default uk-list uk-list-decimal uk-padding-small">
@@ -35,8 +38,17 @@
           </ul>
         </div>
 
+        <div>
+          <h3 class="uk-heading-line uk-text-white"><span>Disciplina</span></h3>
+          <ul class="uk-list uk-list-disc uk-list-default">
+            <li class="uk-text-featured">
+              <%= resource.respond_to?(:discipline) ? resource.discipline.title : resource.title %>
+            </li>
+          </ul>
+        </div>
+
         <%= render 'layouts/supplies', {
-          discipline: (resource.respond_to?(:discipline) ? resource.discipline : resource)
+          discipline: resource.respond_to?(:discipline) ? resource.discipline : resource
         } %>
       </div>
     </div>
