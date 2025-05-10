@@ -14,7 +14,7 @@
         </div>
         <div>
           <%= link_to 'Editar meu e-mail', edit_profile_path, class:"uk-button uk-button-default" %>
-          <%= link_to 'Resetar minha senha', passwords_path(email_address: current_user.email_address), data: { turbo_method: :post }, class:"uk-button uk-button-default" %>
+          <%= link_to 'Resetar minha senha', passwords_path(email_address: current_user.email_address), data: { turbo_method: :post, confirm: 'Você tem certeza?' }, :'data-turbo-confirm' => "Você tem certeza que gostaria de resetar sua senha?", class:"uk-button uk-button-default" %>
         </div>
       </div>
       <h2 class="uk-heading-line">
