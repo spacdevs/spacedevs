@@ -36,15 +36,6 @@ feature Admin::DisciplinesController do
       expect(discipline.position).to eq(1)
       expect(discipline.teams.last.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
     end
-
-    scenario 'with upload file' do
-      attach_file 'Recursos', Rails.root.join('spec/fixtures/resources.zip')
-      click_on 'Criar Disciplina'
-
-      expect(current_path).to eq(admin_disciplines_path)
-      expect(discipline.title).to eq('Introdução a computação')
-      expect(discipline.reload.resources.attached?).to be_truthy
-    end
   end
 
   scenario 'creates without fields' do

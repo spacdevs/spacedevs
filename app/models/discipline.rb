@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Discipline < ApplicationRecord
-  has_many :contents, dependent: :destroy
+  has_many   :resources, as: :sourceable, dependent: :destroy
+  has_many   :contents, dependent: :destroy
   has_many   :team_disciplines, dependent: :destroy
   has_many   :teams, through: :team_disciplines
   has_many   :users, through: :teams
@@ -10,7 +11,6 @@ class Discipline < ApplicationRecord
 
   before_validation :update_slug
 
-  has_many_attached :resources
   has_rich_text :body
   has_rich_text :abstract
 
