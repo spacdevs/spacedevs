@@ -5,3 +5,5 @@ pt-BR:
       success: "%{title} criado(a) com sucesso."
     update:
       success: Registro atualizado com sucesso.
+    remove:
+      success: Registro deletado com sucesso.

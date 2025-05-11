@@ -1,0 +1,57 @@
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-margin uk-text-right">
+      <%= link_to 'Adicionar', new_admin_resource_path, class: 'uk-button uk-button-primary' %>
+    </div>
+
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert uk-alert-success uk-text-center">
+          <%= notification %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="uk-card uk-card-secondary uk-card-body">
+      <table class="uk-table uk-table-middle uk-table-divider" id="disciplines">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>URL</th>
+            <th>Arquivo</th>
+            <th>Disciplina</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @resources.each do |resource| %>
+            <tr class="discipline">
+              <th>
+                <%= resource.name %>
+              </th>
+              <th>
+                <%= resource.url %>
+              </th>
+              <th>
+                <span class="uk-label">
+                  <%= resource.file.filename.to_s %>
+                </span>
+              </th>
+              <th>
+                <span class="uk-label">
+                  <%= resource.sourceable.title %>
+                </span>
+              </th>
+              <th>
+                <%= link_to '', edit_admin_resource_path(resource), class: 'uk-icon-button',
+                            data: { uk_icon: "pencil" }, title: 'Editar' %>
+                <%= link_to '', admin_resource_path(resource), class: 'uk-icon-button', data: {
+                  uk_icon: "trash", turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

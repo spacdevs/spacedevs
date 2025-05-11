@@ -1,0 +1,52 @@
+<section class="uk-section">
+  <div class="uk-card  uk-card-secondary">
+    <div class="uk-container">
+      <%= form_with(model: [:admin, resource], class: 'uk-form-horizontal', enctype: "multipart/form-data", local: true, turbo: false) do |form| %>
+
+      <div class="uk-margin">
+        <%= form.label :name, class:"uk-form-label" %>
+
+          <div class="uk-margin">
+            <div class="uk-form-controls" >
+              <%= form.text_field :name, class:"uk-input" %>
+              <small class="uk-text-danger">
+                <%= @resource&.errors.full_messages_for(:name).join.capitalize %>
+              </small>
+            </div>
+          </div>
+
+          <div class="uk-margin">
+            <%= form.label :url, class:"uk-form-label" %>
+            <div class="uk-form-controls" >
+              <%= form.text_field :url, class:"uk-input" %>
+              <small class="uk-text-danger">
+                <%= @resource&.errors.full_messages_for(:url).join.capitalize %>
+              </small>
+            </div>
+          </div>
+
+            <div class="uk-margin">
+            <%= form.label :sourceable_id, 'Turma', class: "uk-form-label" %>
+            <div class="uk-form-controls">
+              <%= form.select :sourceable_id, @disciplines.map { |d| [d.title, d.id] }, { prompt: 'Selecione a turma' }, { class: 'uk-select' } %>
+            </div>
+            </div>
+
+            <div class="uk-margin">
+              <%= form.label :file, class:"uk-form-label" %>
+              <div class="js-upload uk-padding-small" uk-form-custom >
+                <%= form.file_field :file, class:"uk-select" %>
+                <%= button_tag 'Selecionar', class: 'uk-button uk-button-default', tabindex: "-1"  %>
+              </div>
+            </div>
+
+            <div class="uk-margin uk-text-right">
+              <%= link_to 'Voltar', admin_resources_path, class: 'uk-button uk-button-default' %>
+
+              <%= form.submit class: 'uk-button uk-button-default' %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</section>

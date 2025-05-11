@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :teams, except: %i[show destroy]
+    resources :resources
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
