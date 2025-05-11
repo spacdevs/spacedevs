@@ -28,11 +28,9 @@ feature Admin::DisciplinesController do
     end
 
     scenario 'edits discipline' do
-      attach_file 'Recursos', Rails.root.join('spec/fixtures/resources.zip')
       click_on 'Atualizar Disciplina'
       discipline.reload
 
-      expect(discipline.reload.resources.attached?).to be_truthy
       expect(discipline.title).to eq('Introdução a computação - Segunda edição')
       expect(discipline.abstract.to_plain_text).to eq('Resumo da Segunda Edição')
       expect(discipline.body.to_plain_text).to eq('Conteúdo da disciplina')
@@ -41,17 +39,6 @@ feature Admin::DisciplinesController do
       expect(discipline.teams.first.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
       expect(discipline.teams.last.name).to eq('Colégio Estadual Deputado Luis Eduardo Magalhaes - Turma 03')
       expect(page).to have_content('Registro atualizado com sucesso.')
-    end
-
-    scenario 'When discipline has been updated without a resource, it must not remove the files' do
-      file = Rails.root.join('spec/fixtures/resources.zip').open
-      discipline.resources.attach(io: file, filename: 'resource.zip', content_type: 'application/zip')
-
-      click_on 'Atualizar Disciplina'
-      discipline.reload
-
-      expect(page).to have_content('Registro atualizado com sucesso.')
-      expect(discipline.reload.resources.attached?).to be_truthy
     end
   end
 

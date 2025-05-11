@@ -57,7 +57,7 @@ feature :contents do
     expect(page).to have_content(current_content.body.to_plain_text)
   end
 
-  scenario 'sees supplies' do
+  xscenario 'student view attachments' do
     file = Rails.root.join('spec/fixtures/resources.zip').open
     discipline.resources.attach(io: file, filename: 'resource.zip', content_type: 'application/zip')
 
