@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 20_250_504_184_748) do
+ActiveRecord::Schema[8.0].define(version: 20_250_511_143_513) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pg_catalog.plpgsql'
 
@@ -92,6 +92,16 @@ ActiveRecord::Schema[8.0].define(version: 20_250_504_184_748) do
     t.string 'whatsapp'
     t.index ['slug'], name: 'index_profiles_on_slug', unique: true
     t.index ['user_id'], name: 'index_profiles_on_user_id'
+  end
+
+  create_table 'resources', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'url'
+    t.string 'sourceable_type', null: false
+    t.bigint 'sourceable_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index %w[sourceable_type sourceable_id], name: 'index_resources_on_sourceable'
   end
 
   create_table 'schools', force: :cascade do |t|
