@@ -1,7 +1,7 @@
 <section class="uk-section">
   <div class="uk-card  uk-card-secondary">
     <div class="uk-container">
-      <%= form_with(model: [:admin, resource], class: 'uk-form-horizontal', enctype: "multipart/form-data", local: true) do |form| %>
+      <%= form_with(model: [:admin, resource], class: 'uk-form-horizontal', enctype: "multipart/form-data", local: true, turbo: false) do |form| %>
 
       <div class="uk-margin">
         <%= form.label :name, class:"uk-form-label" %>
@@ -35,7 +35,7 @@
             <div class="uk-margin">
               <%= form.label :file, class:"uk-form-label" %>
               <div class="js-upload uk-padding-small" uk-form-custom >
-                <%= form.file_field :file, multiple: true, class:"uk-select" %>
+                <%= form.file_field :file, class:"uk-select" %>
                 <%= button_tag 'Selecionar', class: 'uk-button uk-button-default', tabindex: "-1"  %>
               </div>
             </div>
