@@ -2,7 +2,7 @@
 
 class DisciplinesController < ApplicationController
   def show
-    @discipline = Discipline.find_by!(slug: discipline_params[:slug])
+    @discipline = Discipline.includes(resources: :file_attachment).find_by!(slug: discipline_params[:slug])
     @contents = @discipline.contents
   end
 
