@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      resource: Recursos
+    attributes:
+      resource:
+        name: Nome
+        url: URL
+        
