@@ -4,7 +4,7 @@ module Admin
   class ResourcesController < AdminController
     before_action :set_resources, only: %i[index]
     before_action :set_resource, only: %i[edit update destroy]
-    before_action :set_disciplines, only: %i[edit]
+    before_action :set_disciplines, only: %i[new edit]
     before_action :set_discipline, only: %i[create update]
 
     def index; end
@@ -16,15 +16,13 @@ module Admin
     def edit; end
 
     def create
-      if Resource.create(resource_params.except(:discipline_id).merge(sourceable: @discipline))
-        return redirect_to admin_resources_path, notice: I18n.t('messages.create.success', title: 'Recurso')
-      end
+      return redirect_to admin_resources_path, notice: I18n.t('messages.create.success', title: 'Recurso') if Resource.create(resource_params.merge(sourceable: @discipline))
 
       render :new
     end
 
     def update
-      return redirect_to admin_resources_path, notice: I18n.t('messages.update.success') if @resource.update(resource_params.except(:discipline_id).merge(sourceable: @discipline))
+      return redirect_to admin_resources_path, notice: I18n.t('messages.update.success') if @resource.update(resource_params.merge(sourceable: @discipline))
 
       render :edit
     end
@@ -37,7 +35,7 @@ module Admin
     private
 
     def resource_params
-      params.expect(resource: %i[name url file discipline_id])
+      params.expect(resource: %i[name url file sourceable_id])
     end
 
     def set_resource
@@ -45,7 +43,7 @@ module Admin
     end
 
     def set_resources
-      @resources = Resource.all
+      @resources = Resource.includes(:file_attachment, :sourceable).all
     end
 
     def set_disciplines
@@ -53,7 +51,7 @@ module Admin
     end
 
     def set_discipline
-      @discipline = Discipline.find(resource_params[:discipline_id])
+      @discipline = Discipline.find(resource_params[:sourceable_id])
     end
   end
 end

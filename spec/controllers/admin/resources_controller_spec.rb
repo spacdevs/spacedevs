@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::ResourcesController, type: :controller do
   let(:admin) { create(:user, :admin) }
-  let(:valid_attributes) { attributes_for(:resource, discipline_id: discipline).except(:sourceable) }
+  let(:valid_attributes) { attributes_for(:resource, sourceable_id: discipline).except(:sourceable) }
   let(:invalid_attributes) { { name: nil, url: nil } }
   let!(:resource) { create(:resource, :with_discipline) }
   let(:discipline) { create(:discipline) }

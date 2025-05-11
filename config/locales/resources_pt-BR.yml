@@ -7,4 +7,5 @@ pt-BR:
       resource:
         name: Nome
         url: URL
+        file: Arquivo
         

@@ -1,7 +1,7 @@
 <%= form_with model: @team, url: route_path, class: 'uk-form-horizontal', data: { turbo: false } do | form | %>
   <div class="uk-margin">
     <%= form.label :name, class:"uk-form-label" %>
-    <div class="uk-form-controls" >
+    <div class="uk-form-controls">
       <%= form.text_field :name, class:"uk-input" %>
       <small class="uk-text-danger">
         <%= @team&.errors.full_messages_for(:name).join %>
