@@ -47,11 +47,9 @@ module Spacedevs
 
     # Better stack configuration
 
-    if Rails.env.production?
-      config.logger = Logtail::Logger.create_default_logger(
-        ENV.fetch('LOGTAIL_SOURCE_TOKEN', nil),
-        ingesting_host: ENV.fetch('LOGTAIL_INGESTING_HOST', nil)
-      )
-    end
+    config.logger = Logtail::Logger.create_default_logger(
+      ENV.fetch('LOGTAIL_SOURCE_TOKEN', nil),
+      ingesting_host: ENV.fetch('LOGTAIL_INGESTING_HOST', nil)
+    )
   end
 end
