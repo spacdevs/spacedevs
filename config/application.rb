@@ -47,9 +47,11 @@ module Spacedevs
 
     # Better stack configuration
 
-    config.logger = Logtail::Logger.create_default_logger(
-      ENV.fetch('LOGTAIL_SOURCE_TOKEN', nil),
-      ingesting_host: ENV.fetch('LOGTAIL_INGESTING_HOST', nil)
-    )
+    if defined?(Logtail::Logger) && ENV['LOGTAIL_SOURCE_TOKEN'].present? && ENV['LOGTAIL_INGESTING_HOST'].present?
+      config.logger = Logtail::Logger.create_default_logger(
+        ENV['LOGTAIL_SOURCE_TOKEN'],
+        ingesting_host: ENV['LOGTAIL_INGESTING_HOST']
+      )
+    end
   end
 end
