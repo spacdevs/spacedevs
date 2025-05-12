@@ -44,14 +44,5 @@ module Spacedevs
     config.time_zone = 'America/Sao_Paulo'
 
     config.i18n.default_locale = :'pt-BR'
-
-    # Better stack configuration
-
-    if defined?(Logtail::Logger) && ENV['LOGTAIL_SOURCE_TOKEN'].present? && ENV['LOGTAIL_INGESTING_HOST'].present?
-      config.logger = Logtail::Logger.create_default_logger(
-        ENV['LOGTAIL_SOURCE_TOKEN'],
-        ingesting_host: ENV['LOGTAIL_INGESTING_HOST']
-      )
-    end
   end
 end

@@ -79,6 +79,13 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [:id]
 
+
+  # Better stack configuration
+  config.logger = Logtail::Logger.create_default_logger(
+    ENV['LOGTAIL_SOURCE_TOKEN'],
+    ingesting_host: ENV['LOGTAIL_INGESTING_HOST']
+  )
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
