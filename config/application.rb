@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails'
@@ -42,5 +44,14 @@ module Spacedevs
     config.time_zone = 'America/Sao_Paulo'
 
     config.i18n.default_locale = :'pt-BR'
+
+    # Better stack configuration
+
+    if Rails.env.production?
+      config.logger = Logtail::Logger.create_default_logger(
+        ENV.fetch('LOGTAIL_SOURCE_TOKEN', nil),
+        ingesting_host: ENV.fetch('LOGTAIL_INGESTING_HOST', nil)
+      )
+    end
   end
 end
