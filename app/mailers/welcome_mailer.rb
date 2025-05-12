@@ -5,8 +5,8 @@ class WelcomeMailer < ApplicationMailer
     @user = user
     @password_temp = generate_temp_password
 
-    return unless @user.profile
+    return unless @user&.profile
 
-    mail subject: "Boas vindas a Spacedevs, #{user.profile.first_name}!", to: user.email_address
+    mail subject: "Boas vindas a Spacedevs, #{user.profile.first_name}!", to: user&.email_address
   end
 end

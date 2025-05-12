@@ -1,2 +1,5 @@
+Sua matricula é: <%= @user.registration_code %>
+
+
 Acesse a página abaixo para redefinir sua senha, lembrando que a página expira em 1 hora.
 <%= edit_password_url(@user.password_reset_token) %>

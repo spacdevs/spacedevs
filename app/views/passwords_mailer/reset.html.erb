@@ -1,12 +1,21 @@
+
 Olá <strong><%= @user&.profile&.fullname || @user.email_address  %></strong>, Recentemente você solicitou resetar sua senha em nossa plataforma, <%= link_to 'Clique aqui', edit_password_url(@user.password_reset_token), target: '_blank' %> para iniciar o processo de resete de senha.
 <br />
 <br />
 
+Sua matricula é: <strong><%= @user.registration_code %></strong>
+<br />
+<br />
+
 <span style="color: red;">O link expira em  1 hora e para sua segurança, não compartilhe este link com ninguém.</span>
+<br />
+<br />
+
+<strong><span style="color: red;">Se o kink acima não estiver funcionando, copie e cole o seguinte link em seu navegador:</span></strong> <br /><%= edit_password_url(@user.password_reset_token) %>
 
 <br />
 <br />
 Cordialmente,
 <br />
-Marcus Almeida
+Equipe Spacedevs
 
