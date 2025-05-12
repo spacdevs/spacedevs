@@ -62,10 +62,10 @@ Rails.application.configure do
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   config.action_mailer.smtp_settings = {
-    address:  Rails.application.credentials.dig(:smtp, :address),
+    address: Rails.application.credentials.dig(:smtp, :address),
     user_name: Rails.application.credentials.dig(:smtp, :user_name),
     password: Rails.application.credentials.dig(:smtp, :password),
-    port:  Rails.application.credentials.dig(:smtp, :port),
+    port: Rails.application.credentials.dig(:smtp, :port),
     authentication: :plain
   }
 
@@ -79,11 +79,10 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [:id]
 
-
   # Better stack configuration
   config.logger = Logtail::Logger.create_default_logger(
-    ENV['LOGTAIL_SOURCE_TOKEN'],
-    ingesting_host: ENV['LOGTAIL_INGESTING_HOST']
+    Rails.application.credentials.dig(:logs, :logtail_source_token),
+    ingesting_host: Rails.application.credentials.dig(:logs, :logtail_ingesting_host)
   )
 
   # Enable DNS rebinding protection and other `Host` header attacks.
