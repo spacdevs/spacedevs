@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th>Nome</th>
-            <th>URL</th>
+            <th>URL Download</th>
             <th>Arquivo</th>
             <th>Disciplina</th>
             <th></th>
@@ -30,7 +30,7 @@
                 <%= resource.name %>
               </th>
               <th>
-                <%= resource.url %>
+                <%= link_to url_for(resource.file).truncate(50), url_for(resource.file) %>
               </th>
               <th>
                 <span class="uk-label">
