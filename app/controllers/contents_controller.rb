@@ -8,7 +8,9 @@ class ContentsController < ApplicationController
   private
 
   def find_content
-    @content = Content.includes(:discipline).find_by!(slug: params[:content_slug])
+    @content = Content.joins('JOIN disciplines ON contents.discipline_id = disciplines.id')
+                      .joins('JOIN discipline_subscribers ds ON ds.discipline_id = disciplines.id ')
+                      .find_by!(slug: params[:content_slug])
   end
 
   def set_contents
