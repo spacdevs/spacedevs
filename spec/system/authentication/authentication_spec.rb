@@ -7,7 +7,7 @@ feature 'Authentication' do
     visit new_session_path
     fill_in 'Matricula', with: user.registration_code
     fill_in 'Senha', with: user.password
-    click_button 'Entrar'
+    click_button 'Acessar'
 
     expect(status_code).to eq(200)
     expect(current_path).to eq(root_path)
