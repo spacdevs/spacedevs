@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many   :sessions, dependent: :destroy
   has_many   :team_users, dependent: :destroy
   has_many   :teams, through: :team_users
+  has_many   :discipline_subscribers, dependent: :destroy
 
   alias_attribute :email, :email_address
 

@@ -14,4 +14,11 @@ FactoryBot.define do
       user.profile = create(:profile, fullname: transient.fullname, user: user)
     end
   end
+
+  trait :subscribers_on_discipline do
+    before :create do |user|
+      discipline = create(:discipline, :with_contents)
+      create(:discipline_subscriber, user_id: user.id, discipline_id: discipline.id)
+    end
+  end
 end

@@ -13,6 +13,7 @@ RSpec.describe Discipline, type: :model do
   context 'association' do
     it { is_expected.to have_many(:contents) }
     it { is_expected.to have_many(:teams) }
+    it { is_expected.to have_many(:discipline_subscribers) }
   end
 
   context 'discipline is on multiple teams' do

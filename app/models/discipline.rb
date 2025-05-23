@@ -6,6 +6,7 @@ class Discipline < ApplicationRecord
   has_many   :team_disciplines, dependent: :destroy
   has_many   :teams, through: :team_disciplines
   has_many   :users, through: :teams
+  has_many   :discipline_subscribers, dependent: :destroy
 
   validates :title, :body, :abstract, :position, :slug, :available_on, presence: true
 
