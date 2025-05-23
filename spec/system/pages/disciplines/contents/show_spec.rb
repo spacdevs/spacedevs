@@ -2,10 +2,14 @@ require 'rails_helper'
 
 feature :contents do
   let(:user) { create(:user, :with_profile, :student) }
-  let!(:discipline) { create(:discipline, :with_contents, position: 4) }
+  let(:discipline) { create(:discipline, :with_contents, position: 4) }
   let(:current_content) { discipline.contents.last }
 
-  before { login_as user }
+  before do
+    create(:discipline_subscriber, discipline: discipline, user: user)
+
+    login_as user
+  end
 
   scenario 'click and show introduction text' do
     visit root_path
@@ -67,9 +71,9 @@ feature :contents do
     expect(page).to have_content 'resource.zip'
   end
 
-  scenario 'not found page' do
+  scenario 'must redirect to a 404 page' do
     visit discipline_path(slug: 'not_found')
 
-    expect(page).to have_http_status(:not_found)
+    expect(current_path).to eq root_path
   end
 end

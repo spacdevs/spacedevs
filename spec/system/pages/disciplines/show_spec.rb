@@ -4,7 +4,11 @@ feature :disciplines do
   let(:user) { create(:user, :with_profile, :student) }
   let!(:discipline) { create(:discipline, :with_contents, position: 4) }
 
-  before { login_as user }
+  before do
+    create(:discipline_subscriber, discipline: discipline, user: user)
+
+    login_as user
+  end
 
   scenario 'student open discipline and see contents' do
     visit root_path
@@ -53,6 +57,6 @@ feature :disciplines do
   scenario 'must redirect to a 404 page' do
     visit discipline_path(slug: 'not_found')
 
-    expect(page).to have_http_status(:not_found)
+    expect(current_path).to eq root_path
   end
 end
