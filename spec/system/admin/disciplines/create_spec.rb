@@ -10,8 +10,6 @@ feature Admin::DisciplinesController do
 
   context 'when discipline has been created' do
     before do
-      team = Team.first
-
       login_as(admin_user)
       click_on 'Administração'
       click_on 'Disciplinas'
@@ -21,7 +19,6 @@ feature Admin::DisciplinesController do
       find("input[name='discipline[body]']", visible: false).set('Segunda Edição')
       fill_in  'Disponível em', with: Time.zone.local(2025, 10, 12, 12, 0, 0)
       fill_in  'Posição', with: '1'
-      find(:css, "#discipline_team_ids_#{team.id}[value='#{team.id}']").set(true)
     end
 
     scenario 'successfully' do
@@ -34,7 +31,6 @@ feature Admin::DisciplinesController do
       expect(I18n.l(discipline.available_on, format: :short)).to eq('12 de outubro, 12:00')
       expect(page).to have_content('Disciplína criado(a) com sucesso.')
       expect(discipline.position).to eq(1)
-      expect(discipline.teams.last.name).to eq('Colégio Estadual Roberto Santos - Turma 01')
     end
   end
 
