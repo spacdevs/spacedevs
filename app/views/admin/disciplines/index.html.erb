@@ -17,8 +17,6 @@
         <thead>
           <tr>
             <th>Título</th>
-            <th>Turmas vinculadas</th>
-            <th>Total de alunos</th>
             <th>Disponibilizado em</th>
             <th></th>
           </tr>
@@ -28,16 +26,6 @@
             <tr class="discipline">
               <th>
                 <%= discipline.title %>
-              </th>
-              <th>
-                <% discipline.teams.each do |team| %>
-                  <span class="uk-label">
-                    <%= team.name %>
-                  </span>
-                <% end %>
-              </th>
-              <th >
-                <%= discipline.users.count %>
               </th>
               <th >
                 <%= I18n.l(discipline.available_on, format: :short) %>
