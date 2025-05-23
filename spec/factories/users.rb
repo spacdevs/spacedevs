@@ -15,10 +15,9 @@ FactoryBot.define do
     end
   end
 
-  trait :subscriber_on_discipline do
+  trait :with_discipline_subscriber do
     before :create do |user|
-      discipline = create(:discipline, :with_contents)
-      create(:discipline_subscriber, user: user, discipline: discipline)
+      create(:discipline_subscriber, user: user, discipline: create(:discipline, :with_contents))
     end
   end
 end
