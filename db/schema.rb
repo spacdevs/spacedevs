@@ -66,13 +66,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_015039) do
     t.index ["slug"], name: "index_contents_on_slug", unique: true
   end
 
-  create_table "discipline_subscribes", force: :cascade do |t|
+  create_table "discipline_subscribers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "discipline_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["discipline_id"], name: "index_discipline_subscribes_on_discipline_id"
-    t.index ["user_id"], name: "index_discipline_subscribes_on_user_id"
+    t.index ["discipline_id"], name: "index_discipline_subscribers_on_discipline_id"
+    t.index ["user_id"], name: "index_discipline_subscribers_on_user_id"
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -182,8 +182,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_015039) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contents", "disciplines"
-  add_foreign_key "discipline_subscribes", "disciplines"
-  add_foreign_key "discipline_subscribes", "users"
+  add_foreign_key "discipline_subscribers", "disciplines"
+  add_foreign_key "discipline_subscribers", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "team_disciplines", "disciplines"

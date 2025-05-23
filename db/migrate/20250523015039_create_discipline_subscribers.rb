@@ -1,6 +1,6 @@
-class CreateDisciplineSubscribes < ActiveRecord::Migration[8.0]
+class CreateDisciplineSubscribers < ActiveRecord::Migration[8.0]
   def change
-    create_table :discipline_subscribes do |t|
+    create_table :discipline_subscribers do |t|
       t.references :user, null: false, foreign_key: true
       t.references :discipline, null: false, foreign_key: true
 

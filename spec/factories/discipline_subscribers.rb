@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :discipline_subscribe do
+  factory :discipline_subscriber do
     user
     discipline
   end
