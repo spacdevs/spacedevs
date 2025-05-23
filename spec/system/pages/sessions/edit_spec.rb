@@ -9,7 +9,7 @@ feature SessionsController do
 
   scenario 'reset password' do
     visit root_path
-    click_on 'Esqueci minha senha'
+    click_on 'Esqueceu sua senha?'
     fill_in 'E-mail', with: 'angelica@example.com'
     click_on 'Recuperar'
 
@@ -20,7 +20,7 @@ feature SessionsController do
 
   scenario 'cannot send email to a non-existent user' do
     visit root_path
-    click_on 'Esqueci minha senha'
+    click_on 'Esqueceu sua senha?'
     fill_in 'E-mail', with: 'not_exists@example.com'
     click_on 'Recuperar'
 

@@ -1,36 +1,60 @@
-<div class="uk-section-default">
-  <div class="uk-section uk-light uk-background-cover uk-height-viewport"
-    style="background-image: url(<%= image_path('bg5.jpg') %>)">
-    <div class="uk-container">
-      <% flash.each do |_, notification| %>
-        <div class="uk-margin-top">
-          <div class="uk-alert uk-alert-success uk-text-center">
-            <%= notification %>
+<div class="login-container" data-aos="fade-in" data-aos-duration="800">
+  <div class="uk-margin-top">
+    <% flash.each do |_, notification| %>
+      <div class="uk-margin-top">
+        <div class="uk-alert  uk-text-center">
+          <b><%= notification %></b>
         </div>
-      <% end %>
-      <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-column" style="height: 100%;">
-        <div class="uk-width-1-1@s uk-margin-large-bottom uk-text-center" uk-grid></div>
-        <%= form_with url: session_path, class: 'uk-form-stacked uk-width-1-2@m uk-background-secondary uk-padding' do |form| %>
-          <div class="uk-margin">
-            <%= form.label :registration_code, 'Matricula', { class:"uk-form-label" } %>
-            <div class="uk-form-controls">
-              <%= form.text_field :registration_code, required: true, autofocus: true, autocomplete: 'registration_code', class: "uk-input" %><br>
-            </div>
-          </div>
-          <div class="uk-margin">
-            <label class="uk-form-label" for="password">Senha</label>
-            <div class="uk-form-controls">
-              <%= form.password_field :password, required: true, autocomplete: "current-password", class: 'uk-input', maxlength: 72 %><br>
-            </div>
-          </div>
-          <div class="uk-margin">
-            <%= form.submit "Entrar", { class: 'uk-button uk-button-primary uk-width-1-1' } %>
-          </div>
-        <% end %>
       </div>
-        <div class="uk-margin">
-          <%= link_to "Esqueci minha senha", new_password_path, class: 'uk-button uk-button-muted uk-width-1-1' %>
-        </div>
+    <% end %>
+  </div>
+
+  <div class="login-card" data-aos="zoom-in" data-aos-delay="200">
+    <div class="login-logo">
+      <%= image_tag 'logo.png', alt: 'Spacedevs logo marca que aparente um buraco negro dentro de um universo' %>
+      <h3 class="uk-text-white uk-margin-remove">Spacedevs</h3>
     </div>
+
+    <%= form_with url: session_path do |form| %>
+      <div class="login-form-group">
+        <%= form.label :registration_code, 'Matricula', { class:"uk-form-label uk-text-white" } %>
+        <%= form.text_field :registration_code, required: true, autofocus: true, class: "uk-input" %>
+        <i class="fas fa-user"></i>
+      </div>
+
+      <div class="login-form-group">
+        <%= form.label :password, 'Senha', { class:"uk-form-label uk-text-white" } %>
+        <%= form.password_field :password, required: true, autocomplete: "current-password", class: 'uk-input' %>
+        <i class="fas fa-lock"></i>
+      </div>
+
+      <div class="uk-margin-medium-top">
+        <%= form.submit "Acessar", { class: 'uk-button uk-button-primary uk-width-1-1' } %>
+      </div>
+
+      <div class="forgot-password">
+        <%= link_to "Esqueceu sua senha?", new_password_path, class: 'uk-button uk-button-muted uk-width-1-1' %>
+      </div>
+
+      <div class="login-help">
+        <a href="#" uk-toggle="target: #help-modal" class="uk-text-small">
+          <i class="fas fa-question-circle uk-margin-small-right"></i>Precisa de ajuda?
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="help-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-background-secondary uk-light">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <h2 class="uk-modal-title">Precisa de ajuda?</h2>
+    <p>Se você estiver tendo problemas para acessar sua conta, aqui estão algumas opções:</p>
+    <ul class="uk-list uk-list-bullet">
+      <li>Verifique se sua matrícula está digitada corretamente.</li>
+      <li>Certifique-se que o Caps Lock esteja desativado</li>
+      <li>Caso tenha esquecido sua senha, clique em "Esqueceu sua senha?"</li>
+      <li>Entre em contato com suporte técnico: contato@spacedevs.com.br</li>
+    </ul>
   </div>
 </div>
