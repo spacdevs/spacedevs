@@ -5,16 +5,13 @@ feature Admin::DisciplinesController do
   let(:student) { create(:user, :with_profile, :student) }
 
   scenario 'admin sees disciplines already registered' do
-    team = create(:team, name: 'Turma 01')
-    create_list(:user, 5, teams: [team])
-    create(:discipline, title: 'Introdução a computação', teams: [team])
+    create_list(:user, 5)
+    create(:discipline, title: 'Introdução a computação')
 
     login_as(admin)
     click_on 'Disciplinas'
 
     expect(page).to have_content('Introdução a computação')
-    expect(page).to have_content('Turma 01')
-    expect(page).to have_content('5')
   end
 
   scenario 'admin sees only 15 disciplines' do

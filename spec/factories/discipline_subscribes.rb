@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :team_discipline do
+  factory :discipline_subscribe do
+    user
     discipline
-    team
   end
 end

@@ -2,11 +2,10 @@
 
 module Admin
   class DisciplinesController < AdminController
-    before_action :set_discipline, :set_teams, only: %i[show edit update]
-    before_action :set_teams, only: %i[new create edit]
+    before_action :set_discipline, only: %i[show edit update]
 
     def index
-      @disciplines = Discipline.eager_load(teams: %i[users]).limit(15)
+      @disciplines = Discipline.limit(15)
     end
 
     def show
@@ -21,8 +20,7 @@ module Admin
     def edit; end
 
     def create
-      @discipline = Discipline.new(discipline_params.except(:team_name)
-                                                    .merge(teams: teams))
+      @discipline = Discipline.new(discipline_params.except(:team_name))
 
       render :new unless @discipline.save
 
@@ -30,7 +28,7 @@ module Admin
     end
 
     def update
-      @discipline.update(discipline_params.except(:team_ids).merge(teams: teams))
+      @discipline.update(discipline_params.except(:team_ids))
 
       render :edit unless @discipline.persisted?
 
@@ -45,10 +43,6 @@ module Admin
     end
     # rubocop:enable Rails/SkipsModelValidations
 
-    def set_teams
-      @teams = Team.all
-    end
-
     private
 
     def set_discipline
@@ -59,10 +53,6 @@ module Admin
       params.expect(discipline: [:title, :abstract, :position, :body, :available_on, { team_ids: [] }])
             .transform_values! { |param| param.is_a?(Array) ? param.compact_blank : param }
             .compact_blank
-    end
-
-    def teams
-      Team.where(id: discipline_params[:team_ids])
     end
   end
 end

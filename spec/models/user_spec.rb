@@ -10,20 +10,8 @@ RSpec.describe User, type: :model do
   context 'association' do
     it { is_expected.to belong_to(:school).optional }
     it { is_expected.to have_many(:sessions) }
-    it { is_expected.to have_many(:teams) }
     it { is_expected.to have_one(:profile) }
     it { is_expected.to have_one(:user_school_enrollments) }
-  end
-
-  context 'user is on multiple teams' do
-    let(:user) { create(:user) }
-
-    before do
-      create_list(:team, 3, users: [user])
-      user.reload
-    end
-
-    it { expect(user.teams.size).to eq(3) }
   end
 
   context '#normalizes' do
