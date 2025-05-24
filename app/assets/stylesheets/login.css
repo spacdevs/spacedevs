@@ -1,10 +1,5 @@
 /* Estilos para a tela de login */
 
-html,
-body {
-  background-color: #1c222a !important;
-}
-
 .login-container {
   min-height         : 100vh;
   background-size    : cover;

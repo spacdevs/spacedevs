@@ -27,6 +27,10 @@ class User < ApplicationRecord
     message: I18n.t('activerecord.errors.invalid_email_address')
   }
 
+  def first_name
+    profile.fullname.split.first
+  end
+
   private
 
   def generate_registration_code

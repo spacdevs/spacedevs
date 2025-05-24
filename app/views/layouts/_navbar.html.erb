@@ -1,19 +1,38 @@
 <nav class="uk-navbar-container uk-navbar-transparent">
-  <div class="uk-container">
+  <div class="uk-container uk-container-expand">
     <div uk-navbar>
       <div class="uk-navbar-left">
         <a class="uk-navbar-item uk-logo" href="/" aria-label="Volte para Página inicial">
-          <%= image_tag 'logo.png', alt: 'Spacedevs logo marca que aparente um buraco negro dentro de um universo' %>
+          <%= image_tag 'logo.png' %>
+          <h3 class="uk-text-white uk-margin-remove uk-padding-small">Spacedevs</h3>
         </a>
+      </div>
 
+      <div class="uk-navbar-right">
+        <a class="uk-navbar-item" href="#" aria-label="Perfil">
+           <img src="<%= current_user&.profile&.avatar %>" class="avatar" alt="<%= current_user.profile.fullname %>">
+        </a>
         <ul class="uk-navbar-nav">
           <li>
-            <a href="<%= ENV.fetch('COMMUNITY_URL', 'https://spacedevs.com.br') %>">Comunidade</a>
+            <a href="#"><%= current_user.profile.fullname %> <span uk-icon="icon: chevron-down; ratio: 0.7"></span></a>
+            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right">
+              <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
+                <li>
+                  <%= link_to profile_path, class: 'uk-text-secondary' do %>
+                    <span uk-icon="icon: user"></span> Meu perfil
+                  <% end %>
+                </li>
+                <li class="uk-nav-divider"></li>
+                <li>
+                  <%= link_to session_path, data: { turbo_method: :delete } do %>
+                    <span uk-icon="icon: sign-out"></span> Sair
+                  <% end %>
+              </ul>
+            </div>
           </li>
-
           <% if current_user.admin? %>
             <li>
-              <a href="#" class='uk-text-white'>Administração</a>
+              <a href="#" class='uk-text-white'>Admin</a>
               <div class="uk-navbar-dropdown">
                 <ul class="uk-nav uk-navbar-dropdown-nav">
                   <li>
@@ -26,27 +45,6 @@
               </div>
             </li>
           <% end %>
-        </ul>
-      </div>
-
-      <div class="uk-navbar-right" id="profile">
-        <a class="uk-navbar-item uk-logo" href="#" aria-label="Back to Home">
-          <img src="<%= current_user&.profile&.avatar %>" class="avatar" alt="<%= current_user&.profile&.fullname %>">
-        </a>
-        <ul class="uk-navbar-nav">
-          <li>
-            <a href="#" class='uk-text-white'><%= current_user&.profile&.fullname.presence || 'Sem nome' %></a>
-            <div class="uk-navbar-dropdown">
-              <ul class="uk-nav uk-navbar-dropdown-nav">
-                <li>
-                  <%= link_to 'Meu perfil', profile_path, class: 'uk-text-secondary' %>
-                </li>
-                <li>
-                  <%= link_to 'Sair', session_path, data: { turbo_method: :delete }, class: 'uk-text-secondary' %>
-                </li>
-              </ul>
-            </div>
-          </li>
         </ul>
       </div>
     </div>

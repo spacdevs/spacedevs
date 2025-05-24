@@ -37,9 +37,18 @@
       <%= render 'layouts/navbar' %>
     <% end %>
 
-    <main class="uk-content">
-        <%= yield %>
-    </main>
+    <div class="dashboard-container">
+      <div class="dashboard-sidebar">
+        <ul class="uk-nav">
+          <li>
+            <a href="#" class="sidebar-nav-item active">
+              <i class="fas fa-home"></i> <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <%= yield %>
+    </div>
 
     <footer class="uk-margin-large-top">
       <div>
@@ -47,11 +56,6 @@
             id="currentDate"></span></p>
       </div>
     </footer>
+
   </body>
-
-
-  <script>
-    const currentDate = new Date().getFullYear();
-    document.getElementById('currentDate').textContent = currentDate;
-  </script>
 </html>
