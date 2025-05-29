@@ -37,18 +37,12 @@
       <%= render 'layouts/navbar' %>
     <% end %>
 
-    <div class="dashboard-container">
-      <div class="dashboard-sidebar">
-        <ul class="uk-nav">
-          <li>
-            <a href="#" class="sidebar-nav-item active">
-              <i class="fas fa-home"></i> <span>Dashboard</span>
-            </a>
-          </li>
-        </ul>
+    <main class="uk-content">
+      <div class="dashboard-container">
+        <%= render 'layouts/sidebar' %>
+        <%= yield %>
       </div>
-      <%= yield %>
-    </div>
+    </main>
 
     <footer class="uk-margin-large-top">
       <div>

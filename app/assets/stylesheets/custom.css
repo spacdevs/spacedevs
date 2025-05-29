@@ -7,7 +7,7 @@
 
 html,
 body {
-  background-color: #000 !important;
+  background-color: #14171B !important;
 }
 
 footer {
@@ -372,10 +372,11 @@ textarea {
 .action-btn {
   border          : none;
   background-color: rgba(255, 255, 255, 0.1);
-  color           : #fff;
+  color           : #fff !important;
   border-radius   : 5px;
   padding         : 5px 10px;
   transition      : all 0.3s ease;
+  text-decoration: none !important;
 }
 
 .action-btn:hover {
