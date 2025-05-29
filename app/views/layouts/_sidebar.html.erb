@@ -5,5 +5,10 @@
         <i uk-icon="home"></i> <span>Início</span>
       <% end %>
     </li>
+    <li>
+      <%= link_to profile_path, class: "sidebar-nav-item #{'active' if current_page? profile_path }" do %>
+        <i uk-icon="user"></i> <span>Meu perfil</span>
+      <% end %>
+    </li>
   </ul>
 </div>
