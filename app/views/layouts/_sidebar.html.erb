@@ -5,11 +5,13 @@
         <i uk-icon="home"></i> <span>Início</span>
       <% end %>
     </li>
-    <li>
-      <%= link_to profile_path, class: "sidebar-nav-item #{'active' if current_page? profile_path }" do %>
-        <i uk-icon="user"></i> <span>Meu perfil</span>
-      <% end %>
-    </li>
+    <% if current_user&.profile.present? %>
+      <li>
+        <%= link_to profile_path, class: "sidebar-nav-item #{'active' if current_page? profile_path }" do %>
+          <i uk-icon="user"></i> <span>Meu perfil</span>
+        <% end %>
+      </li>
+    <% end %>
     <li>
       <%= link_to session_path, class: "sidebar-nav-item", data: { turbo_method: :delete } do %>
         <i uk-icon="icon: sign-out"></i>  <span>Sair</span>

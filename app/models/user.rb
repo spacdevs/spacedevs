@@ -28,7 +28,7 @@ class User < ApplicationRecord
   }
 
   def first_name
-    profile.fullname.split.first
+    profile&.fullname&.split&.first
   end
 
   private

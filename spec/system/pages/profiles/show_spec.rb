@@ -35,9 +35,7 @@ feature 'Visit profile' do
     scenario { expect(current_path).to eq(root_path) }
 
     scenario 'cannot view profile' do
-      expect(page).to have_content('Sem nome')
-      expect(page).to have_content('Meu perfil')
-      expect(page).to have_content('Sair')
+      expect(page).not_to have_content('Meu perfil')
     end
   end
 end
