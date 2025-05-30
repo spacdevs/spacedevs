@@ -10,5 +10,10 @@
         <i uk-icon="user"></i> <span>Meu perfil</span>
       <% end %>
     </li>
+    <li>
+      <%= link_to session_path, class: "sidebar-nav-item", data: { turbo_method: :delete } do %>
+        <i uk-icon="icon: sign-out"></i>  <span>Sair</span>
+      <% end %>
+    </li>
   </ul>
 </div>

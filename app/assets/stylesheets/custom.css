@@ -76,6 +76,10 @@ iframe {
   color: var(--primary-color) !important;
 }
 
+.uk-text-offset {
+  color: #c0c0c0 !important;
+}
+
 .uk-text-featured {
   color: var(--secondary-color) !important;
 }

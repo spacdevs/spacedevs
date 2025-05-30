@@ -25,7 +25,7 @@
 
           </div>
         <% else %>
-          <div style="<%= 'position:relative;padding-top:56.25%;' if current_page? discipline_path(@discipline&.slug || @content.discipline.slug) %>" class="uk-text-white">
+          <div style="<%= 'position:relative;padding-top:56.25%;' if current_page? discipline_path(@discipline&.slug || @content.discipline.slug) %>" class="uk-text-offset">
             <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
           </div>
         <% end %>
@@ -45,14 +45,7 @@
 
     <!-- Seção de conteúdo do curso -->
     <div class="content-section" data-aos="fade-up" data-aos-delay="200">
-      <h3 class="uk-text-white">Conteúdo do Curso</h3>
-
-      <div class="uk-margin-medium-bottom">
-        <div class="uk-flex uk-flex-between uk-flex-middle">
-          <span class="text-default-color">Tempo total: 85:15</span>
-          <span class="uk-badge badge-success">1/3 concluído</span>
-        </div>
-      </div>
+      <h3 class="uk-text-white">Aulas</h3>
 
       <% contents.each do |content| %>
         <div class="topic-item <%= 'completed' if content.id == resource.id && resource.respond_to?(:video_id) %>" id="<% dom_id content %>" >

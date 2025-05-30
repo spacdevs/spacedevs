@@ -14,27 +14,13 @@
         </a>
         <ul class="uk-navbar-nav">
           <li>
-            <a href="#"><%= current_user.profile.fullname %> <span uk-icon="icon: chevron-down; ratio: 0.7"></span></a>
-            <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right">
-              <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
-                <li>
-                  <%= link_to profile_path, class: 'uk-text-secondary' do %>
-                    <span uk-icon="icon: user"></span> Meu perfil
-                  <% end %>
-                </li>
-                <li class="uk-nav-divider"></li>
-                <li>
-                  <%= link_to session_path, data: { turbo_method: :delete } do %>
-                    <span uk-icon="icon: sign-out"></span> Sair
-                  <% end %>
-              </ul>
-            </div>
+            <a class="uk-text-white" href="#"><%= current_user.profile.fullname %></a>
           </li>
           <% if current_user.admin? %>
             <li>
-              <a href="#" class='uk-text-white'>Admin</a>
-              <div class="uk-navbar-dropdown">
-                <ul class="uk-nav uk-navbar-dropdown-nav">
+              <a class="uk-text-white" href="#"><span uk-icon="icon: chevron-down; ratio: 0.7">Admin</span></a>
+              <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right">
+              <ul class="uk-nav uk-navbar-dropdown-nav uk-text-white">
                   <li>
                     <%= link_to 'Alunos', admin_users_path, class: 'uk-text-secondary' %>
                     <%= link_to 'Disciplinas', admin_disciplines_path, class: 'uk-text-secondary' %>
