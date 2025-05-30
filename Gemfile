@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'awesome_print'
 
+gem 'aws-sdk-s3', require: false
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'logtail-rails', '~> 0.2.10'
