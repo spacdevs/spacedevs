@@ -26,8 +26,6 @@ feature 'Disciplines' do
     end
 
     scenario 'can view ordered disciplines' do
-      puts Discipline.all.pluck(:position, :title)
-
       within '.disciplines > div:nth-child(1) .module-card-header h3' do
         expect(page).to have_content('Criando funcões anônimas')
       end

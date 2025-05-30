@@ -28,7 +28,9 @@ class User < ApplicationRecord
   }
 
   def first_name
-    profile&.fullname&.split&.first
+    return if profile.blank?
+
+    profile.fullname.split.first
   end
 
   private
