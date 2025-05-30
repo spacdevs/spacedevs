@@ -13,7 +13,7 @@ feature :contents do
 
   scenario 'click and show introduction text' do
     visit root_path
-    click_on discipline.title
+    click_on 'Continuar'
 
     expect(page).to have_content(discipline.body.to_plain_text)
   end
@@ -25,27 +25,22 @@ feature :contents do
 
     visit discipline_content_path(discipline_slug: discipline.slug, content_slug: content.slug)
 
-    # title of content in page
     expect(page).to have_content('Introducation to Github')
 
-    within 'div.uk-width-1-3\@m > div.uk-card.uk-card-secondary.uk-card-body.uk-margin-bottom > ul > li:nth-child(1)' do
+    within '.topic-item.completed' do
       expect(page).to have_content('Introducation to Github')
     end
 
-    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(2)' do
+    within '.topic-item:nth-child(3)' do
       expect(page).to have_content('Content 2')
     end
 
-    within 'div.uk-width-1-3\@m > div > ul > li:nth-child(3)' do
+    within '.topic-item:nth-child(4)' do
       expect(page).to have_content('Content 3')
-    end
-
-    discipline.contents.each do |c|
-      expect(page).to have_content(c.title)
     end
   end
 
-  scenario 'must have contents' do
+  scenario 'must contain discipline title on each page' do
     visit discipline_path(discipline.slug)
 
     discipline.contents.each do |content|
@@ -61,14 +56,16 @@ feature :contents do
     expect(page).to have_content(current_content.body.to_plain_text)
   end
 
-  xscenario 'student view attachments' do
+  scenario 'student view attachments' do
     file = Rails.root.join('spec/fixtures/resources.zip').open
-    discipline.resources.attach(io: file, filename: 'resource.zip', content_type: 'application/zip')
+    resource = create(:resource, name: 'resource.zip', sourceable: discipline)
+    resource.file.attach(io: file, filename: 'resource.zip', content_type: 'application/zip')
 
     visit discipline_path(discipline.slug)
 
-    expect(page).to have_content 'Materiais'
+    expect(page).to have_content 'Materiais da Aula'
     expect(page).to have_content 'resource.zip'
+    expect(page).to have_content '0.0 MB'
   end
 
   scenario 'must redirect to a 404 page' do

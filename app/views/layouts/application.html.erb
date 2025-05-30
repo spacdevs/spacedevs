@@ -17,6 +17,11 @@
 
     <link rel="manifest" href="/site.webmanifest">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -33,12 +38,18 @@
   </head>
 
   <body class="uk-body">
-    <% if current_user.present? %>
-      <%= render 'layouts/navbar' %>
-    <% end %>
+    <%= render 'layouts/navbar' if current_user.present? %>
 
     <main class="uk-content">
-        <%= yield %>
+      <div class="dashboard-container">
+
+        <%= render 'layouts/sidebar' if current_user.present? %>
+
+        <div class="dashboard-content">
+          <%= yield %>
+        </div>
+
+      </div>
     </main>
 
     <footer class="uk-margin-large-top">
@@ -47,11 +58,6 @@
             id="currentDate"></span></p>
       </div>
     </footer>
+
   </body>
-
-
-  <script>
-    const currentDate = new Date().getFullYear();
-    document.getElementById('currentDate').textContent = currentDate;
-  </script>
 </html>

@@ -1,45 +1,81 @@
-<section class="uk-section uk-padding-remove-top">
-  <div class="uk-container">
-    <% flash.each do |_, notification| %>
-      <div class="uk-margin-top">
-        <div class="uk-alert uk-alert-success uk-text-center">
-          <%= notification %>
+<div class="profile-header" data-aos="fade-up" data-aos-duration="800">
+  <div class="uk-grid" uk-grid>
+    <div class="uk-width-auto@m">
+      <img src="<%= current_user&.profile&.avatar %>" class="avatar" alt="<%= current_user.profile.fullname %>">
+    </div>
+    <div class="uk-width-expand@m uk-flex uk-flex-middle profile-info">
+      <div>
+        <h1 class="uk-text-white uk-margin-remove">
+          <%= current_user.profile.fullname %>
+          <span class="profile-badge">Turma 2025</span>
+        </h1>
+
+        <div class="uk-margin-top">
+          <%= link_to edit_profile_path, class:"action-button uk-button" do %>
+            <i uk-icon="icon: pencil; ratio: 1"></i>
+            <span>Editar meu e-mail</span>
+          <% end %>
+          <%= link_to passwords_path(email_address: current_user.email_address), data: { turbo_method: :post, confirm: 'Você tem certeza?' }, :'data-turbo-confirm' => "Você tem certeza que gostaria de resetar sua senha?", class:"action-button uk-button" do %>
+          <i uk-icon="icon: refresh; ratio: 1"></i>
+           Resetar minha senha
+          <% end %>
         </div>
       </div>
-    <% end %>
-    <div class="uk-card uk-card-primary uk-card-body uk-text-center uk-margin-top">
-      <div class="uk-flex uk-flex-center uk-margin-bottom uk-flex-column">
-        <div class="uk-margin-bottom">
-          <img src="<%= @profile.avatar %>" class="uk-border-circle" alt="Judith Rice" width="150" height="150" />
-        </div>
-        <div>
-          <%= link_to 'Editar meu e-mail', edit_profile_path, class:"uk-button uk-button-default" %>
-          <%= link_to 'Resetar minha senha', passwords_path(email_address: current_user.email_address), data: { turbo_method: :post, confirm: 'Você tem certeza?' }, :'data-turbo-confirm' => "Você tem certeza que gostaria de resetar sua senha?", class:"uk-button uk-button-default" %>
-        </div>
-      </div>
-      <h2 class="uk-heading-line">
-        <span><%= @profile.fullname %></span>
-      </h2>
-      <p class="uk-text-lead">Escola matriculada:
-        <span class="uk-text-white">
-          <%= @profile.user.school.name %>
-        </span>
-      </p>
-      <p class="uk-text-lead">Matricula:
-        <span class="uk-text-white">
-          <%= @profile.user.registration_code %>
-        </span>
-      </p>
-      <p class="uk-text-lead">Turma:
-        <span class="uk-text-white">
-          <%= UserSchoolEnrollments.human_enum_name(:degree, @profile&.user&.user_school_enrollments&.degree) %>
-        </span>
-      </p>
-      <p class="uk-text-lead">E-mail:
-        <span class="uk-text-white">
-          <%= @profile.user.email %>
-        </span>
-      </p>
     </div>
   </div>
-</section>
+</div>
+
+<div class="uk-grid uk-grid-match" uk-grid>
+  <div class="uk-width-2-3@m">
+    <div class="profile-section" data-aos="fade-up" data-aos-delay="100">
+      <h3><i class="fas fa-user-circle"></i> Informações Pessoais</h3>
+      <div class="uk-grid uk-grid-small" uk-grid>
+        <div class="uk-width-1-3@s">
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-muted">Nome:</label>
+            <div class="uk-text-white"><%= @profile.fullname %></div>
+          </div>
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-muted">E-mail:</label>
+            <div class="uk-text-white"><%= current_user.email %></div>
+          </div>
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-muted">Telefone:</label>
+            <div class="uk-text-white"><%= @profile.whatsapp %></div>
+          </div>
+        </div>
+        <div class="uk-width-1-2@s">
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-muted">Matricuka:</label>
+            <div class="uk-text-white"><%= current_user.registration_code %></div>
+          </div>
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-muted">Escola matriculada:</label>
+            <div class="uk-text-white">
+              <%= @profile.user.school.name %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-3@m">
+    <div class="profile-section" data-aos="fade-up" data-aos-delay="100">
+      <h3><i class="fas fa-chart-pie"></i> Estatísticas</h3>
+      <div class="uk-flex uk-flex-wrap">
+        <div class="stats-data uk-margin-bottom">
+          <div class="stats-circle">
+            <div class="stats-number"><%= current_user.discipline_subscribers.count %></div>
+            <div class="stats-label">Módulos</div>
+          </div>
+          <div>
+            <div class="uk-text-default-color">
+              Módulos em andamento: <%= current_user.discipline_subscribers.count %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

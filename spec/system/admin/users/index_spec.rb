@@ -10,10 +10,10 @@ feature Admin::UsersController do
     student2.create_user_school_enrollments!(school: student2.school, degree: :first_year)
   end
 
-  scenario 'check if Administração word exists' do
+  scenario 'check if Admin word exists' do
     login_as(admin)
 
-    expect(page).to have_content('Administração')
+    expect(page).to have_content('Admin')
   end
 
   scenario 'admin sees students' do

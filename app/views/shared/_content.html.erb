@@ -1,56 +1,67 @@
-<section class="uk-section">
-  <div class="uk-container">
-    <div class="uk-grid" uk-grid>
-      <% if resource.respond_to? :video_id %>
-        <div class="uk-width-2-3@m uk-text-white">
-          <div style="position:relative;padding-top:56.25%;">
-            <iframe src="<%= resource.video_id.gsub('play', 'embed') %>?autoplay=false&loop=false&muted=false&preload=false&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
-          </div>
+<div class="content-area">
+  <!-- Efeito de partículas de fundo -->
+  <div id="particles-js" class="particles-fullscreen"></div>
 
-          <!-- text body -->
-          <div class="uk-margin-medium">
-            <%= resource.body %>
-          </div>
+  <h1 class="uk-text-white" data-aos="fade-up">
+    <%= @discipline&.title || @content&.title %>
+  </h1>
 
-        </div>
-      <% else %>
-        <div class="uk-width-2-3@m uk-text-white">
-          <div style="position:relative;padding-top:56.25%;">
+  <div class="content-layout">
+    <!-- Seção do vídeo -->
+    <div class="video-section" data-aos="fade-up" data-aos-delay="100">
+      <div class="video-container">
+        <% if resource.respond_to?(:video_id ) && resource.video_id.present? %>
+          <div class="uk-text-white">
+            <div style="position:relative;padding-top:56.25%;">
+              <iframe src="<%= resource.video_id.gsub('play', 'embed') %>?autoplay=false&loop=false&muted=false&preload=false&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+            </div>
+
+            <!-- text body -->
+            <div class="uk-margin-medium uk-padding-medium">
+              <p>
+                <%= resource.body %>
+              </p>
+            </div>
+
+          </div>
+        <% else %>
+          <div style="<%= 'position:relative;padding-top:56.25%;' if current_page? discipline_path(@discipline&.slug || @content.discipline.slug) %>" class="uk-text-offset">
             <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
 
-      <div class="uk-width-1-3@m">
-        <div class="uk-card uk-card-secondary uk-card-body uk-margin-bottom">
-          <ul class="uk-nav uk-nav-default uk-list uk-list-decimal uk-padding-small">
-            <% contents.each do |content| %>
-              <li class="<%= 'uk-active' if content.id == resource.id && resource.respond_to?(:video_id) %>"
-                  id="<% dom_id content %>">
-                <%= link_to content.title,
-                    discipline_content_path(
-                      discipline_slug: content.discipline.slug,
-                      content_slug: content.slug
-                    ),
-                    class: 'uk-text-white' %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="uk-heading-line uk-text-white"><span>Disciplina</span></h3>
-          <ul class="uk-list uk-list-disc uk-list-default">
-            <li class="uk-text-featured">
-              <%= resource.respond_to?(:discipline) ? resource.discipline.title : resource.title %>
-            </li>
-          </ul>
-        </div>
+      <div class="uk-margin-medium-top">
+        <h2 class="uk-text-white">Sobre o módulo</h2>
+        <p class="uk-text-default-color">
+          <%= @discipline&.abstract || @content.discipline.abstract %>
+        </p>
 
         <%= render 'layouts/supplies', {
           discipline: resource.respond_to?(:discipline) ? resource.discipline : resource
         } %>
       </div>
     </div>
+
+    <!-- Seção de conteúdo do curso -->
+    <div class="content-section" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="uk-text-white">Aulas</h3>
+
+      <% contents.each do |content| %>
+        <div class="topic-item <%= 'completed' if content.id == resource.id && resource.respond_to?(:video_id) %>" id="<% dom_id content %>" >
+          <div class="topic-status <%= 'completed' if content.id == resource.id && resource.respond_to?(:video_id) %>" id="<% dom_id content %>" >
+            <span uk-icon="icon: play; ratio: 0.8"></span>
+          </div>
+          <div class="topic-details">
+          <%= link_to content.title,
+              discipline_content_path(
+                discipline_slug: content.discipline.slug,
+                content_slug: content.slug
+              ),
+              class: 'uk-text-white ' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</section>
+</div>

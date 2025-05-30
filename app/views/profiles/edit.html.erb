@@ -1,6 +1,19 @@
-<section class="uk-section">
-  <div class="uk-container">
-    <div class="uk-width-1-1@s uk-margin-large-bottom uk-text-center" uk-grid></div>
+<div class="content-area">
+
+  <% flash.each do |_, notification| %>
+    <div class="uk-margin-top">
+      <div class="uk-alert uk-alert-success uk-text-center">
+        <%= notification %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="welcome-section" data-aos="fade-up">
+    <h1 class="uk-text-white">Alteração de e-mail</h1>
+    <p class="text-default-color">Recomendamos que você sempre mantenha seus dados atualizados para que você possa receber os nossos informativos.</p>
+  </div>
+
+  <div class="uk-width-1-1@s uk-margin-large-bottom uk-text-center" uk-grid></div>
     <% if @profile.errors.present? %>
       <div class="uk-alert uk-text-center uk-alert-danger">
         <% @profile.errors.full_messages.each do |message| %>
@@ -29,4 +42,4 @@
       <% end %>
     </div>
   </div>
-</section>
+</div>

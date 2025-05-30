@@ -1,20 +1,33 @@
-<section class="uk-section">
-  <div class="uk-container">
-    <% if @disciplines.present? %>
-      <div class="uk-child-width-1-2@s uk-grid-match" uk-grid id="disciplines">
-        <% @disciplines.each do |discipline|  %>
-          <div>
-            <a href="<%= discipline_path(slug: discipline.slug) %>" class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-link-toggle">
-              <h3 class=" uk-card-title"><%= discipline.title %></h3>
-              <p>
-                <%= discipline.abstract %>
-              </p>
-            </a>
+
+<div class="welcome-section" data-aos="fade-up" data-aos-duration="800">
+  <h1 class="uk-text-white">E ai <%= current_user.first_name %>, beleza?</h1>
+  <p class="uk-text-default-color">Você está de volta à plataforma da Spacedevs.</p>
+</div>
+
+<h2 class="uk-text-white uk-margin-medium-top uk-margin-medium-bottom" data-aos="fade-up">Módulos disponíveis</h2>
+
+<div class="uk-grid-medium uk-child-width-1-2@s uk-grid-match disciplines" uk-grid>
+  <% @disciplines.each do |discipline|  %>
+    <div data-aos="fade-up" data-aos-delay="200">
+      <div class="module-card">
+        <div class="module-card-header">
+          <h3 class="uk-card-title uk-text-white uk-margin-remove"><%= discipline.title %></h3>
+        </div>
+        <div class="module-card-body">
+          <span class="uk-text-white">
+            <%= discipline.abstract %>
+          </span>
+        </div>
+        <div class="module-card-footer">
+          <div class="uk-flex uk-flex-middle">
+            <span class="uk-text-small uk-text-white"><%= discipline.contents_count %> aulas</span>
           </div>
-        <% end %>
+          <%= link_to discipline_path(slug: discipline.slug), class: 'action-btn' do %>
+            Continuar
+            <span uk-icon="icon: arrow-right; ratio: 0.8"></span></a>
+          <% end %>
+        </div>
       </div>
-    <% else %>
-      <p class="uk-text-center">Estamos trabalhando no conteúdo para te ofertar.</p>
-    <% end %>
-  </div>
-</section>
+    </div>
+  <% end %>
+</div>

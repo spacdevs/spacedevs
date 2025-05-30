@@ -13,7 +13,7 @@ feature Admin::DisciplinesController do
       team = Team.first
 
       login_as(admin_user)
-      click_on 'Administração'
+      click_on 'Admin'
       click_on 'Disciplinas'
       click_on 'Adicionar'
       fill_in  'Título', with: 'Introdução a computação'
@@ -40,7 +40,7 @@ feature Admin::DisciplinesController do
 
   scenario 'creates without fields' do
     login_as(admin_user)
-    click_on 'Administração'
+    click_on 'Admin'
     click_on 'Disciplinas'
     click_on 'Adicionar'
     click_on 'Criar Disciplina'

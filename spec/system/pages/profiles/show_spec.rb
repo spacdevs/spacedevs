@@ -16,11 +16,24 @@ feature 'Visit profile' do
 
     scenario { expect(current_path).to eq(profile_path) }
 
-    scenario 'can view profile' do
-      expect(page).to have_content("E-mail: #{user.email}")
-      expect(page).to have_content("Matricula: #{user.registration_code}")
-      expect(page).to have_content("Escola matriculada: #{user.school.name}")
-      expect(page).to have_content('Turma: 1º ano do ensino médio')
+    scenario 'has fullname' do
+      expect(page).to have_content("Nome:\n#{user.profile.fullname}")
+    end
+
+    scenario 'has e-mail' do
+      expect(page).to have_content("E-mail:\n#{user.email}")
+    end
+
+    scenario 'has whatsapp' do
+      expect(page).to have_content("Telefone:\n#{user.profile.whatsapp}")
+    end
+
+    scenario 'has registration code' do
+      expect(page).to have_content("Matricuka:\n#{user.registration_code}")
+    end
+
+    scenario 'Escola matriculada:' do
+      expect(page).to have_content("Escola matriculada:\n#{user.school.name}")
     end
   end
 
@@ -35,9 +48,7 @@ feature 'Visit profile' do
     scenario { expect(current_path).to eq(root_path) }
 
     scenario 'cannot view profile' do
-      expect(page).to have_content('Sem nome')
-      expect(page).to have_content('Meu perfil')
-      expect(page).to have_content('Sair')
+      expect(page).not_to have_content('Meu perfil')
     end
   end
 end

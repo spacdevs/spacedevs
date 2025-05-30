@@ -1,10 +1,31 @@
-<h3 class="uk-heading-line uk-text-white"><span>Materiais</span></h3>
-<ul class="uk-list uk-list-disc uk-list-default">
-  <% discipline.resources.each do |resource| %>
-    <% if resource.file.attached? %>
-      <li>
-        <%= link_to resource.file.filename, rails_blob_path(resource.file, disposition: 'attachment'), class: "uk-text-featured" %>
-      </li>
+<div class="uk-margin-medium-top" data-aos="fade-up" data-aos-delay="600">
+  <h3 class="uk-text-white">Materiais da Aula</h3>
+
+  <div class="materials-container">
+    <% discipline.resources.each do |resource| %>
+      <% if resource.file.attached? %>
+        <div class="materials-item">
+          <div class="materials-item-info">
+            <div class="materials-item-icon">
+              <span uk-icon="icon: file-pdf"></span>
+            </div>
+            <div>
+              <div class="uk-text-white">
+                <%= resource.file.filename %>
+              </div>
+              <div class="materials-item-meta">
+                <%= resource.file.filename.extension_without_delimiter.upcase %> •
+                <%= resource.file.byte_size.to_mb %> MB
+              </div>
+            </div>
+          </div>
+          <div class="download-button">
+            <%= link_to rails_blob_path(resource.file, disposition: 'attachment'), class: "uk-link-reset" do %>
+              <span uk-icon="icon: download"></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </div>
+</div>

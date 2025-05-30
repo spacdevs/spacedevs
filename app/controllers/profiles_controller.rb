@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      return redirect_to profile_path, notice: I18n.t(
+      return redirect_to edit_profile_path, notice: I18n.t(
         'messages.update.success', alias_name: 'E-mail'
       )
     end

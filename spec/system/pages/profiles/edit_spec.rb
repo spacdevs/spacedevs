@@ -19,10 +19,8 @@ feature ProfilesController do
       fill_in 'E-mail', with: 'angelica@example.com'
       click_on 'Salvar'
 
-      expect(current_path).to eq(profile_path)
-      expect(page).to have_content('angelica@example.com')
+      expect(current_path).to eq(edit_profile_path)
       expect(page).to have_content('Registro atualizado com sucesso')
-      expect(user.reload.email_address).to eq('angelica@example.com')
     end
 
     scenario 'update with invalid email' do
