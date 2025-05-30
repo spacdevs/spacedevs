@@ -8,11 +8,10 @@ FactoryBot.define do
     trait :with_contents do
       transient do
         limit { 1 }
-        position { 1 }
       end
 
       after(:create) do |discipline, transient|
-        create_list(:content, transient.limit, :text, discipline: discipline, position: transient.position)
+        create_list(:content, transient.limit, :text, discipline: discipline)
       end
     end
 
