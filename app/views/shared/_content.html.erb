@@ -25,7 +25,7 @@
 
           </div>
         <% else %>
-          <div class="uk-text-white">
+          <div style="<%= 'position:relative;padding-top:56.25%;' if current_page? discipline_path(@discipline&.slug || @content.discipline.slug) %>" class="uk-text-white">
             <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
           </div>
         <% end %>
