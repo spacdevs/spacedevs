@@ -6,7 +6,7 @@ feature 'Admin::Disciplines::ContentsController' do
 
   before do
     login_as admin_user
-    click_on 'Administração'
+    click_on 'Admin'
     click_on 'Disciplinas'
     find("a[title='#{discipline.title}']").click
 
