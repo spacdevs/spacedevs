@@ -5,7 +5,6 @@ gem 'awesome_print'
 gem 'aws-sdk-s3', require: false
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'logtail-rails', '~> 0.2.10'
 gem 'pg', '1.5.9'
 gem 'propshaft'
 gem 'puma', '>= 5.0'
