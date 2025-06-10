@@ -10,25 +10,19 @@
     <!-- Seção do vídeo -->
     <div class="video-section" data-aos="fade-up" data-aos-delay="100">
       <div class="video-container">
-        <% if resource.respond_to?(:video_id ) && resource.video_id.present? %>
-          <div class="uk-text-white">
+        <div class="uk-text-white">
+          <% if resource.body.to_s.include?('iframe')  %>
             <div style="position:relative;padding-top:56.25%;">
-              <iframe src="<%= resource.video_id.gsub('play', 'embed') %>?autoplay=false&loop=false&muted=false&preload=false&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
-            </div>
-
-            <!-- text body -->
-            <div class="uk-margin-medium uk-padding-medium">
               <p>
-                <%= resource.body %>
+                <%= raw resource.body.to_plain_text %>
               </p>
             </div>
-
-          </div>
-        <% else %>
-          <div style="<%= 'position:relative;padding-top:56.25%;' if current_page? discipline_path(@discipline&.slug || @content.discipline.slug) %>" class="uk-text-offset">
-            <%= sanitize(resource.body.to_plain_text, tags: %w[div img iframe], attributes: %w[src frameborder allow allowfullscreen]) %>
-          </div>
-        <% end %>
+          <% else %>
+            <p>
+              <%= resource.body.to_s %>
+            </p>
+          <% end %>
+        </div>
       </div>
 
       <div class="uk-margin-medium-top">
