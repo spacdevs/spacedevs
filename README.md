@@ -31,6 +31,16 @@ E para finalizar, você pode executar o comando abaixo, para ter acesso ao softw
 rails s
 ```
 
+## 🌆 Imagens
+
+### Dashboard
+
+![image](https://github.com/user-attachments/assets/2e469b3a-b69f-45b7-8a68-5d1666a3aed9)
+
+### Perfil do usuário
+![Screenshot 2025-06-13 at 17 15 08](https://github.com/user-attachments/assets/e7a2283f-7529-4b63-aa7d-5704fa15d0f9)
+
+
 ## Dúvidas
 
 Todas as dúvidas deste projeto, estamos respondendo através de [issues](https://github.com/spacdevs/spacedevs/issues). Fique a vontade para abrir uma.
